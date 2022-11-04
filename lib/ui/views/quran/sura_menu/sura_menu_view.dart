@@ -1,19 +1,29 @@
-import 'package:abc_quran/ui/views/quran/menu/state/menu_viewmodel.dart';
+import 'package:abc_quran/ui/views/quran/read/text/quran_text_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MenuView extends ConsumerWidget {
-  const MenuView({Key? key}) : super(key: key);
+import 'state/sura_menu_viewmodel.dart';
+
+class SuraMenuView extends ConsumerStatefulWidget {
+  const SuraMenuView({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final size = MediaQuery.of(context).size;
+  SuraMenuViewState createState() => SuraMenuViewState();
+}
 
-    final state = ref.watch(menuProvider);
+class SuraMenuViewState extends ConsumerState<SuraMenuView> with AutomaticKeepAliveClientMixin<SuraMenuView> {
+  final pageController = PageController();
+
+  Widget _buildListing(BuildContext context, WidgetRef ref) {
+        final size = MediaQuery.of(context).size;
+
+    final state = ref.watch(suraMenuProvider);
 
     if (state.suras.isEmpty) {
       return const Center(
-          child: Text("Loading sura list...", style: TextStyle(fontSize: 38)));
+          child: Text("Loading sura listing...", style: TextStyle(fontSize: 38)));
     } else {
       return GridView.builder(
         itemCount: 114,
@@ -36,8 +46,11 @@ class MenuView extends ConsumerWidget {
               onHover: (_) {
                 print("hey");
               },
-              onTap: () {},
-              child: Container(
+              onTap: () {
+                ref.read(suraMenuProvider.notifier).select(sura);
+                pageController.jumpToPage(1);
+              },
+              child: SizedBox(
                 height: size.height / 7,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -54,4 +67,16 @@ class MenuView extends ConsumerWidget {
       );
     }
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return PageView(controller: pageController, children: [
+      _buildListing(context, ref),
+      QuranTextView(pageController: pageController,),
+    ],);
+  }
+  
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

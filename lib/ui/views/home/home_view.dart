@@ -1,4 +1,4 @@
-import 'package:abc_quran/ui/views/quran/menu/menu_view.dart';
+import 'package:abc_quran/ui/views/quran/sura_menu/sura_menu_view.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -61,12 +61,12 @@ class HomeView extends ConsumerWidget {
           Expanded(
             child: PageView(
               controller: page,
-              children: const [
-                MenuView(),
-                Center(
+              children: [
+                SuraMenuView(),
+                const Center(
                   child: Text('Contribution'),
                 ),
-                Center(
+                const Center(
                   child: Text('Paramètres'),
                 ),
               ],

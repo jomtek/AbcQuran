@@ -4,16 +4,17 @@ import 'package:abc_quran/models/sura.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final quranTextServiceProvider = Provider((ref) => QuranTextService());
+final quranGlobalServiceProvider = Provider((ref) => QuranGlobalService());
 
-class QuranTextService {
-  Future<List<Sura>> getSuraList() async {
+// This service fulfills all non-specific quran needs, such as retrieving the names of the chapters...
+class QuranGlobalService {
+  Future<List<SuraModel>> getSuraList() async {
       final rawData = await rootBundle.loadString('assets/sura_info.json');
       final jsonList = jsonDecode(rawData);
       
-      var list = <Sura>[];
+      var list = <SuraModel>[];
       for (final json in jsonList) {
-        list.add(Sura.fromJson(json));
+        list.add(SuraModel.fromJson(json));
       }
       
       return list;
