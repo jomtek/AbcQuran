@@ -1,0 +1,800 @@
+[
+	{
+		"id":1,
+		"length":7,
+		"phoneticName":"Al-Fatiha",
+		"translatedName":"Prologue",
+		"revelationType":0
+	},
+	{
+		"id":2,
+		"length":286,
+		"phoneticName":"Al-Baqarah",
+		"translatedName":"La vache",
+		"revelationType":1
+	},
+	{
+		"id":3,
+		"length":200,
+		"phoneticName":"Al-Imran",
+		"translatedName":"La famille d'Imran",
+		"revelationType":1
+	},
+	{
+		"id":4,
+		"length":176,
+		"phoneticName":"An-Nisa",
+		"translatedName":"Les femmes",
+		"revelationType":1
+	},
+	{
+		"id":5,
+		"length":120,
+		"phoneticName":"Al-Ma'ida",
+		"translatedName":"La table servie",
+		"revelationType":1
+	},
+	{
+		"id":6,
+		"length":165,
+		"phoneticName":"Al-Anam",
+		"translatedName":"Les bestiaux",
+		"revelationType":0
+	},
+	{
+		"id":7,
+		"length":206,
+		"phoneticName":"Al-Araf",
+		"translatedName":"Le purgatoire",
+		"revelationType":0
+	},
+	{
+		"id":8,
+		"length":75,
+		"phoneticName":"Al-Anfal",
+		"translatedName":"Le butin",
+		"revelationType":1
+	},
+	{
+		"id":9,
+		"length":129,
+		"phoneticName":"At-Tawbah",
+		"translatedName":"Le repentir",
+		"revelationType":1
+	},
+	{
+		"id":10,
+		"length":109,
+		"phoneticName":"Yunus",
+		"translatedName":"Jonas",
+		"revelationType":0
+	},
+	{
+		"id":11,
+		"length":123,
+		"phoneticName":"Hud",
+		"translatedName":"Hud",
+		"revelationType":0
+	},
+	{
+		"id":12,
+		"length":111,
+		"phoneticName":"Yusuf",
+		"translatedName":"Joseph",
+		"revelationType":0
+	},
+	{
+		"id":13,
+		"length":43,
+		"phoneticName":"Ar-Ra'd",
+		"translatedName":"Le tonnerre",
+		"revelationType":0
+	},
+	{
+		"id":14,
+		"length":52,
+		"phoneticName":"Ibrahim",
+		"translatedName":"Abraham",
+		"revelationType":0
+	},
+	{
+		"id":15,
+		"length":99,
+		"phoneticName":"Al-Hijr",
+		"translatedName":"La vallée des pierres",
+		"revelationType":0
+	},
+	{
+		"id":16,
+		"length":128,
+		"phoneticName":"An-Nahl",
+		"translatedName":"Les abeilles",
+		"revelationType":0
+	},
+	{
+		"id":17,
+		"length":111,
+		"phoneticName":"Al-Isra",
+		"translatedName":"Le voyage nocturne",
+		"revelationType":0
+	},
+	{
+		"id":18,
+		"length":110,
+		"phoneticName":"Al-Kahf",
+		"translatedName":"La caverne",
+		"revelationType":0
+	},
+	{
+		"id":19,
+		"length":98,
+		"phoneticName":"Maryam",
+		"translatedName":"Marie",
+		"revelationType":0
+	},
+	{
+		"id":20,
+		"length":135,
+		"phoneticName":"Ta-Ha",
+		"translatedName":"Ta-Ha",
+		"revelationType":0
+	},
+	{
+		"id":21,
+		"length":112,
+		"phoneticName":"Al-Anbiya",
+		"translatedName":"Les prophètes",
+		"revelationType":0
+	},
+	{
+		"id":22,
+		"length":78,
+		"phoneticName":"Al-Hajj",
+		"translatedName":"Le pélerinage",
+		"revelationType":2
+	},
+	{
+		"id":23,
+		"length":118,
+		"phoneticName":"Al-Mu'minun",
+		"translatedName":"Les croyants",
+		"revelationType":2
+	},
+	{
+		"id":24,
+		"length":64,
+		"phoneticName":"An-Nur",
+		"translatedName":"La lumière",
+		"revelationType":1
+	},
+	{
+		"id":25,
+		"length":77,
+		"phoneticName":"Al-Furqan",
+		"translatedName":"Le discernement",
+		"revelationType":2
+	},
+	{
+		"id":26,
+		"length":227,
+		"phoneticName":"Ash-Shu'ara",
+		"translatedName":"Les poètes",
+		"revelationType":0
+	},
+	{
+		"id":27,
+		"length":93,
+		"phoneticName":"An-Naml",
+		"translatedName":"Les fourmis",
+		"revelationType":2
+	},
+	{
+		"id":28,
+		"length":88,
+		"phoneticName":"Al-Qasas",
+		"translatedName":"Le récit",
+		"revelationType":0
+	},
+	{
+		"id":29,
+		"length":69,
+		"phoneticName":"Al-Ankabut",
+		"translatedName":"L'araignée",
+		"revelationType":0
+	},
+	{
+		"id":30,
+		"length":60,
+		"phoneticName":"Ar-Rum",
+		"translatedName":"Les romains",
+		"revelationType":0
+	},
+	{
+		"id":31,
+		"length":34,
+		"phoneticName":"Luqman",
+		"translatedName":"Luqman",
+		"revelationType":0
+	},
+	{
+		"id":32,
+		"length":30,
+		"phoneticName":"As-Sajda",
+		"translatedName":"La prosternation",
+		"revelationType":2
+	},
+	{
+		"id":33,
+		"length":73,
+		"phoneticName":"Al-Ahzab",
+		"translatedName":"Les coalisés",
+		"revelationType":1
+	},
+	{
+		"id":34,
+		"length":54,
+		"phoneticName":"Saba",
+		"translatedName":"Saba",
+		"revelationType":0
+	},
+	{
+		"id":35,
+		"length":45,
+		"phoneticName":"Fatir",
+		"translatedName":"Le Créateur",
+		"revelationType":0
+	},
+	{
+		"id":36,
+		"length":83,
+		"phoneticName":"Ya-Sin",
+		"translatedName":"Ya-Sin",
+		"revelationType":0
+	},
+	{
+		"id":37,
+		"length":182,
+		"phoneticName":"As-Saffat",
+		"translatedName":"Les rangés",
+		"revelationType":0
+	},
+	{
+		"id":38,
+		"length":88,
+		"phoneticName":"Sad",
+		"translatedName":"Sad",
+		"revelationType":0
+	},
+	{
+		"id":39,
+		"length":75,
+		"phoneticName":"Az-Zumar",
+		"translatedName":"Les groupes",
+		"revelationType":0
+	},
+	{
+		"id":40,
+		"length":85,
+		"phoneticName":"Al-Ghafir",
+		"translatedName":"Le pardonneur",
+		"revelationType":0
+	},
+	{
+		"id":41,
+		"length":54,
+		"phoneticName":"Fussilat",
+		"translatedName":"Les versets détaillés",
+		"revelationType":0
+	},
+	{
+		"id":42,
+		"length":53,
+		"phoneticName":"Ash-Shura",
+		"translatedName":"La consultation",
+		"revelationType":0
+	},
+	{
+		"id":43,
+		"length":89,
+		"phoneticName":"Az-Zukhruf",
+		"translatedName":"L'ornement",
+		"revelationType":2
+	},
+	{
+		"id":44,
+		"length":59,
+		"phoneticName":"Ad-Dukhan",
+		"translatedName":"La fumée",
+		"revelationType":0
+	},
+	{
+		"id":45,
+		"length":37,
+		"phoneticName":"Al-Jathiya",
+		"translatedName":"L'agenouillée",
+		"revelationType":0
+	},
+	{
+		"id":46,
+		"length":35,
+		"phoneticName":"Al-Ahqaf",
+		"translatedName":"Les Dunes",
+		"revelationType":0
+	},
+	{
+		"id":47,
+		"length":38,
+		"phoneticName":"Muhammad",
+		"translatedName":"Mohammed",
+		"revelationType":1
+	},
+	{
+		"id":48,
+		"length":29,
+		"phoneticName":"Al-Fath",
+		"translatedName":"La victoire éclatante",
+		"revelationType":1
+	},
+	{
+		"id":49,
+		"length":18,
+		"phoneticName":"Al-Hujurat",
+		"translatedName":"Les appartements",
+		"revelationType":1
+	},
+	{
+		"id":50,
+		"length":45,
+		"phoneticName":"Qaf",
+		"translatedName":"Qaf",
+		"revelationType":0
+	},
+	{
+		"id":51,
+		"length":60,
+		"phoneticName":"Ad-Dhariyat",
+		"translatedName":"Qui éparpillent",
+		"revelationType":0
+	},
+	{
+		"id":52,
+		"length":49,
+		"phoneticName":"At-Tur",
+		"translatedName":"La Montagne",
+		"revelationType":0
+	},
+	{
+		"id":53,
+		"length":62,
+		"phoneticName":"An-Najm",
+		"translatedName":"L'étoile",
+		"revelationType":0
+	},
+	{
+		"id":54,
+		"length":55,
+		"phoneticName":"Al-Qamar",
+		"translatedName":"La lune",
+		"revelationType":0
+	},
+	{
+		"id":55,
+		"length":78,
+		"phoneticName":"Ar-Rahman",
+		"translatedName":"Le Tout Miséricordieux",
+		"revelationType":0
+	},
+	{
+		"id":56,
+		"length":96,
+		"phoneticName":"Al-Waqi'a",
+		"translatedName":"L'événement",
+		"revelationType":0
+	},
+	{
+		"id":57,
+		"length":29,
+		"phoneticName":"Al-Hadid",
+		"translatedName":"Le fer",
+		"revelationType":1
+	},
+	{
+		"id":58,
+		"length":22,
+		"phoneticName":"Al-Mujadila",
+		"translatedName":"La discussion",
+		"revelationType":1
+	},
+	{
+		"id":59,
+		"length":24,
+		"phoneticName":"Al-Hachr",
+		"translatedName":"L'exode",
+		"revelationType":1
+	},
+	{
+		"id":60,
+		"length":13,
+		"phoneticName":"Al-Mumtahina",
+		"translatedName":"L'éprouvée",
+		"revelationType":1
+	},
+	{
+		"id":61,
+		"length":14,
+		"phoneticName":"As-Saff",
+		"translatedName":"Le rang",
+		"revelationType":1
+	},
+	{
+		"id":62,
+		"length":11,
+		"phoneticName":"Al-Jumua",
+		"translatedName":"Le vendredi",
+		"revelationType":1
+	},
+	{
+		"id":63,
+		"length":11,
+		"phoneticName":"Al-Munafiqun",
+		"translatedName":"Les hypocrites",
+		"revelationType":1
+	},
+	{
+		"id":64,
+		"length":18,
+		"phoneticName":"At-Taghabun",
+		"translatedName":"La grande perte",
+		"revelationType":1
+	},
+	{
+		"id":65,
+		"length":12,
+		"phoneticName":"At-Talaq",
+		"translatedName":"Le divorce",
+		"revelationType":1
+	},
+	{
+		"id":66,
+		"length":12,
+		"phoneticName":"At-Tahrim",
+		"translatedName":"L'interdiction",
+		"revelationType":1
+	},
+	{
+		"id":67,
+		"length":30,
+		"phoneticName":"Al-Mulk",
+		"translatedName":"La royauté",
+		"revelationType":0
+	},
+	{
+		"id":68,
+		"length":52,
+		"phoneticName":"Al-Qalam",
+		"translatedName":"La plume",
+		"revelationType":0
+	},
+	{
+		"id":69,
+		"length":52,
+		"phoneticName":"Al-Haqqah",
+		"translatedName":"Celle qui montre la vérité",
+		"revelationType":0
+	},
+	{
+		"id":70,
+		"length":44,
+		"phoneticName":"Al-Maarij",
+		"translatedName":"Les voies d'ascension",
+		"revelationType":0
+	},
+	{
+		"id":71,
+		"length":28,
+		"phoneticName":"Nuh",
+		"translatedName":"Noé",
+		"revelationType":0
+	},
+	{
+		"id":72,
+		"length":28,
+		"phoneticName":"Al-Jinn",
+		"translatedName":"Les djinns",
+		"revelationType":0
+	},
+	{
+		"id":73,
+		"length":20,
+		"phoneticName":"Al-Muzzamil",
+		"translatedName":"L'enveloppé",
+		"revelationType":2
+	},
+	{
+		"id":74,
+		"length":56,
+		"phoneticName":"Al-Muddathir",
+		"translatedName":"Le revêtu d'un manteau",
+		"revelationType":0
+	},
+	{
+		"id":75,
+		"length":40,
+		"phoneticName":"Al-Qiyamah",
+		"translatedName":"La résurrection",
+		"revelationType":0
+	},
+	{
+		"id":76,
+		"length":31,
+		"phoneticName":"Al-Insan",
+		"translatedName":"L'Homme",
+		"revelationType":1
+	},
+	{
+		"id":77,
+		"length":50,
+		"phoneticName":"Al-Mursalat",
+		"translatedName":"Les envoyés",
+		"revelationType":2
+	},
+	{
+		"id":78,
+		"length":40,
+		"phoneticName":"An-Naba",
+		"translatedName":"La nouvelle",
+		"revelationType":0
+	},
+	{
+		"id":79,
+		"length":46,
+		"phoneticName":"An-Naziat",
+		"translatedName":"Les anges qui arrachent",
+		"revelationType":0
+	},
+	{
+		"id":80,
+		"length":42,
+		"phoneticName":"Abasa",
+		"translatedName":"Il s'est renfrogné",
+		"revelationType":0
+	},
+	{
+		"id":81,
+		"length":29,
+		"phoneticName":"At-Takwir",
+		"translatedName":"L'obscurcissement",
+		"revelationType":0
+	},
+	{
+		"id":82,
+		"length":19,
+		"phoneticName":"Al-Infitar",
+		"translatedName":"La rupture",
+		"revelationType":0
+	},
+	{
+		"id":83,
+		"length":36,
+		"phoneticName":"Al-Mutaffifin",
+		"translatedName":"Les fraudeurs",
+		"revelationType":0
+	},
+	{
+		"id":84,
+		"length":25,
+		"phoneticName":"Al-Insiqaq",
+		"translatedName":"La déchirure",
+		"revelationType":0
+	},
+	{
+		"id":85,
+		"length":22,
+		"phoneticName":"Al-Buruj",
+		"translatedName":"Les constellations",
+		"revelationType":0
+	},
+	{
+		"id":86,
+		"length":17,
+		"phoneticName":"Al-Tariq",
+		"translatedName":"L'astre nocturne",
+		"revelationType":0
+	},
+	{
+		"id":87,
+		"length":19,
+		"phoneticName":"Al-Ala",
+		"translatedName":"Le Très-Haut",
+		"revelationType":0
+	},
+	{
+		"id":88,
+		"length":26,
+		"phoneticName":"Al-Ghasiyah",
+		"translatedName":"L'enveloppante",
+		"revelationType":0
+	},
+	{
+		"id":89,
+		"length":30,
+		"phoneticName":"Al-Fajr",
+		"translatedName":"L'aube",
+		"revelationType":0
+	},
+	{
+		"id":90,
+		"length":20,
+		"phoneticName":"Al-Balad",
+		"translatedName":"La cité",
+		"revelationType":0
+	},
+	{
+		"id":91,
+		"length":15,
+		"phoneticName":"Ash-Shams",
+		"translatedName":"Le soleil",
+		"revelationType":0
+	},
+	{
+		"id":92,
+		"length":21,
+		"phoneticName":"Al-Layl",
+		"translatedName":"La nuit",
+		"revelationType":0
+	},
+	{
+		"id":93,
+		"length":11,
+		"phoneticName":"Ad-Duha",
+		"translatedName":"Le jour montant",
+		"revelationType":0
+	},
+	{
+		"id":94,
+		"length":8,
+		"phoneticName":"As-Sarh",
+		"translatedName":"L'ouverture",
+		"revelationType":0
+	},
+	{
+		"id":95,
+		"length":8,
+		"phoneticName":"At-Tin",
+		"translatedName":"Le figuier",
+		"revelationType":0
+	},
+	{
+		"id":96,
+		"length":19,
+		"phoneticName":"Al-Alaq",
+		"translatedName":"L'adhérence",
+		"revelationType":0
+	},
+	{
+		"id":97,
+		"length":5,
+		"phoneticName":"Al-Qadr",
+		"translatedName":"La Destinée",
+		"revelationType":0
+	},
+	{
+		"id":98,
+		"length":8,
+		"phoneticName":"Al-Bayyina",
+		"translatedName":"La preuve",
+		"revelationType":1
+	},
+	{
+		"id":99,
+		"length":8,
+		"phoneticName":"Az-Zalzala",
+		"translatedName":"La secousse",
+		"revelationType":1
+	},
+	{
+		"id":100,
+		"length":11,
+		"phoneticName":"Al-Adiyat",
+		"translatedName":"Les coursiers",
+		"revelationType":0
+	},
+	{
+		"id":101,
+		"length":11,
+		"phoneticName":"Al-Qariah",
+		"translatedName":"Le fracas",
+		"revelationType":0
+	},
+	{
+		"id":102,
+		"length":8,
+		"phoneticName":"At-Takatur",
+		"translatedName":"La course aux richesses",
+		"revelationType":0
+	},
+	{
+		"id":103,
+		"length":3,
+		"phoneticName":"Al-Asr",
+		"translatedName":"Le temps",
+		"revelationType":0
+	},
+	{
+		"id":104,
+		"length":9,
+		"phoneticName":"Al-Humazah",
+		"translatedName":"Les calomniateurs",
+		"revelationType":0
+	},
+	{
+		"id":105,
+		"length":5,
+		"phoneticName":"Al-Fil",
+		"translatedName":"L'éléphant",
+		"revelationType":0
+	},
+	{
+		"id":106,
+		"length":4,
+		"phoneticName":"Quraysh",
+		"translatedName":"Les Quraychites",
+		"revelationType":0
+	},
+	{
+		"id":107,
+		"length":7,
+		"phoneticName":"Al-Maun",
+		"translatedName":"L'ustensile",
+		"revelationType":0
+	},
+	{
+		"id":108,
+		"length":3,
+		"phoneticName":"Al-Kawthar",
+		"translatedName":"L'abondance",
+		"revelationType":0
+	},
+	{
+		"id":109,
+		"length":6,
+		"phoneticName":"Al-Kafirun",
+		"translatedName":"Les infidèles",
+		"revelationType":0
+	},
+	{
+		"id":110,
+		"length":3,
+		"phoneticName":"An-Nasr",
+		"translatedName":"Les secours",
+		"revelationType":1
+	},
+	{
+		"id":111,
+		"length":5,
+		"phoneticName":"Al-Masad",
+		"translatedName":"Les fibres",
+		"revelationType":0
+	},
+	{
+		"id":112,
+		"length":4,
+		"phoneticName":"Al-Ikhlas",
+		"translatedName":"Le monothéisme pur",
+		"revelationType":0
+	},
+	{
+		"id":113,
+		"length":5,
+		"phoneticName":"Al-Falaq",
+		"translatedName":"L'aube naissante",
+		"revelationType":0
+	},
+	{
+		"id":114,
+		"length":6,
+		"phoneticName":"An-Nas",
+		"translatedName":"Les Hommes",
+		"revelationType":0
+	}
+]
