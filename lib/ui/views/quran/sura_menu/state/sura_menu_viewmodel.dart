@@ -1,6 +1,8 @@
 import 'package:abc_quran/models/sura.dart';
+import 'package:abc_quran/services/quran/fonts/mushaf_font_service.dart';
 import 'package:abc_quran/services/quran/quran_global_service.dart';
-import 'package:abc_quran/ui/views/quran/read/read_provider.dart';
+import 'package:abc_quran/services/quran/quran_mushaf_service.dart';
+import 'package:abc_quran/ui/views/quran/read/cursor/cursor_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'sura_menu_state.dart';
@@ -23,6 +25,7 @@ class SuraMenuNotifier extends StateNotifier<SuraMenuState> {
   }
 
   void select(SuraModel sura) {
-    _ref.watch(readProvider.notifier).selectSura(sura);
+    _ref.read(mushafFontServiceProvider).loadPage(3);
+    _ref.watch(cursorProvider.notifier).selectSura(sura);
   }
 }

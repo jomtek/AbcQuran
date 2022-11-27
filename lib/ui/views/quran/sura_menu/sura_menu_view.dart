@@ -1,3 +1,4 @@
+import 'package:abc_quran/ui/views/quran/read/mushaf/quran_mushaf_view.dart';
 import 'package:abc_quran/ui/views/quran/read/text/quran_text_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -70,13 +71,13 @@ class SuraMenuViewState extends ConsumerState<SuraMenuView> with AutomaticKeepAl
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return PageView(controller: pageController, children: [
       _buildListing(context, ref),
-      QuranTextView(pageController: pageController,),
+      QuranMushafView(pageController: pageController,),
     ],);
   }
   
   @override
-  // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
 }

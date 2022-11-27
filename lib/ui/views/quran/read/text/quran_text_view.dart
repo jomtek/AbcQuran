@@ -1,4 +1,4 @@
-import 'package:abc_quran/ui/views/quran/read/read_provider.dart';
+import 'package:abc_quran/ui/views/quran/read/cursor/cursor_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -9,8 +9,7 @@ class QuranTextView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(readProvider);
-
+    final state = ref.watch(cursorProvider);
     return Container(color: Colors.purple, child: Center(child: Text(state.sura.translatedName)));
   }
 }

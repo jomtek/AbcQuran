@@ -9,14 +9,14 @@ final quranGlobalServiceProvider = Provider((ref) => QuranGlobalService());
 // This service fulfills all non-specific quran needs, such as retrieving the names of the chapters...
 class QuranGlobalService {
   Future<List<SuraModel>> getSuraList() async {
-      final rawData = await rootBundle.loadString('assets/sura_info.json');
-      final jsonList = jsonDecode(rawData);
-      
-      var list = <SuraModel>[];
-      for (final json in jsonList) {
-        list.add(SuraModel.fromJson(json));
-      }
-      
-      return list;
+    final rawData = await rootBundle.loadString('assets/sura_info.json');
+    final jsonList = jsonDecode(rawData);
+
+    var list = <SuraModel>[];
+    for (final json in jsonList) {
+      list.add(SuraModel.fromJson(json));
+    }
+
+    return list;
   }
 }
