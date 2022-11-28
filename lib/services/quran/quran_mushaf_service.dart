@@ -38,12 +38,23 @@ class QuranMushafService {
     db = await openDatabase(path, readOnly: true);
   }
 
+  Future<List<String>> _getAyahsFromPage(int page) async {
+    final query = await db!.rawQuery("SELECT ayah,text FROM sura_ayah_page_text WHERE page=$page");
+    var result = <String>[];
+    for (final ayah in query) {
+      final text = parseFragment(ayah["text"] as String).text!;
+      result.add(text);
+    }
+    return result;
+  }
+
   // Returns 15 lists of glyphs that draw the 15 lines of the mushaf page
   Future<List<List<Glyph>>> getPageGlyphs(int page) async {
     if (db == null) {
       await _init();
     }
 
+    final pageAyahs = await _getAyahsFromPage(page);
     final query =
       await db!.rawQuery("SELECT page,sura,ayah,text FROM madani_page_text WHERE page=$page");
     
@@ -53,11 +64,18 @@ class QuranMushafService {
       final glyphs = <Glyph>[];
 
       for (var glyph in parseFragment(text).text!.runes) {
+        int? verse;
+        for (int i = 1; i <= pageAyahs.length; i++) {
+          if (pageAyahs[i - 1].contains(String.fromCharCode(glyph))) {
+            verse = i;
+          }
+        }
+
         glyphs.add(Glyph(
             String.fromCharCode(glyph),
             line["page"] as int,
             line["sura"] as int,
-            line["verse"] as int?
+            verse
           ));
       }
 

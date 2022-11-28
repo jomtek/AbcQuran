@@ -1,3 +1,4 @@
+import 'package:abc_quran/models/glyph.dart';
 import 'package:abc_quran/services/quran/quran_mushaf_service.dart';
 import 'package:abc_quran/services/quran/quran_text_service.dart';
 import 'package:abc_quran/ui/views/quran/read/cursor/cursor_provider.dart';
@@ -22,5 +23,9 @@ class MushafNotifier extends StateNotifier<MushafState> {
         .read(quranMushafServiceProvider)
         .getPageGlyphs(_ref.read(cursorProvider).page);
     state = state.copyWith(pageGlyphs: pageGlyphs);
+  }
+
+  void hover(Glyph glyph) {
+    state = state.copyWith(hoveredVerse: glyph.verse, hoveredSura: glyph.sura);
   }
 }

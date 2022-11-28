@@ -9,11 +9,10 @@ import 'package:http/http.dart' as http;
 final mushafFontServiceProvider = Provider((ref) => MushafFontService());
 
 // This service fulfills visual mushaf needs.
-// It provides font data for rendering the Madani mushaf,
-// while smartly managing font caching.
+// It provides font data for rendering the Madani mushaf, while smartly managing font caching.
 class MushafFontService {
-  Set<int> _loadedPages = {};
-  http.Client _httpClient = http.Client();
+  final Set<int> _loadedPages = {};
+  final http.Client _httpClient = http.Client();
 
   Future<String> get _localFontFolder async {
     final Directory cacheDirectory = await getApplicationDocumentsDirectory();

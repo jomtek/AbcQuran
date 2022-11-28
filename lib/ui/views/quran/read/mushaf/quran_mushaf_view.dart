@@ -18,7 +18,28 @@ class QuranMushafView extends ConsumerWidget {
             child: Column(
           children: [
             Text(state.sura.translatedName),
-            QuranMushafPage()
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Page on the left
+                Container(
+                  color: Colors.white,
+                  child: const Padding(
+                    padding: EdgeInsets.only(left: 17.5),
+                    child: QuranMushafPage(),
+                  ),
+                ),
+
+                // Page on the right
+                Container(
+                  color: Colors.white,
+                  child: const Padding(
+                    padding: EdgeInsets.only(right: 17.5),
+                    child: QuranMushafPage(),
+                  ),
+                )
+              ],
+            )
           ],
         )));
   }
