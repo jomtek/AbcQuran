@@ -30,33 +30,43 @@ class QuranMushafPage extends ConsumerWidget {
       child: Column(
         children: [
           for (final lineGlyphs in pageGlyphs)
-            lineGlyphs[0].verse == null
+            lineGlyphs.isEmpty || lineGlyphs[0].verse == null
                 ? SizedBox(
-                  height: lineHeight,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                          height: 0.05.sh,
-                          width: lineWidth,
-                          decoration: BoxDecoration(
-                              color: AppTheme.secundaryColor.withOpacity(0.55),
-                              borderRadius: BorderRadius.circular(7.5)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    height: lineHeight,
+                    child: lineGlyphs.isEmpty
+                        ? Container()
+                        : Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Row(children: [
-                                for (final glyph in lineGlyphs.reversed)
-                                  Text(glyph.text,
-                                      style: TextStyle(
-                                          fontFamily: "BSML", fontSize: 5.25.sp)),
-                              ],),
-                              Text("${suraList[lineGlyphs[0].sura - 1].phoneticName} (${lineGlyphs[0].sura})", style: TextStyle(fontSize: 3.25.sp))
+                              Container(
+                                  height: 0.05.sh,
+                                  width: lineWidth,
+                                  decoration: BoxDecoration(
+                                      color: AppTheme.secundaryColor
+                                          .withOpacity(0.55),
+                                      borderRadius: BorderRadius.circular(7.5)),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          for (final glyph
+                                              in lineGlyphs.reversed)
+                                            Text(glyph.text,
+                                                style: TextStyle(
+                                                    fontFamily: "BSML",
+                                                    fontSize: 5.25.sp)),
+                                        ],
+                                      ),
+                                      Text(
+                                          "${suraList[lineGlyphs[0].sura - 1].phoneticName} (${lineGlyphs[0].sura})",
+                                          style: TextStyle(fontSize: 3.25.sp))
+                                    ],
+                                  )),
                             ],
-                          )),
-                    ],
-                  ),
-                )
+                          ),
+                  )
                 : SizedBox(
                     height: lineHeight,
                     width: lineWidth,
@@ -86,7 +96,9 @@ class QuranMushafPage extends ConsumerWidget {
                                     ? Text(glyph.text,
                                         style: TextStyle(
                                             fontFamily: "BSML",
-                                            fontSize: 4.5.sp))
+                                            fontSize: glyph.isSmall
+                                                ? 5.5.sp
+                                                : 4.5.sp))
                                     : Container(
                                         color: (mushafState.hoveredVerse ==
                                                     glyph.verse &&
@@ -95,7 +107,9 @@ class QuranMushafPage extends ConsumerWidget {
                                             ? Colors.black26
                                             : Colors.transparent,
                                         child: Text(glyph.text,
-                                            textScaleFactor: 0.38.sp,
+                                            textScaleFactor: glyph.isSmall
+                                                ? 0.45.sp
+                                                : 0.38.sp,
                                             style: TextStyle(
                                                 fontFamily:
                                                     glyph.page.toString())),

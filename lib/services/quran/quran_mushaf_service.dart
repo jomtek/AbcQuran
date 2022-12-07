@@ -73,10 +73,18 @@ class QuranMushafService {
         }
 
         glyphs.add(Glyph(
-            String.fromCharCode(glyph), page, line["sura"] as int, verse));
+            String.fromCharCode(glyph), page, line["sura"] as int, verse,
+            isSmall: page == 1 || page == 2));
       }
 
       lines.add(glyphs);
+    }
+
+    if (lines.length == 8) {
+      // In pages 1 and 2, a line padding is necessary
+      lines = <List<Glyph>>[[], [], []] +
+          lines /*8 lines*/ +
+          <List<Glyph>>[[], [], [], []];
     }
 
     return lines;
