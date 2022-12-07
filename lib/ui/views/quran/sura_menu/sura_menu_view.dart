@@ -1,9 +1,12 @@
+import 'package:abc_quran/providers/sura_info_provider.dart';
 import 'package:abc_quran/ui/views/quran/read/mushaf/quran_mushaf_view.dart';
+import 'package:abc_quran/ui/views/quran/read/read_view.dart';
 import 'package:abc_quran/ui/views/quran/read/text/quran_text_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'state/sura_menu_viewmodel.dart';
 
@@ -20,9 +23,11 @@ class SuraMenuViewState extends ConsumerState<SuraMenuView> with AutomaticKeepAl
   Widget _buildListing(BuildContext context, WidgetRef ref) {
         final size = MediaQuery.of(context).size;
 
-    final state = ref.watch(suraMenuProvider);
 
-    if (state.suras.isEmpty) {
+    final state = ref.watch(suraMenuProvider);
+    final suraList = ref.watch(suraListProvider);
+
+    if (suraList.isEmpty) {
       return const Center(
           child: Text("Loading sura listing...", style: TextStyle(fontSize: 38)));
     } else {
@@ -34,7 +39,7 @@ class SuraMenuViewState extends ConsumerState<SuraMenuView> with AutomaticKeepAl
         gridDelegate:
             const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 6),
         itemBuilder: (BuildContext context, int index) {
-          final sura = state.suras[index];
+          final sura = suraList[index];
           return Material(
                           color: (index % 2) == ((index ~/ 6) % 2)
                   ? Colors.green.shade100
@@ -44,9 +49,6 @@ class SuraMenuViewState extends ConsumerState<SuraMenuView> with AutomaticKeepAl
               splashColor: (index % 2) == ((index ~/ 6) % 2)
                   ? Colors.green.shade100
                   : Colors.green.shade200,
-              onHover: (_) {
-                print("hey");
-              },
               onTap: () {
                 ref.read(suraMenuProvider.notifier).select(sura);
                 pageController.jumpToPage(1);
@@ -56,9 +58,9 @@ class SuraMenuViewState extends ConsumerState<SuraMenuView> with AutomaticKeepAl
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(sura.id.toString(), style: const TextStyle(fontSize: 22)),
-                    Text(sura.phoneticName, style: const TextStyle(fontSize: 18)),
-                    Text(sura.translatedName, style: const TextStyle(fontSize: 16)),
+                    Text(sura.id.toString(), style: TextStyle(fontSize: 5.sp)),
+                    Text(sura.phoneticName, textAlign: TextAlign.center, style: TextStyle(fontSize: 6.sp)),
+                    Text(sura.translatedName, textAlign: TextAlign.center, style: TextStyle(fontSize: 4.sp)),
                   ],
                 ),
               ),
@@ -74,7 +76,7 @@ class SuraMenuViewState extends ConsumerState<SuraMenuView> with AutomaticKeepAl
     super.build(context);
     return PageView(controller: pageController, children: [
       _buildListing(context, ref),
-      QuranMushafView(pageController: pageController,),
+      ReadView(pageController: pageController),
     ],);
   }
   

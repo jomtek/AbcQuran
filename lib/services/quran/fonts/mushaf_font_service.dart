@@ -11,7 +11,7 @@ final mushafFontServiceProvider = Provider((ref) => MushafFontService());
 // This service fulfills visual mushaf needs.
 // It provides font data for rendering the Madani mushaf, while smartly managing font caching.
 class MushafFontService {
-  final Set<int> _loadedPages = {};
+  final Set<String> _loadedPages = {};
   final http.Client _httpClient = http.Client();
 
   Future<String> get _localFontFolder async {
@@ -25,30 +25,52 @@ class MushafFontService {
     return directory;
   }
 
-  Future<void> loadPage(int page) async {
+  Future<void> loadPage(String page) async {
     if (_loadedPages.contains(page)) {
       return;
     } else {
       _loadedPages.add(page);
     }
 
-    final pageBytes = await _fetchPageFromApi(page);
+    ByteData? pageBytes = await _fetchPageFromDisk(page);
+    pageBytes ??= await _fetchPageFromApi(page);
+
     await _loadFontByteData(page, pageBytes);
   }
 
-  Future<void> _loadFontByteData(int page, ByteData byteData) async {
+  Future _loadFontByteData(String page, ByteData byteData) async {
     final fontLoader = FontLoader(page.toString());
     fontLoader.addFont(Future.value(byteData));
     await fontLoader.load();
   }
 
-  Future<ByteData> _fetchPageFromApi(int page) async {
+  Future<ByteData?> _fetchPageFromDisk(String page) async {
+    final fontFolder = await _localFontFolder;
+    final file = File("$fontFolder/$page.ttf");
+
+    if (await file.exists()) {
+      List<int> contents = await file.readAsBytes();
+      if (contents.isNotEmpty) {
+        return ByteData.view(Uint8List.fromList(contents).buffer);
+      }
+    }
+
+    return null;
+  }
+
+  Future<ByteData> _fetchPageFromApi(String page) async {
     final paddedPageNum = page.toString().padLeft(3, "0");
+
+    var fontName = "QCF_P$paddedPageNum";
+    if (page == "BSML") {
+      fontName = "QCF_BSML";
+    }
+
     final fontUri = Uri.parse(
-        "http://141.145.204.116/mushaf/fonts/QCF_P$paddedPageNum.TTF");
+        "http://141.145.204.116/mushaf/fonts/$fontName.TTF");
 
     // Fetch font from the api
-    http.Response response;
+    http.Response response; 
     try {
       response = await _httpClient.get(fontUri);
     } catch (e) {

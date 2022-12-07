@@ -1,20 +1,34 @@
 import 'package:abc_quran/models/glyph.dart';
 
 class MushafState {
-  List<List<Glyph>> pageGlyphs;
+  List<List<Glyph>> rightPageGlyphs;
+  List<List<Glyph>> leftPageGlyphs;
   int hoveredVerse;
-  int hoveredSura;  
+  int hoveredPage;
 
   MushafState(
-      {required this.pageGlyphs, required this.hoveredVerse, required this.hoveredSura});
+      {required this.rightPageGlyphs,
+      required this.leftPageGlyphs,
+      required this.hoveredVerse,
+      required this.hoveredPage});
 
   factory MushafState.initial() {
-    return MushafState(pageGlyphs: [], hoveredVerse: -1, hoveredSura: -1);
+    return MushafState(
+        rightPageGlyphs: [],
+        leftPageGlyphs: [],
+        hoveredVerse: -1,
+        hoveredPage: -1);
   }
 
   MushafState copyWith(
-      {List<List<Glyph>>? pageGlyphs, int? hoveredVerse, int? hoveredSura}) {
+      {List<List<Glyph>>? rightPageGlyphs,
+      List<List<Glyph>>? leftPageGlyphs,
+      int? hoveredVerse,
+      int? hoveredPage}) {
     return MushafState(
-        pageGlyphs: pageGlyphs ?? this.pageGlyphs, hoveredVerse: hoveredVerse ?? this.hoveredVerse, hoveredSura: hoveredSura ?? this.hoveredSura);
+        rightPageGlyphs: rightPageGlyphs ?? this.rightPageGlyphs,
+        leftPageGlyphs: leftPageGlyphs ?? this.leftPageGlyphs,
+        hoveredVerse: hoveredVerse ?? this.hoveredVerse,
+        hoveredPage: hoveredPage ?? this.hoveredPage);
   }
 }

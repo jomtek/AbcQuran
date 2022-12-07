@@ -45,6 +45,7 @@ dependencies:
   http: ^0.13.5
   html: ^0.15.1
   flutter_screenutil: ^5.6.0
+  keymap: ^0.0.91
 
 dev_dependencies:
   flutter_test:

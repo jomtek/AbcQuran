@@ -4,9 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:html/parser.dart';
 import 'package:sqflite/sqflite.dart';
-import 'dart:typed_data';
-import 'dart:io';
-import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 
 import '../../models/glyph.dart';
@@ -39,7 +36,8 @@ class QuranMushafService {
   }
 
   Future<List<String>> _getAyahsFromPage(int page) async {
-    final query = await db!.rawQuery("SELECT ayah,text FROM sura_ayah_page_text WHERE page=$page");
+    final query = await db!
+        .rawQuery("SELECT ayah,text FROM sura_ayah_page_text WHERE page=$page");
     var result = <String>[];
     for (final ayah in query) {
       final text = parseFragment(ayah["text"] as String).text!;
@@ -55,33 +53,44 @@ class QuranMushafService {
     }
 
     final pageAyahs = await _getAyahsFromPage(page);
-    final query =
-      await db!.rawQuery("SELECT page,sura,ayah,text FROM madani_page_text WHERE page=$page");
-    
+    final query = await db!.rawQuery(
+        "SELECT page,sura,ayah,text FROM madani_page_text WHERE page=$page");
+
     var lines = <List<Glyph>>[];
     for (final line in query) {
       final text = line["text"] as String;
       final glyphs = <Glyph>[];
 
       for (var glyph in parseFragment(text).text!.runes) {
-        int? verse;
-        for (int i = 1; i <= pageAyahs.length; i++) {
-          if (pageAyahs[i - 1].contains(String.fromCharCode(glyph))) {
-            verse = i;
+        int? verse = line["ayah"] as int?;
+
+        if (![null, 0].contains(verse)) {
+          for (int i = 1; i <= pageAyahs.length; i++) {
+            if (pageAyahs[i - 1].contains(String.fromCharCode(glyph))) {
+              verse = i;
+            }
           }
         }
 
         glyphs.add(Glyph(
-            String.fromCharCode(glyph),
-            line["page"] as int,
-            line["sura"] as int,
-            verse
-          ));
+            String.fromCharCode(glyph), page, line["sura"] as int, verse));
       }
 
       lines.add(glyphs);
     }
 
     return lines;
+  }
+
+  //
+  Future<int> getSuraPage(int sura) async {
+    if (db == null) {
+      await _init();
+    }
+
+    final query = await db!.rawQuery(
+        "SELECT page FROM madani_page_text WHERE sura=$sura AND ayah IS NULL");
+    final page = query[0]["page"] as int;
+    return page;
   }
 }
