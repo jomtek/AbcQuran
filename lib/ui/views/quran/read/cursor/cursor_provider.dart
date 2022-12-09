@@ -29,7 +29,7 @@ class CursorNotifier extends StateNotifier<CursorState> {
   }
 
   void gotoPreviousPageCouple() {
-    if (state.page - 2 > 0) {
+    if (state.page - 1 > 0) {
       state = state.copyWith(page: state.page - 2);
     }
   }

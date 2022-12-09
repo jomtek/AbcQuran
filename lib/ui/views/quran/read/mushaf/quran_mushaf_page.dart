@@ -30,10 +30,11 @@ class QuranMushafPage extends ConsumerWidget {
       child: Column(
         children: [
           for (final lineGlyphs in pageGlyphs)
-            lineGlyphs.isEmpty || lineGlyphs[0].verse == null
-                ? SizedBox(
-                    height: lineHeight,
-                    child: lineGlyphs.isEmpty
+            SizedBox(
+                height: lineHeight,
+                width: lineWidth,
+                child: lineGlyphs.isEmpty || lineGlyphs[0].verse == null
+                    ? lineGlyphs.isEmpty
                         ? Container()
                         : Column(
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -65,59 +66,54 @@ class QuranMushafPage extends ConsumerWidget {
                                     ],
                                   )),
                             ],
-                          ),
-                  )
-                : SizedBox(
-                    height: lineHeight,
-                    width: lineWidth,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        for (final glyph in lineGlyphs.reversed)
-                          MouseRegion(
-                            cursor: SystemMouseCursors.grab,
-                            onHover: (_) {
-                              ref.read(mushafProvider.notifier).hover(glyph);
-                            },
-                            onExit: (_) {
-                              ref
-                                  .read(mushafProvider.notifier)
-                                  .hover(Glyph("", -1, -1, -1));
-                            },
-                            child: glyph.verse == null
-                                ? Padding(
-                                    padding: EdgeInsets.only(top: 0.75.sp),
-                                    child: Text(glyph.text,
-                                        style: TextStyle(
-                                            fontFamily: "BSML",
-                                            fontSize: 6.sp)),
-                                  )
-                                : glyph.verse == 0
-                                    ? Text(glyph.text,
-                                        style: TextStyle(
-                                            fontFamily: "BSML",
-                                            fontSize: glyph.isSmall
-                                                ? 5.5.sp
-                                                : 4.5.sp))
-                                    : Container(
-                                        color: (mushafState.hoveredVerse ==
-                                                    glyph.verse &&
-                                                mushafState.hoveredPage ==
-                                                    glyph.page)
-                                            ? Colors.black26
-                                            : Colors.transparent,
-                                        child: Text(glyph.text,
-                                            textScaleFactor: glyph.isSmall
-                                                ? 0.45.sp
-                                                : 0.38.sp,
-                                            style: TextStyle(
-                                                fontFamily:
-                                                    glyph.page.toString())),
-                                      ),
                           )
-                      ],
-                    ),
-                  )
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          for (final glyph in lineGlyphs.reversed)
+                            MouseRegion(
+                              cursor: SystemMouseCursors.grab,
+                              onHover: (_) {
+                                ref.read(mushafProvider.notifier).hover(glyph);
+                              },
+                              onExit: (_) {
+                                ref
+                                    .read(mushafProvider.notifier)
+                                    .hover(Glyph("", -1, -1, -1));
+                              },
+                              child: glyph.verse == null
+                                  ? Padding(
+                                      padding: EdgeInsets.only(top: 0.75.sp),
+                                      child: Text(glyph.text,
+                                          style: TextStyle(
+                                              fontFamily: "BSML",
+                                              fontSize: 6.sp)),
+                                    )
+                                  : glyph.verse == 0
+                                      ? Text(glyph.text,
+                                          style: TextStyle(
+                                              fontFamily: "BSML",
+                                              fontSize: glyph.isSmall
+                                                  ? 5.5.sp
+                                                  : 4.5.sp))
+                                      : Container(
+                                          color: (mushafState.hoveredVerse ==
+                                                      glyph.verse &&
+                                                  mushafState.hoveredPage ==
+                                                      glyph.page)
+                                              ? Colors.black26
+                                              : Colors.transparent,
+                                          child: Text(glyph.text,
+                                              textScaleFactor: glyph.isSmall
+                                                  ? 0.45.sp
+                                                  : 0.38.sp,
+                                              style: TextStyle(
+                                                  fontFamily:
+                                                      glyph.page.toString())),
+                                        ),
+                            )
+                        ],
+                      ))
         ],
       ),
     );

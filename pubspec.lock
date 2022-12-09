@@ -43,13 +43,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.3"
-  badges:
-    dependency: transitive
-    description:
-      name: badges
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.3"
   boolean_selector:
     dependency: transitive
     description:
@@ -148,6 +141,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.3.0"
+  collapsible_sidebar:
+    dependency: "direct main"
+    description:
+      name: collapsible_sidebar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.3+2"
   collection:
     dependency: transitive
     description:
@@ -190,13 +190,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.4"
-  easy_sidemenu:
-    dependency: "direct main"
-    description:
-      name: easy_sidemenu
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.1"
   fake_async:
     dependency: transitive
     description:
@@ -277,6 +270,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  google_fonts:
+    dependency: "direct main"
+    description:
+      name: google_fonts
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
   graphs:
     dependency: transitive
     description:
@@ -397,7 +397,7 @@ packages:
     source: hosted
     version: "2.1.0"
   path:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path
       url: "https://pub.dartlang.org"

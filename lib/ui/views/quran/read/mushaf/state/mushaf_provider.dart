@@ -26,9 +26,12 @@ class MushafNotifier extends StateNotifier<MushafState> {
   }
 
   Future _loadPage(int page, bool isLeft) async {
-    final pageGlyphs =
-        await _ref.read(quranMushafServiceProvider).getPageGlyphs(page);
-    await _ref.read(mushafFontServiceProvider).loadPage(page.toString());
+    var pageGlyphs = List.filled(15, <Glyph>[]);
+    if (page != 0 && page != 605) {
+      pageGlyphs =
+          await _ref.read(quranMushafServiceProvider).getPageGlyphs(page);
+      await _ref.read(mushafFontServiceProvider).loadPage(page.toString());
+    }
 
     if (isLeft) {
       state = state.copyWith(leftPageGlyphs: pageGlyphs);

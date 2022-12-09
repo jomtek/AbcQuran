@@ -1,14 +1,10 @@
 import 'package:abc_quran/providers/sura_info_provider.dart';
-import 'package:abc_quran/ui/views/quran/read/mushaf/quran_mushaf_view.dart';
 import 'package:abc_quran/ui/views/quran/read/read_view.dart';
-import 'package:abc_quran/ui/views/quran/read/text/quran_text_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'state/sura_menu_viewmodel.dart';
+import 'state/sura_menu_vm.dart';
 
 class SuraMenuView extends ConsumerStatefulWidget {
   const SuraMenuView({Key? key}) : super(key: key);
