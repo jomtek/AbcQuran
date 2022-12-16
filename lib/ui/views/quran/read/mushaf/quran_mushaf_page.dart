@@ -103,13 +103,20 @@ class QuranMushafPage extends ConsumerWidget {
                                                       glyph.page)
                                               ? Colors.black26
                                               : Colors.transparent,
-                                          child: Text(glyph.text,
-                                              textScaleFactor: glyph.isSmall
-                                                  ? 0.45.sp
-                                                  : 0.38.sp,
-                                              style: TextStyle(
-                                                  fontFamily:
-                                                      glyph.page.toString())),
+                                          child: ClipRect(
+                                            child: Container(
+                                              transform:
+                                                  Matrix4.translationValues(
+                                                      -1, -7.0, 0.0),
+                                              child: Text(glyph.text,
+                                                  textScaleFactor: glyph.isSmall
+                                                      ? 0.45.sp
+                                                      : 0.38.sp,
+                                                  style: TextStyle(
+                                                      fontFamily: glyph.page
+                                                          .toString())),
+                                            ),
+                                          ),
                                         ),
                             )
                         ],
