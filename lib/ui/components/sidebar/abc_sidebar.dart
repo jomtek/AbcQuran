@@ -14,6 +14,8 @@ class AbcSidebar extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(sidebarVmProvider);
 
+    const animationDuration = Duration(milliseconds: 300);
+
     return InkWell(
         onTap: () {},
         onHover: (isHovering) {
@@ -23,25 +25,22 @@ class AbcSidebar extends ConsumerWidget {
             width: state.isCollapsed
                 ? (12.5.sp < 55 ? 55 : 12.5.sp)
                 : (47.5.sp < 150 ? 150 : 47.5.sp),
-            decoration: BoxDecoration(
-                color: AppTheme.darkColor,
-                borderRadius:
-                    const BorderRadius.only(topRight: Radius.circular(0)),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.black26,
-                    spreadRadius: 5,
-                    blurRadius: 20,
-                    offset: Offset(0, 15),
-                  ),
-                ]),
+            decoration:
+                BoxDecoration(color: AppTheme.darkColor, boxShadow: const [
+              BoxShadow(
+                color: Colors.black26,
+                spreadRadius: 5,
+                blurRadius: 20,
+                offset: Offset(0, 15),
+              ),
+            ]),
             curve: Curves.ease,
-            duration: const Duration(milliseconds: 200),
+            duration: animationDuration,
             child: Column(
               children: [
                 SizedBox(height: 4.sp),
                 AnimatedContainer(
-                  duration: const Duration(milliseconds: 200),
+                  duration: animationDuration,
                   curve: Curves.ease,
                   width: state.isCollapsed ? 5.sp : 35.sp,
                   child: Text("AbcQuran",
@@ -52,7 +51,7 @@ class AbcSidebar extends ConsumerWidget {
                 ),
                 SizedBox(height: 1.sp),
                 AnimatedContainer(
-                    duration: const Duration(milliseconds: 200),
+                    duration: animationDuration,
                     curve: Curves.ease,
                     height: 1.sp,
                     width: state.isCollapsed ? 7.5.sp : 35.sp,
@@ -73,10 +72,10 @@ class AbcSidebar extends ConsumerWidget {
                         padding: EdgeInsets.symmetric(
                             vertical: 1.5.sp, horizontal: 3.sp),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             AnimatedContainer(
-                              duration: const Duration(milliseconds: 200),
+                              duration: animationDuration,
                               curve: Curves.ease,
                               width: state.isCollapsed ? 0 : 35.sp,
                               child: Text(item.title,
