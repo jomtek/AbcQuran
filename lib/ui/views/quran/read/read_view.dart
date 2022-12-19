@@ -30,7 +30,7 @@ class ReadView extends ConsumerWidget {
     return Column(
       children: [
         Expanded(
-            child: QuranTextView(
+            child: QuranMushafView(
           pageController: pageController,
         )),
         Container(
@@ -102,7 +102,7 @@ class ReadView extends ConsumerWidget {
                             children: [
                               Expanded(
                                 child: Container(
-                                    color: AppTheme.goldenColor,
+                                    color: AppTheme.primaryColor,
                                     child: Center(
                                         child: Text("Text",
                                             style:
@@ -110,7 +110,7 @@ class ReadView extends ConsumerWidget {
                               ),
                               Expanded(
                                   child: Container(
-                                      color: AppTheme.primaryColor,
+                                      color: AppTheme.goldenColor,
                                       child: Center(
                                           child: Text("Mushaf",
                                               style: TextStyle(
