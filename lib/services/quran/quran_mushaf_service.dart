@@ -90,7 +90,6 @@ class QuranMushafService {
     return lines;
   }
 
-  //
   Future<int> getSuraPage(int sura) async {
     if (db == null) {
       await _init();

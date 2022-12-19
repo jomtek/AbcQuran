@@ -26,7 +26,7 @@ class QuranMushafPage extends ConsumerWidget {
     final lineHeight = 0.055.sh;
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 3.sp, horizontal: 7.sp),
+      padding: EdgeInsets.symmetric(vertical: 4.sp, horizontal: 7.sp),
       child: Column(
         children: [
           for (final lineGlyphs in pageGlyphs)
@@ -105,9 +105,11 @@ class QuranMushafPage extends ConsumerWidget {
                                               : Colors.transparent,
                                           child: ClipRect(
                                             child: Container(
-                                              transform:
-                                                  Matrix4.translationValues(
-                                                      -1, -7.0, 0.0),
+                                              transform: [1, 2]
+                                                      .contains(glyph.page)
+                                                  ? Matrix4.translationValues(
+                                                      -1, -7.0, 0.0)
+                                                  : null,
                                               child: Text(glyph.text,
                                                   textScaleFactor: glyph.isSmall
                                                       ? 0.45.sp

@@ -7,6 +7,6 @@ class AppTheme {
   static Color lightColor = const Color(0xFF029550);
   static Color mediumColor = const Color(0xFF008145);
   static Color darkColor = const Color(0xFF01743E);
-  static Color accentColor = const Color(0xFFFF7340);
+  static Color accentColor = Colors.red;
   static Color goldenColor = const Color.fromARGB(255, 199, 143, 45);
 } 

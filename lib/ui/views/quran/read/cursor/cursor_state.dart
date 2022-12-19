@@ -11,7 +11,7 @@ class CursorState {
       {required this.sura, required this.page});
 
   factory CursorState.initial() {
-    return CursorState(sura: SuraModel(0,0,"","",RevelationType.mh), page: 3);
+    return CursorState(sura: SuraModel(1,1,"","",RevelationType.mh), page: 3);
   }
 
   CursorState copyWith(

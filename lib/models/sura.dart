@@ -16,4 +16,9 @@ class SuraModel {
       json["phoneticName"] as String,
       json["translatedName"] as String,
       RevelationType.values[json["revelationType"] as int]);
+    
+  @override
+  String toString() {
+    return "$id. $phoneticName ($translatedName)";
+  }
 }
