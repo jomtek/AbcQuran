@@ -13,17 +13,15 @@ class QuranTextView extends ConsumerWidget {
   final scrollController = ScrollController();
 
   EdgeInsets getVersePadding(int i, int total) {
-    double vertical = 1.sp > 2.5 ? 2.5 : 1.sp;
     double horizontal = 6.sp;
 
     if (i == 0) {
-      return EdgeInsets.only(
-          left: horizontal, top: 12.sp, right: horizontal, bottom: vertical);
+      return EdgeInsets.only(left: horizontal, top: 12.sp, right: horizontal);
     } else if (i == total - 1) {
       return EdgeInsets.only(
-          left: horizontal, top: vertical, right: horizontal, bottom: 12.sp);
+          left: horizontal, right: horizontal, bottom: 12.sp);
     } else {
-      return EdgeInsets.symmetric(vertical: vertical, horizontal: horizontal);
+      return EdgeInsets.symmetric(horizontal: horizontal);
     }
   }
 

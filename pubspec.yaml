@@ -28,6 +28,7 @@ dependencies:
   path: ^1.8.1
   material_design_icons_flutter: ^6.0.7096
   sqflite: ^2.2.6
+  flutter_svg: ^2.0.4
 
 dev_dependencies:
   flutter_test:
@@ -42,3 +43,4 @@ flutter:
     - assets/
     - assets/db/
     - assets/db/glyphmap.db
+    - assets/icons/
