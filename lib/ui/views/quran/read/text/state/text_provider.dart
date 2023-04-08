@@ -1,5 +1,7 @@
 import 'package:abc_quran/models/glyph.dart';
 import 'package:abc_quran/models/sura.dart';
+import 'package:abc_quran/services/quran/fonts/mushaf_font_service.dart';
+import 'package:abc_quran/services/quran/quran_mushaf_service.dart';
 import 'package:abc_quran/services/quran/quran_text_service.dart';
 import 'package:abc_quran/ui/views/quran/read/cursor/cursor_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,6 +22,13 @@ class TextNotifier extends StateNotifier<TextState> {
 
   Future loadSura(SuraModel sura) async {
     final verses = await _ref.read(quranTextServiceProvider).getAyahsFromSura(sura.id);
-    state = state.copyWith(loadedVerses: verses);
+    final glyphs = await _ref.read(quranMushafServiceProvider).getSuraGlyphs(sura.id);
+
+    for (final verse in glyphs) {
+      final glyph = verse[0];
+      _ref.read(mushafFontServiceProvider).loadPage(glyph.page.toString());
+    }
+
+    state = state.copyWith(loadedVerses: verses, loadedGlyphs: glyphs);
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'mushaf/quran_mushaf_view.dart';
+import 'text/quran_text_view.dart';
 
 class ReadView extends ConsumerWidget {
   const ReadView({required this.pageController, Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class ReadView extends ConsumerWidget {
     return Column(
       children: [
         Expanded(
-            child: QuranMushafView(
+            child: QuranTextView(
           pageController: pageController,
         )),
         Container(

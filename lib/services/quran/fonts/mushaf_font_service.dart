@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,7 +16,7 @@ class MushafFontService {
   Future<String> get _localFontFolder async {
     final Directory cacheDirectory = await getApplicationDocumentsDirectory();
 
-    final String directory = "${cacheDirectory.path}/mushaf_cache";
+    final String directory = "${cacheDirectory.path}\\AbcQuran\\cache\\mushaf";
     if (!await Directory(directory).exists()) {
       Directory(directory).create(recursive: true);
     }
@@ -46,7 +45,7 @@ class MushafFontService {
 
   Future<ByteData?> _fetchPageFromDisk(String page) async {
     final fontFolder = await _localFontFolder;
-    final file = File("$fontFolder/$page.ttf");
+    final file = File("$fontFolder\\$page.ttf");
 
     if (await file.exists()) {
       List<int> contents = await file.readAsBytes();

@@ -94,6 +94,29 @@ class QuranMushafService {
     return lines;
   }
 
+  Future<List<List<Glyph>>> getSuraGlyphs(int sura) async {
+    if (db == null) {
+      await _init();
+    }
+
+    final query = await db!.rawQuery(
+        "SELECT text,page,ayah FROM sura_ayah_page_text WHERE sura=$sura ORDER BY ayah ASC");
+
+    var verses = <List<Glyph>>[];
+    for (final verse in query) {
+      var glyphs = <Glyph>[];
+      if (verse["ayah"] != null) {
+        for (var glyph in parseFragment(verse["text"]).text!.runes) {
+          glyphs.add(Glyph(String.fromCharCode(glyph), verse["page"] as int,
+              sura, verse["ayah"] as int));
+        }
+        verses.add(glyphs);
+      }
+    }
+
+    return verses;
+  }
+
   Future<int> getSuraPage(int sura) async {
     if (db == null) {
       await _init();
