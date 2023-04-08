@@ -3,10 +3,8 @@ import 'package:abc_quran/ui/views/quran/read/cursor/cursor_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import 'mushaf/quran_mushaf_view.dart';
-import 'text/quran_text_view.dart';
 
 class ReadView extends ConsumerWidget {
   const ReadView({required this.pageController, Key? key}) : super(key: key);

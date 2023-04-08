@@ -2,10 +2,12 @@ import 'package:abc_quran/ui/app/app_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 void main() {
   sqfliteFfiInit();
+  databaseFactory = databaseFactoryFfi;
   runApp(ProviderScope(child: MyApp()));
 }
 

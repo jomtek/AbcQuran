@@ -6,21 +6,21 @@ import 'package:path_provider/path_provider.dart';
 final quranTextServiceProvider = Provider((ref) => QuranTextService());
 
 // This service fulfills all textual quran needs.
-// It provides data for the translated versions of the holy book. 
+// It provides data for the translated versions of the holy book.
 class QuranTextService {
   Future<String> get _localTranslationsFolder async {
-    final Directory cacheDirectory = await getApplicationDocumentsDirectory();
+    final docsDir = await getApplicationDocumentsDirectory();
+    final dir = docsDir.path + r"\AbcQuran\db\text";
 
-    final String directory = "${cacheDirectory.path}/text";
-    if (!await Directory(directory).exists()) {
-      Directory(directory).create(recursive: true);
+    if (!await Directory(dir).exists()) {
+      Directory(dir).create(recursive: true);
     }
 
-    return directory;
+    return dir;
   }
 
   Future<List<String>> getAyahsFromSura(int sura) async {
     final translationsFolder = await _localTranslationsFolder;
-    return await File("$translationsFolder/fr.hamidullah/$sura").readAsLines();
+    return await File("$translationsFolder\\fr.hamidullah\\$sura").readAsLines();
   }
 }

@@ -3,8 +3,9 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:html/parser.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
 
 import '../../models/glyph.dart';
 
@@ -16,16 +17,18 @@ class QuranMushafService {
   Database? db;
 
   Future _init() async {
-    final databasesPath = await getDatabasesPath();
-    final path = join(databasesPath, "glyphmap_asset_example.db");
+    final docsDir = await getApplicationDocumentsDirectory();
+    final path = docsDir.path + r"\AbcQuran\db\glyphmap.db";
 
     final exists = await databaseExists(path);
     if (!exists) {
       try {
         await Directory(dirname(path)).create(recursive: true);
-      } catch (_) {}
+      } catch (e) {
+        print("e");
+      }
 
-      ByteData data = await rootBundle.load(join("assets/db", "glyphmap.db"));
+      ByteData data = await rootBundle.load("assets/db/glyphmap.db");
       List<int> bytes =
           data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 
@@ -33,6 +36,7 @@ class QuranMushafService {
     }
 
     db = await openDatabase(path, readOnly: true);
+    print("hey");
   }
 
   Future<List<String>> _getAyahsFromPage(int page) async {
