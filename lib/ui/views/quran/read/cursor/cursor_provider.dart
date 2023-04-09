@@ -1,4 +1,5 @@
 import 'package:abc_quran/models/sura.dart';
+import 'package:abc_quran/providers/settings/settings_provider.dart';
 import 'package:abc_quran/services/quran/quran_mushaf_service.dart';
 import 'package:abc_quran/ui/views/quran/read/mushaf/state/mushaf_provider.dart';
 import 'package:abc_quran/ui/views/quran/read/text/state/text_provider.dart';
@@ -11,7 +12,6 @@ final cursorProvider =
   return CursorNotifier(ref);
 });
 
-
 class CursorNotifier extends StateNotifier<CursorState> {
   final StateNotifierProviderRef<CursorNotifier, CursorState> _ref;
 
@@ -20,9 +20,12 @@ class CursorNotifier extends StateNotifier<CursorState> {
   void selectSura(SuraModel sura) async {
     int page = await _ref.read(quranMushafServiceProvider).getSuraPage(sura.id);
     state = state.copyWith(sura: sura, page: page);
-    // TODO : select one of the two
-    _ref.read(mushafProvider.notifier).reloadPageCouple();
-    _ref.read(textProvider.notifier).loadSura(sura);
+
+    if (_ref.read(settingsProvider).showMushaf) {
+      _ref.read(mushafProvider.notifier).reloadPageCouple();
+    } else {
+      _ref.read(textProvider.notifier).loadSura(sura);
+    }
   }
 
   void gotoNextPageCouple() {
@@ -35,5 +38,21 @@ class CursorNotifier extends StateNotifier<CursorState> {
     if (state.page - 1 > 0) {
       state = state.copyWith(page: state.page - 2);
     }
+  }
+
+  void moveBookmarkAt(int verse) {
+    // Bookmark logic
+    if (verse >= state.bookmarkStart) {
+      state = state.copyWith(bookmarkStop: verse);
+    } else {
+      state = state.copyWith(bookmarkStart: verse, bookmarkStop: verse);
+    }
+  }
+
+  void startBookmarkAt(int verse) {
+    if (verse > state.bookmarkStop) {
+      state = state.copyWith(bookmarkStop: verse);
+    }
+    state = state.copyWith(bookmarkStart: verse);
   }
 }

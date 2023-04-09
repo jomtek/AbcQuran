@@ -451,6 +451,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
+  native_context_menu:
+    dependency: "direct main"
+    description:
+      name: native_context_menu
+      sha256: "566f13d1f55e57bc8aca3b71b157b1ff03c2cc3821f6e9d980f76233ed30c9b7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.2+5"
   package_config:
     dependency: transitive
     description:

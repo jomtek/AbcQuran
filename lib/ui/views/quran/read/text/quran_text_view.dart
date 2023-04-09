@@ -44,9 +44,11 @@ class QuranTextView extends ConsumerWidget {
                 return Padding(
                   padding: getVersePadding(i, state.loadedVerses.length),
                   child: QuranVerseBox(
-                      id: i + 1,
-                      text: state.loadedVerses[i],
-                      glyphs: state.loadedGlyphs[i]),
+                    id: i + 1,
+                    text: state.loadedVerses[i],
+                    glyphs: state.loadedGlyphs[i],
+                    cursor: cursorState,
+                  ),
                 );
               },
             ),

@@ -29,6 +29,7 @@ dependencies:
   material_design_icons_flutter: ^6.0.7096
   sqflite: ^2.2.6
   flutter_svg: ^2.0.4
+  native_context_menu: ^0.2.2+5
 
 dev_dependencies:
   flutter_test:
