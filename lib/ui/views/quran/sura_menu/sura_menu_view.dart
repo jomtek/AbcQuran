@@ -13,19 +13,20 @@ class SuraMenuView extends ConsumerStatefulWidget {
   SuraMenuViewState createState() => SuraMenuViewState();
 }
 
-class SuraMenuViewState extends ConsumerState<SuraMenuView> with AutomaticKeepAliveClientMixin<SuraMenuView> {
+class SuraMenuViewState extends ConsumerState<SuraMenuView>
+    with AutomaticKeepAliveClientMixin<SuraMenuView> {
   final pageController = PageController();
 
   Widget _buildListing(BuildContext context, WidgetRef ref) {
-        final size = MediaQuery.of(context).size;
-
+    final size = MediaQuery.of(context).size;
 
     final state = ref.watch(suraMenuProvider);
     final suraList = ref.watch(suraListProvider);
 
     if (suraList.isEmpty) {
       return const Center(
-          child: Text("Loading sura listing...", style: TextStyle(fontSize: 38)));
+          child:
+              Text("Loading sura listing...", style: TextStyle(fontSize: 38)));
     } else {
       return GridView.builder(
         itemCount: 114,
@@ -37,9 +38,9 @@ class SuraMenuViewState extends ConsumerState<SuraMenuView> with AutomaticKeepAl
         itemBuilder: (BuildContext context, int index) {
           final sura = suraList[index];
           return Material(
-                          color: (index % 2) == ((index ~/ 6) % 2)
-                  ? Colors.green.shade100
-                  : Colors.green.shade200,
+            color: (index % 2) == ((index ~/ 6) % 2)
+                ? Colors.green.shade100
+                : Colors.green.shade200,
             child: InkWell(
               hoverColor: Colors.green.shade300,
               splashColor: (index % 2) == ((index ~/ 6) % 2)
@@ -55,8 +56,12 @@ class SuraMenuViewState extends ConsumerState<SuraMenuView> with AutomaticKeepAl
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(sura.id.toString(), style: TextStyle(fontSize: 5.sp)),
-                    Text(sura.phoneticName, textAlign: TextAlign.center, style: TextStyle(fontSize: 6.sp)),
-                    Text(sura.translatedName, textAlign: TextAlign.center, style: TextStyle(fontSize: 4.sp)),
+                    Text(sura.phoneticName,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 6.sp)),
+                    Text(sura.translatedName,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 4.sp)),
                   ],
                 ),
               ),
@@ -70,12 +75,15 @@ class SuraMenuViewState extends ConsumerState<SuraMenuView> with AutomaticKeepAl
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return PageView(controller: pageController, children: [
-      _buildListing(context, ref),
-      ReadView(pageController: pageController),
-    ],);
+    return PageView(
+      controller: pageController,
+      children: [
+        _buildListing(context, ref),
+        ReadView(pageController: pageController),
+      ],
+    );
   }
-  
+
   @override
   bool get wantKeepAlive => true;
 }

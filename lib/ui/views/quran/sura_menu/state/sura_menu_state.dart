@@ -1,5 +1,3 @@
-import 'package:abc_quran/models/sura.dart';
-
 class SuraMenuState {
   SuraMenuState();
 

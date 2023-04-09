@@ -63,7 +63,7 @@ class QuranVerseBox extends ConsumerWidget {
               ),
             ),
           ),
-          SizedBox(width: 2.sp),
+          SizedBox(width: 4.sp),
           Container(
               decoration: BoxDecoration(
                   color: Colors.black.withOpacity(0.075),
@@ -121,6 +121,7 @@ class QuranVerseBox extends ConsumerWidget {
                   ],
                 ),
               )),
+          SizedBox(width: 4.sp),
         ],
       ),
     );

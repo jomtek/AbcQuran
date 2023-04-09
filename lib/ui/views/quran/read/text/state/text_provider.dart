@@ -1,4 +1,3 @@
-import 'package:abc_quran/models/glyph.dart';
 import 'package:abc_quran/models/sura.dart';
 import 'package:abc_quran/services/quran/fonts/mushaf_font_service.dart';
 import 'package:abc_quran/services/quran/quran_mushaf_service.dart';

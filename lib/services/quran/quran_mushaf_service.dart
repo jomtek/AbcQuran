@@ -22,11 +22,7 @@ class QuranMushafService {
 
     final exists = await databaseExists(path);
     if (!exists) {
-      try {
-        await Directory(dirname(path)).create(recursive: true);
-      } catch (e) {
-        print("e");
-      }
+      await Directory(dirname(path)).create(recursive: true);
 
       ByteData data = await rootBundle.load("assets/db/glyphmap.db");
       List<int> bytes =
@@ -36,7 +32,6 @@ class QuranMushafService {
     }
 
     db = await openDatabase(path, readOnly: true);
-    print("hey");
   }
 
   Future<List<String>> _getAyahsFromPage(int page) async {

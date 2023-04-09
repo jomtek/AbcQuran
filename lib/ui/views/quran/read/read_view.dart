@@ -1,8 +1,10 @@
+import 'package:abc_quran/providers/settings/settings_provider.dart';
 import 'package:abc_quran/ui/app/app_theme.dart';
 import 'package:abc_quran/ui/views/quran/read/cursor/cursor_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'mushaf/quran_mushaf_view.dart';
 import 'text/quran_text_view.dart';
@@ -17,27 +19,31 @@ class ReadView extends ConsumerWidget {
         height: 15.sp,
         margin: EdgeInsets.symmetric(vertical: 1.5.sp),
         padding: EdgeInsets.symmetric(horizontal: 4.sp),
-        decoration: BoxDecoration(
-            color: Colors.black12, borderRadius: BorderRadius.circular(10)),
+        color: Colors.black12,
         child: Center(child: child));
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final cursor = ref.watch(cursorProvider);
+    final settings = ref.watch(settingsProvider);
 
     return Column(
       children: [
         Expanded(
-            child: QuranTextView(
-          pageController: pageController,
-        )),
+            child: settings.showMushaf
+                ? QuranMushafView(
+                    pageController: pageController,
+                  )
+                : QuranTextView(
+                    pageController: pageController,
+                  )),
         Container(
             decoration: BoxDecoration(
                 color: AppTheme.primaryColor,
                 border: Border(
                     top: BorderSide(color: AppTheme.darkColor, width: 2.5))),
-            height: 14.sp > 65 ? 65 : 14.sp,
+            height: 14.sp > 75 ? 75 : 14.sp,
             child: Row(
               children: [
                 Expanded(
@@ -48,14 +54,17 @@ class ReadView extends ConsumerWidget {
                         child: Row(
                           children: [
                             Padding(
-                                padding: EdgeInsets.all(0.5.sp),
-                                child: Image.asset(
-                                    "assets/qari_test_shuraim.png")),
+                                padding: EdgeInsets.all(0.75.sp),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(360),
+                                  child: Image.asset(
+                                      "assets/qari_test_shuraim.png"),
+                                )),
                             SizedBox(
                               width: 2.5.sp,
                             ),
                             Text("Saud Al-Shuraim (Tarawih 1984)",
-                                style: TextStyle(fontSize: 4.sp)),
+                                style: GoogleFonts.inter(fontSize: 3.75.sp)),
                           ],
                         ),
                       ),
@@ -64,7 +73,7 @@ class ReadView extends ConsumerWidget {
                       ),
                       _buildBottomBarContainer(
                         child: Text(cursor.sura.toString(),
-                            style: TextStyle(fontSize: 4.sp)),
+                            style: GoogleFonts.inter(fontSize: 4.sp)),
                       ),
                     ],
                   ),
@@ -87,35 +96,51 @@ class ReadView extends ConsumerWidget {
                     Icon(Icons.fast_forward, size: 8.sp),
                     const Spacer(flex: 5),
                     Container(
-                        width: 40.sp,
+                        width: 50.sp,
                         decoration: BoxDecoration(
                             color: AppTheme.primaryColor,
-                            borderRadius: BorderRadius.circular(15),
-                            boxShadow: const [
-                              BoxShadow(blurRadius: 5, offset: Offset(-2, 2)),
-                            ]),
+                            border:
+                                Border.all(color: Colors.black38, width: 1.25)),
                         margin: EdgeInsets.symmetric(vertical: 1.75.sp),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Container(
-                                    color: AppTheme.primaryColor,
-                                    child: Center(
-                                        child: Text("Text",
-                                            style:
-                                                TextStyle(fontSize: 3.5.sp)))),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Material(
+                                color: settings.showMushaf
+                                    ? AppTheme.primaryColor
+                                    : AppTheme.goldenColor,
+                                child: InkWell(
+                                  onTap: () {
+                                    ref
+                                        .read(settingsProvider.notifier)
+                                        .setShowMushaf(false);
+                                  },
+                                  child: Center(
+                                      child: Text("Text",
+                                          style: GoogleFonts.inter(
+                                              fontSize: 3.5.sp))),
+                                ),
                               ),
-                              Expanded(
-                                  child: Container(
-                                      color: AppTheme.goldenColor,
-                                      child: Center(
-                                          child: Text("Mushaf",
-                                              style: TextStyle(
-                                                  fontSize: 3.5.sp))))),
-                            ],
-                          ),
+                            ),
+                            Expanded(
+                              child: Material(
+                                color: settings.showMushaf
+                                    ? AppTheme.goldenColor
+                                    : AppTheme.primaryColor,
+                                child: InkWell(
+                                  onTap: () {
+                                    ref
+                                        .read(settingsProvider.notifier)
+                                        .setShowMushaf(true);
+                                  },
+                                  child: Center(
+                                      child: Text("Mushaf",
+                                          style: GoogleFonts.inter(
+                                              fontSize: 3.5.sp))),
+                                ),
+                              ),
+                            ),
+                          ],
                         )),
                     const Spacer(),
                     Icon(

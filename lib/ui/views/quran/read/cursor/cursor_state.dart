@@ -1,5 +1,4 @@
 
-import 'package:abc_quran/models/glyph.dart';
 import 'package:abc_quran/models/revelation_type.dart';
 import 'package:abc_quran/models/sura.dart';
 

@@ -12,10 +12,8 @@ final suraMenuProvider =
 class SuraMenuNotifier extends StateNotifier<SuraMenuState> {
   final StateNotifierProviderRef<SuraMenuNotifier, SuraMenuState> _ref;
 
-  SuraMenuNotifier(this._ref) : super(SuraMenuState.initial()) {
-
-  }
-
+  SuraMenuNotifier(this._ref) : super(SuraMenuState.initial());
+  
   void select(SuraModel sura) {
     _ref.watch(cursorProvider.notifier).selectSura(sura);
   }
