@@ -6,9 +6,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AbcSidebar extends ConsumerWidget {
-  const AbcSidebar(this.items, {Key? key}) : super(key: key);
+  const AbcSidebar(this.items, {Key? key, required this.onTap})
+      : super(key: key);
 
   final List<SidebarItem> items;
+  final Function(int) onTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -61,13 +63,20 @@ class AbcSidebar extends ConsumerWidget {
                 SizedBox(height: 3.sp),
                 for (final item in items)
                   Material(
-                    color:
-                        item.isSelected ? Colors.black26 : Colors.transparent,
+                    color: item.id == state.selectedPage
+                        ? Colors.black26
+                        : Colors.transparent,
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        ref
+                            .read(sidebarVmProvider.notifier)
+                            .selectPage(item.id);
+                        onTap(item.id);
+                      },
                       splashColor: Colors.transparent,
-                      hoverColor:
-                          item.isSelected ? Colors.transparent : Colors.black12,
+                      hoverColor: item.id == state.selectedPage
+                          ? Colors.transparent
+                          : Colors.black12,
                       child: Container(
                         padding: EdgeInsets.symmetric(
                             vertical: 1.5.sp, horizontal: 3.sp),

@@ -14,4 +14,8 @@ class SidebarNotifier extends StateNotifier<SidebarState> {
   void setCollapsed(bool collapsed) {
     state = state.copyWith(isCollapsed: collapsed);
   }
+
+  void selectPage(int page) {
+    state = state.copyWith(selectedPage: page);
+  }
 }

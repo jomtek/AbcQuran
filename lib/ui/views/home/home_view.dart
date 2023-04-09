@@ -29,11 +29,16 @@ class HomeView extends ConsumerWidget {
             ],
           ),
         ),
-        AbcSidebar([
-          SidebarItem("Lire et écouter", Icons.menu_book, true),
-          SidebarItem("Contribution", Icons.handshake, false),
-          SidebarItem("Paramètres", Icons.settings, false)
-        ])
+        AbcSidebar(
+          [
+            SidebarItem(0, "Lire et écouter", Icons.menu_book, true),
+            SidebarItem(1, "Contribution", Icons.handshake, false),
+            SidebarItem(2, "Paramètres", Icons.settings, false)
+          ],
+          onTap: (id) {
+            _pageController.jumpToPage(id);
+          },
+        )
       ]),
     );
   }
