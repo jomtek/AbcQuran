@@ -7,7 +7,6 @@ final settingsProvider =
   return SettingsNotifier(ref);
 });
 
-
 class SettingsNotifier extends StateNotifier<SettingsState> {
   final StateNotifierProviderRef<SettingsNotifier, SettingsState> _ref;
 
@@ -15,5 +14,10 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
 
   void setShowMushaf(bool showMushaf) {
     state = state.copyWith(showMushaf: showMushaf);
+    if (showMushaf) {
+      state.readPageController.jumpToPage(1);
+    } else {
+      state.readPageController.jumpToPage(0);
+    }
   }
 }

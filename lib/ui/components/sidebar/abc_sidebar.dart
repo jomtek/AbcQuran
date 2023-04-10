@@ -44,23 +44,28 @@ class AbcSidebar extends ConsumerWidget {
                 AnimatedContainer(
                   duration: animationDuration,
                   curve: Curves.ease,
-                  width: state.isCollapsed ? 5.sp : 35.sp,
+                  width: state.isCollapsed
+                      ? (5.sp < 15 ? 15 : 5.sp)
+                      : (35.sp < 105 ? 105 : 35.sp),
                   child: Text("AbcQuran",
                       overflow: TextOverflow.clip,
                       softWrap: false,
                       style: TextStyle(
-                          fontSize: 7.5.sp, color: AppTheme.primaryColor)),
+                          fontSize: 7.5.sp < 24 ? 24 : 7.5.sp,
+                          color: AppTheme.primaryColor)),
                 ),
-                SizedBox(height: 1.sp),
+                SizedBox(height: 1.sp < 5 ? 5 : 1.sp),
                 AnimatedContainer(
                     duration: animationDuration,
                     curve: Curves.ease,
-                    height: 1.sp,
-                    width: state.isCollapsed ? 7.5.sp : 35.sp,
+                    height: 0.75.sp < 2 ? 2 : 0.75.sp,
+                    width: state.isCollapsed
+                        ? (7.5.sp < 15 ? 15 : 7.5.sp)
+                        : (35.sp < 105 ? 105 : 35.sp),
                     decoration: BoxDecoration(
                         color: AppTheme.primaryColor,
                         borderRadius: BorderRadius.circular(25))),
-                SizedBox(height: 3.sp),
+                SizedBox(height: 3.sp < 10 ? 10 : 3.sp),
                 for (final item in items)
                   Material(
                     color: item.id == state.selectedPage
@@ -86,17 +91,17 @@ class AbcSidebar extends ConsumerWidget {
                             AnimatedContainer(
                               duration: animationDuration,
                               curve: Curves.ease,
-                              width: state.isCollapsed ? 0 : 35.sp,
+                              width: state.isCollapsed ? 0 : (35.sp < 100 ? 100 : 35.sp),
                               child: Text(item.title,
                                   softWrap: false,
                                   style: TextStyle(
                                       color: AppTheme.primaryColor,
-                                      fontSize: 4.5.sp)),
+                                      fontSize: 4.5.sp < 15 ? 15 : 4.5.sp)),
                             ),
                             Icon(
                               item.icon,
                               color: AppTheme.primaryColor,
-                              size: 6.5.sp,
+                              size: 6.5.sp < 24 ? 24 : 6.5.sp,
                             ),
                           ],
                         ),
