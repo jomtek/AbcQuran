@@ -31,17 +31,13 @@ class ReadView extends ConsumerWidget {
     return Column(
       children: [
         Expanded(
-          child: PageView(
-            controller: settings.readPageController,
-            children: [
-            QuranTextView(
-              pageController: pageController,
-            ),
-            QuranMushafView(
-              pageController: pageController,
-            ),
-          ]),
-        ),
+            child: settings.showMushaf
+                ? QuranMushafView(
+                    pageController: pageController,
+                  )
+                : QuranTextView(
+                    pageController: pageController,
+                  )),
         Container(
             decoration: BoxDecoration(
                 color: AppTheme.primaryColor,

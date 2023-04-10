@@ -14,10 +14,5 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
 
   void setShowMushaf(bool showMushaf) {
     state = state.copyWith(showMushaf: showMushaf);
-    if (showMushaf) {
-      state.readPageController.jumpToPage(1);
-    } else {
-      state.readPageController.jumpToPage(0);
-    }
   }
 }

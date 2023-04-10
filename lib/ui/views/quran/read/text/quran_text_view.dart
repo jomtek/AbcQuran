@@ -7,10 +7,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'state/text_provider.dart';
 
 class QuranTextView extends ConsumerWidget {
-  QuranTextView({required this.pageController, Key? key}) : super(key: key);
+  const QuranTextView({required this.pageController, Key? key}) : super(key: key);
 
   final PageController pageController;
-  final scrollController = ScrollController();
 
   EdgeInsets getVersePadding(int i, int total) {
     double horizontal = 6.sp;
@@ -36,9 +35,10 @@ class QuranTextView extends ConsumerWidget {
         child: Center(
           child: Scrollbar(
             thumbVisibility: true,
-            controller: scrollController,
+            controller: state.scrollController,
             child: ListView.builder(
-              controller: scrollController,
+              key: const PageStorageKey(0), // Keeps scroll position
+              controller: state.scrollController,
               itemCount: state.loadedVerses.length,
               itemBuilder: (_, i) {
                 return Padding(
