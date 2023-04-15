@@ -5,9 +5,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SearchBar extends StatefulWidget {
-  const SearchBar({super.key, required this.placeholder});
+  const SearchBar({super.key, required this.placeholder, required this.textChanged});
 
   final String placeholder;
+  final Function(String) textChanged;
 
   @override
   State<SearchBar> createState() => _SearchBarState();
@@ -47,6 +48,7 @@ class _SearchBarState extends State<SearchBar> {
               Expanded(
                 child: SizedBox(
                   child: TextField(
+                    onChanged: widget.textChanged,
                     focusNode: focusNode,
                     cursorColor: Colors.grey,
                     style: GoogleFonts.inter(

@@ -16,7 +16,6 @@ class NavigatorFrame extends ConsumerWidget {
 
   Widget buildSuraList(WidgetRef ref) {
     final state = ref.watch(navigatorProvider);
-    final suras = ref.watch(suraListProvider);
 
     final selectedSura = ref.read(cursorProvider).sura;
 
@@ -27,10 +26,11 @@ class NavigatorFrame extends ConsumerWidget {
         thumbVisibility: true,
         child: ListView.builder(
           key: const PageStorageKey(0), // Keeps scroll position
+          shrinkWrap: true,
           controller: state.scrollController,
-          itemCount: suras.length,
+          itemCount: state.relevantElements.length,
           itemBuilder: (context, index) {
-            final sura = suras[index];
+            final sura = state.relevantElements[index];
             return SuraResultView(
                 sura: sura,
                 selected: sura == selectedSura,
@@ -65,8 +65,11 @@ class NavigatorFrame extends ConsumerWidget {
               SizedBox(height: 4.sp),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 5.sp),
-                child: const SearchBar(
+                child: SearchBar(
                   placeholder: "Mot, sourate, récitateur...",
+                  textChanged: (text) {
+                    ref.read(navigatorProvider.notifier).search(text);
+                  },
                 ),
               ),
               SizedBox(height: 6.sp),
