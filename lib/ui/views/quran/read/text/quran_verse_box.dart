@@ -126,9 +126,9 @@ class QuranVerseBox extends ConsumerWidget {
                             for (final glyph in glyphs)
                               Text(glyph.text,
                                   textScaleFactor:
-                                      (glyph.isSmall ? 0.35.sp : 0.3.sp) < 1.3
+                                      (glyph.isSmall ? 0.35.sp : 0.385.sp) < 1.3
                                           ? 1.3
-                                          : (glyph.isSmall ? 0.35.sp : 0.3.sp),
+                                          : (glyph.isSmall ? 0.4.sp : 0.38.sp),
                                   style: TextStyle(
                                       fontFamily: glyph.page.toString(),
                                       fontWeight: FontWeight.w500)),

@@ -16,9 +16,19 @@ class SuraModel {
       json["phoneticName"] as String,
       json["translatedName"] as String,
       RevelationType.values[json["revelationType"] as int]);
-    
+
   @override
   String toString() {
     return "$id. $phoneticName ($translatedName)";
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return id == (other as SuraModel).id;
+  }
+
+  @override
+  int get hashCode {
+    return id;
   }
 }

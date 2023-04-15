@@ -24,6 +24,10 @@ class CursorNotifier extends StateNotifier<CursorState> {
     if (_ref.read(settingsProvider).showMushaf) {
       _ref.read(mushafProvider.notifier).reloadPageCouple();
     } else {
+      // Reset sura navigation
+      _ref.read(textProvider.notifier).resetScrollPos();
+      state = state.copyWith(bookmarkStart: 1, bookmarkStop: 1);
+      // Load
       _ref.read(textProvider.notifier).loadSura(sura);
     }
   }

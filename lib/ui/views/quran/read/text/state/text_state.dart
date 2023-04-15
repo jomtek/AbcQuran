@@ -27,6 +27,6 @@ class TextState {
     return TextState(
         loadedVerses: loadedVerses ?? this.loadedVerses,
         loadedGlyphs: loadedGlyphs ?? this.loadedGlyphs,
-        scrollController: this.scrollController);
+        scrollController: scrollController ?? this.scrollController);
   }
 }

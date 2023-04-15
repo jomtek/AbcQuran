@@ -22,8 +22,8 @@ class CursorState {
     return CursorState(
         sura: SuraModel(1, 1, "", "", RevelationType.mh),
         page: 3,
-        bookmarkStart: 3,
-        bookmarkStop: 3);
+        bookmarkStart: 1,
+        bookmarkStop: 1);
   }
 
   CursorState copyWith(
