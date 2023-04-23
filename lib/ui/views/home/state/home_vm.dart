@@ -1,3 +1,5 @@
+import 'package:abc_quran/providers/reciter_info_provider.dart';
+import 'package:abc_quran/ui/views/quran/read/cursor/cursor_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

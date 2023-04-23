@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:abc_quran/ui/components/sidebar/abc_sidebar.dart';
 import 'package:abc_quran/ui/components/sidebar/sidebar_item.dart';
-import 'package:abc_quran/ui/views/frames/navigator/navigator_frame.dart';
+import 'package:abc_quran/ui/views/frames/quran_navigator/quran_navigator_frame.dart';
 import 'package:abc_quran/ui/views/home/state/home_vm.dart';
 import 'package:abc_quran/ui/views/quran/sura_menu/sura_menu_view.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +25,7 @@ class HomeView extends ConsumerWidget {
         if (!e.repeat &&
             e.isControlPressed &&
             ["F", "K"].contains(e.logicalKey.keyLabel)) {
-          ref.read(homeProvider.notifier).setFrame(const NavigatorFrame());
+          ref.read(homeProvider.notifier).setFrame(const QuranNavigatorFrame());
           ref.read(homeProvider.notifier).toggleFrame();
         }
       },

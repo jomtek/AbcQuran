@@ -1,5 +1,9 @@
+import 'package:abc_quran/providers/current_reciter_provider.dart';
 import 'package:abc_quran/providers/settings/settings_provider.dart';
 import 'package:abc_quran/ui/app/app_theme.dart';
+import 'package:abc_quran/ui/views/frames/quran_navigator/quran_navigator_frame.dart';
+import 'package:abc_quran/ui/views/frames/reciters_navigator/quran_navigator_frame.dart';
+import 'package:abc_quran/ui/views/home/state/home_vm.dart';
 import 'package:abc_quran/ui/views/quran/read/cursor/cursor_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,13 +18,22 @@ class ReadView extends ConsumerWidget {
 
   final PageController pageController;
 
-  Widget _buildBottomBarContainer({required Widget child}) {
+  Widget _buildBottomBarContainer(
+      {required Widget child, required Function() onTap}) {
     return Container(
-        height: 15.sp,
-        margin: EdgeInsets.symmetric(vertical: 1.5.sp),
-        padding: EdgeInsets.symmetric(horizontal: 4.sp),
-        color: Colors.black12,
-        child: Center(child: child));
+      height: 15.sp,
+      margin: EdgeInsets.symmetric(vertical: 1.5.sp),
+      child: Material(
+        color: Colors.black.withOpacity(0.16),
+        child: InkWell(
+          splashColor: AppTheme.goldenColor,
+          onTap: onTap,
+          child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 4.sp),
+              child: Center(child: child)),
+        ),
+      ),
+    );
   }
 
   @override
@@ -28,16 +41,18 @@ class ReadView extends ConsumerWidget {
     final cursor = ref.watch(cursorProvider);
     final settings = ref.watch(settingsProvider);
 
+    final reciter = ref.watch(currentReciterProvider);
+
     return Column(
       children: [
         Expanded(
           child: settings.showMushaf
-                  ? QuranMushafView(
-                      pageController: pageController,
-                    )
-                  : QuranTextView(
-                      pageController: pageController,
-                    ),
+              ? QuranMushafView(
+                  pageController: pageController,
+                )
+              : QuranTextView(
+                  pageController: pageController,
+                ),
         ),
         Container(
             decoration: BoxDecoration(
@@ -52,29 +67,53 @@ class ReadView extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       _buildBottomBarContainer(
-                        child: Row(
-                          children: [
-                            Padding(
-                                padding: EdgeInsets.all(0.75.sp),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(360),
-                                  child: Image.asset(
-                                      "assets/qari_test_shuraim.png"),
-                                )),
-                            SizedBox(
-                              width: 2.5.sp,
-                            ),
-                            Text("Saud Al-Shuraim (Tarawih 1984)",
-                                style: GoogleFonts.inter(fontSize: 3.75.sp)),
-                          ],
+                        onTap: () {
+                          ref
+                              .read(homeProvider.notifier)
+                              .setFrame(RecitersNavigatorFrame());
+                          ref.read(homeProvider.notifier).toggleFrame();
+                        },
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(minWidth: 50.sp),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              if (reciter.photoUrl != null)
+                                Row(
+                                  children: [
+                                    Padding(
+                                        padding: EdgeInsets.all(0.75.sp),
+                                        child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(360),
+                                            child: Image.network(
+                                                reciter.photoUrl!))),
+                                    SizedBox(
+                                      width: 2.5.sp,
+                                    ),
+                                  ],
+                                ),
+                              Text(reciter.displayName,
+                                  style: GoogleFonts.inter(
+                                      fontSize: 3.75.sp,
+                                      fontWeight: FontWeight.w500)),
+                            ],
+                          ),
                         ),
                       ),
                       SizedBox(
                         width: 2.5.sp,
                       ),
                       _buildBottomBarContainer(
+                        onTap: () {
+                          ref
+                              .read(homeProvider.notifier)
+                              .setFrame(const QuranNavigatorFrame());
+                          ref.read(homeProvider.notifier).toggleFrame();
+                        },
                         child: Text(cursor.sura.toString(),
-                            style: GoogleFonts.inter(fontSize: 4.sp)),
+                            style: GoogleFonts.inter(
+                                fontSize: 4.sp, fontWeight: FontWeight.w600)),
                       ),
                     ],
                   ),

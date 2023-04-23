@@ -1,17 +1,17 @@
 import 'package:abc_quran/models/sura.dart';
 import 'package:abc_quran/providers/sura_info_provider.dart';
-import 'package:abc_quran/ui/views/frames/navigator/state/navigator_state2.dart';
+import 'package:abc_quran/ui/views/frames/quran_navigator/state/quran_navigator_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final navigatorProvider =
-    StateNotifierProvider<NavigatorNotifier, NavigatorState2>((ref) {
-  return NavigatorNotifier(ref);
+final quranNavigatorProvider =
+    StateNotifierProvider<QuranNavigatorNotifier, QuranNavigatorState>((ref) {
+  return QuranNavigatorNotifier(ref);
 });
 
-class NavigatorNotifier extends StateNotifier<NavigatorState2> {
-  final StateNotifierProviderRef<NavigatorNotifier, NavigatorState2> _ref;
+class QuranNavigatorNotifier extends StateNotifier<QuranNavigatorState> {
+  final StateNotifierProviderRef<QuranNavigatorNotifier, QuranNavigatorState> _ref;
 
-  NavigatorNotifier(this._ref) : super(NavigatorState2.initial()) {
+  QuranNavigatorNotifier(this._ref) : super(QuranNavigatorState.initial()) {
     state = state.copyWith(
         allElements: _ref.read(suraListProvider),
         relevantElements: _ref.read(suraListProvider));

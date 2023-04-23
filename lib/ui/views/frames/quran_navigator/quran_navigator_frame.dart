@@ -1,21 +1,19 @@
-import 'package:abc_quran/providers/sura_info_provider.dart';
 import 'package:abc_quran/ui/app/app_theme.dart';
 import 'package:abc_quran/ui/views/common/searchbar_view.dart';
-import 'package:abc_quran/ui/views/frames/navigator/results/sura_result_view.dart';
+import 'package:abc_quran/ui/views/frames/quran_navigator/results/sura_result_view.dart';
 import 'package:abc_quran/ui/views/home/state/home_vm.dart';
 import 'package:abc_quran/ui/views/quran/read/cursor/cursor_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import 'state/navigator_vm.dart';
+import 'state/quran_navigator_vm.dart';
 
-class NavigatorFrame extends ConsumerWidget {
-  const NavigatorFrame({super.key});
+class QuranNavigatorFrame extends ConsumerWidget {
+  const QuranNavigatorFrame({super.key});
 
   Widget buildSuraList(WidgetRef ref) {
-    final state = ref.watch(navigatorProvider);
+    final state = ref.watch(quranNavigatorProvider);
 
     final selectedSura = ref.read(cursorProvider).sura;
 
@@ -66,9 +64,9 @@ class NavigatorFrame extends ConsumerWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 5.sp),
                 child: SearchBar(
-                  placeholder: "Mot, sourate, récitateur...",
+                  placeholder: "Sourate, récitateur...",
                   textChanged: (text) {
-                    ref.read(navigatorProvider.notifier).search(text);
+                    ref.read(quranNavigatorProvider.notifier).search(text);
                   },
                 ),
               ),

@@ -17,7 +17,7 @@ class TextNotifier extends StateNotifier<TextState> {
   final StateNotifierProviderRef<TextNotifier, TextState> _ref;
 
   TextNotifier(this._ref) : super(TextState.initial()) {
-    loadSura(_ref.read(cursorProvider).sura);
+    //loadSura(_ref.read(cursorProvider).sura);
   }
 
   Future loadSura(SuraModel sura) async {

@@ -1,9 +1,9 @@
-import 'package:abc_quran/models/revelation_type.dart';
+import 'package:abc_quran/models/reciter.dart';
 import 'package:abc_quran/models/sura.dart';
 
 class CursorState {
   // Independent
-  final SuraModel sura;
+  final SuraModel? sura;
   // Independent
   final int page;
 
@@ -13,17 +13,13 @@ class CursorState {
   final int bookmarkStop; // ayah num
 
   CursorState(
-      {required this.sura,
+      {this.sura,
       required this.page,
       required this.bookmarkStart,
       required this.bookmarkStop});
 
   factory CursorState.initial() {
-    return CursorState(
-        sura: SuraModel(1, 1, "", "", RevelationType.mh),
-        page: 3,
-        bookmarkStart: 1,
-        bookmarkStop: 1);
+    return CursorState(page: 3, bookmarkStart: 1, bookmarkStop: 1);
   }
 
   CursorState copyWith(

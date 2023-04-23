@@ -1,30 +1,30 @@
 import 'package:abc_quran/models/sura.dart';
 import 'package:flutter/material.dart';
 
-class NavigatorState2 {
+class QuranNavigatorState {
   final List<SuraModel> allElements;
   final List<SuraModel> relevantElements;
 
   // Keep the scroll state
   final ScrollController scrollController;
 
-  NavigatorState2(
+  QuranNavigatorState(
       {required this.allElements,
       required this.relevantElements,
       required this.scrollController});
 
-  factory NavigatorState2.initial() {
-    return NavigatorState2(
+  factory QuranNavigatorState.initial() {
+    return QuranNavigatorState(
         allElements: [],
         relevantElements: [],
         scrollController: ScrollController());
   }
 
-  NavigatorState2 copyWith(
+  QuranNavigatorState copyWith(
       {List<SuraModel>? allElements,
       List<SuraModel>? relevantElements,
       ScrollController? scrollController}) {
-    return NavigatorState2(
+    return QuranNavigatorState(
         allElements: allElements ?? this.allElements,
         relevantElements: relevantElements ?? this.relevantElements,
         scrollController: this.scrollController);
