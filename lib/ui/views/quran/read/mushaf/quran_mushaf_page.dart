@@ -1,5 +1,5 @@
 import 'package:abc_quran/models/glyph.dart';
-import 'package:abc_quran/providers/sura_info_provider.dart';
+import 'package:abc_quran/providers/sura_list_provider.dart';
 import 'package:abc_quran/ui/app/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

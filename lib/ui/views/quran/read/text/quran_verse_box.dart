@@ -128,8 +128,7 @@ class QuranVerseBox extends ConsumerWidget {
                                           ? 1.3
                                           : (glyph.isSmall ? 0.4.sp : 0.38.sp),
                                   style: TextStyle(
-                                      fontFamily: glyph.page.toString(),
-                                      fontWeight: FontWeight.w500)),
+                                      fontFamily: glyph.page.toString(),)),
                           ],
                         ),
                       ),

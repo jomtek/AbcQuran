@@ -10,6 +10,10 @@ class SuraModel {
   SuraModel(this.id, this.length, this.phoneticName, this.translatedName,
       this.revelationType);
 
+  factory SuraModel.initial() {
+    return SuraModel(0, 0, "", "", RevelationType.mh);
+  }
+
   static fromJson(Map<String, dynamic> json) => SuraModel(
       json["id"] as int,
       json["length"] as int,

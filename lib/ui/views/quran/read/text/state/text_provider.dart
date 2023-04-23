@@ -14,9 +14,7 @@ final textProvider =
 class TextNotifier extends StateNotifier<TextState> {
   final StateNotifierProviderRef<TextNotifier, TextState> _ref;
 
-  TextNotifier(this._ref) : super(TextState.initial()) {
-    //loadSura(_ref.read(cursorProvider).sura);
-  }
+  TextNotifier(this._ref) : super(TextState.initial());
 
   Future loadSura(SuraModel sura) async {
     final verses = await _ref.read(quranTextServiceProvider).getAyahsFromSura(sura.id);

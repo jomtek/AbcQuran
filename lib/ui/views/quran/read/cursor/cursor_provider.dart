@@ -19,7 +19,7 @@ class CursorNotifier extends StateNotifier<CursorState> {
 
   void selectSura(SuraModel sura) async {
     int page = await _ref.read(quranMushafServiceProvider).getSuraPage(sura.id);
-    state = state.copyWith(sura: sura, page: page);
+    state = state.copyWith(page: page);
 
     if (_ref.read(settingsProvider).showMushaf) {
       _ref.read(mushafProvider.notifier).reloadPageCouple();

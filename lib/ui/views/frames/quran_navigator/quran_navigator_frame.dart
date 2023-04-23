@@ -1,8 +1,8 @@
+import 'package:abc_quran/providers/current_sura_provider.dart';
 import 'package:abc_quran/ui/app/app_theme.dart';
 import 'package:abc_quran/ui/views/common/searchbar_view.dart';
 import 'package:abc_quran/ui/views/frames/quran_navigator/results/sura_result_view.dart';
 import 'package:abc_quran/ui/views/home/state/home_vm.dart';
-import 'package:abc_quran/ui/views/quran/read/cursor/cursor_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,7 +15,7 @@ class QuranNavigatorFrame extends ConsumerWidget {
   Widget buildSuraList(WidgetRef ref) {
     final state = ref.watch(quranNavigatorProvider);
 
-    final selectedSura = ref.read(cursorProvider).sura;
+    final selectedSura = ref.watch(currentSuraProvider);
 
     return Padding(
       padding: EdgeInsets.only(right: 2.sp),
@@ -33,7 +33,7 @@ class QuranNavigatorFrame extends ConsumerWidget {
                 sura: sura,
                 selected: sura == selectedSura,
                 onTap: (s) {
-                  ref.read(cursorProvider.notifier).selectSura(s);
+                  ref.read(currentSuraProvider.notifier).setSura(s);
                   ref.read(homeProvider.notifier).toggleFrame();
                 });
           },

@@ -1,4 +1,5 @@
 import 'package:abc_quran/providers/current_reciter_provider.dart';
+import 'package:abc_quran/providers/current_sura_provider.dart';
 import 'package:abc_quran/providers/settings/settings_provider.dart';
 import 'package:abc_quran/ui/app/app_theme.dart';
 import 'package:abc_quran/ui/views/frames/quran_navigator/quran_navigator_frame.dart';
@@ -14,9 +15,7 @@ import 'mushaf/quran_mushaf_view.dart';
 import 'text/quran_text_view.dart';
 
 class ReadView extends ConsumerWidget {
-  const ReadView({required this.pageController, Key? key}) : super(key: key);
-
-  final PageController pageController;
+  const ReadView({Key? key}) : super(key: key);
 
   Widget _buildBottomBarContainer(
       {required Widget child, required Function() onTap}) {
@@ -42,17 +41,14 @@ class ReadView extends ConsumerWidget {
     final settings = ref.watch(settingsProvider);
 
     final reciter = ref.watch(currentReciterProvider);
+    final sura = ref.watch(currentSuraProvider);
 
     return Column(
       children: [
         Expanded(
           child: settings.showMushaf
-              ? QuranMushafView(
-                  pageController: pageController,
-                )
-              : QuranTextView(
-                  pageController: pageController,
-                ),
+              ? const QuranMushafView()
+              : const QuranTextView(),
         ),
         Container(
             decoration: BoxDecoration(
@@ -111,7 +107,7 @@ class ReadView extends ConsumerWidget {
                               .setFrame(const QuranNavigatorFrame());
                           ref.read(homeProvider.notifier).toggleFrame();
                         },
-                        child: Text(cursor.sura.toString(),
+                        child: Text(sura.toString(),
                             style: GoogleFonts.inter(
                                 fontSize: 4.sp, fontWeight: FontWeight.w500)),
                       ),

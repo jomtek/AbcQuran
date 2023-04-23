@@ -1,10 +1,11 @@
 import 'dart:ui';
 
+import 'package:abc_quran/providers/ctrl_key_provider.dart';
 import 'package:abc_quran/ui/components/sidebar/abc_sidebar.dart';
 import 'package:abc_quran/ui/components/sidebar/sidebar_item.dart';
 import 'package:abc_quran/ui/views/frames/quran_navigator/quran_navigator_frame.dart';
 import 'package:abc_quran/ui/views/home/state/home_vm.dart';
-import 'package:abc_quran/ui/views/quran/sura_menu/sura_menu_view.dart';
+import 'package:abc_quran/ui/views/quran/read/read_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,6 +29,8 @@ class HomeView extends ConsumerWidget {
           ref.read(homeProvider.notifier).setFrame(const QuranNavigatorFrame());
           ref.read(homeProvider.notifier).toggleFrame();
         }
+
+        ref.read(ctrlKeyProvider.notifier).setCtrlKey(e.isControlPressed);
       },
       child: Stack(children: [
         GestureDetector(
@@ -49,10 +52,7 @@ class HomeView extends ConsumerWidget {
                     child: PageView(
                       controller: _pageController,
                       children: const [
-                        SuraMenuView(),
-                        /*Center(
-                          child: Text('Contribution'),
-                        ),*/
+                        ReadView(),
                         Center(
                           child: Text('Paramètres'),
                         ),
@@ -62,8 +62,7 @@ class HomeView extends ConsumerWidget {
                   AbcSidebar(
                     [
                       SidebarItem(0, "Lire et écouter", Icons.menu_book, true),
-                      //SidebarItem(1, "Contribution", Icons.handshake, false),
-                      SidebarItem(/*2*/ 1, "Paramètres", Icons.settings, false)
+                      SidebarItem(1, "Paramètres", Icons.settings, false)
                     ],
                     onTap: (id) {
                       _pageController.jumpToPage(id);

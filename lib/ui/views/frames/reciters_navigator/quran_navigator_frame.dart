@@ -1,5 +1,5 @@
 import 'package:abc_quran/providers/current_reciter_provider.dart';
-import 'package:abc_quran/providers/reciter_info_provider.dart';
+import 'package:abc_quran/providers/reciter_list_provider.dart';
 import 'package:abc_quran/ui/app/app_theme.dart';
 import 'package:abc_quran/ui/views/frames/reciters_navigator/results/reciter_result_view.dart';
 import 'package:flutter/material.dart';

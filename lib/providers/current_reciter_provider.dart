@@ -1,5 +1,5 @@
 import 'package:abc_quran/models/reciter.dart';
-import 'package:abc_quran/providers/reciter_info_provider.dart';
+import 'package:abc_quran/providers/reciter_list_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final currentReciterProvider =

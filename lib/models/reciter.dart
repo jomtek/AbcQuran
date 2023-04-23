@@ -5,17 +5,18 @@ class ReciterModel {
   final String displayName;
   final String? photoUrl;
 
-  ReciterModel(this.id, this.firstName, this.lastName, this.displayName, this.photoUrl);
+  ReciterModel(
+      this.id, this.firstName, this.lastName, this.displayName, this.photoUrl);
 
-    factory ReciterModel.initial() {
+  factory ReciterModel.initial() {
     return ReciterModel("", "", "", "", null);
   }
 
   static fromJson(Map<String, dynamic> json) => ReciterModel(
-      json["id"] as String,
-      json["first_name"] as String,
-      json["last_name"] as String,
-      json["display_name"] as String,
-      json["photo"] as String,
-  );
+        json["id"] as String,
+        json["first_name"] as String,
+        json["last_name"] as String,
+        json["display_name"] as String,
+        json["photo"] as String,
+      );
 }
