@@ -1,3 +1,4 @@
+import 'package:abc_quran/providers/version_provider.dart';
 import 'package:abc_quran/ui/app/app_theme.dart';
 import 'package:abc_quran/ui/components/sidebar/sidebar_item.dart';
 import 'package:abc_quran/ui/components/sidebar/state/sidebar_vm.dart';
@@ -15,6 +16,7 @@ class AbcSidebar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(sidebarVmProvider);
+    final version = ref.watch(versionProvider);
 
     const animationDuration = Duration(milliseconds: 300);
 
@@ -91,7 +93,9 @@ class AbcSidebar extends ConsumerWidget {
                             AnimatedContainer(
                               duration: animationDuration,
                               curve: Curves.ease,
-                              width: state.isCollapsed ? 0 : (35.sp < 100 ? 100 : 35.sp),
+                              width: state.isCollapsed
+                                  ? 0
+                                  : (35.sp < 100 ? 100 : 35.sp),
                               child: Text(item.title,
                                   softWrap: false,
                                   style: TextStyle(
@@ -107,7 +111,12 @@ class AbcSidebar extends ConsumerWidget {
                         ),
                       ),
                     ),
-                  )
+                  ),
+                const Spacer(),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 4.sp),
+                  child: Text(version, style: TextStyle(color: Colors.white, fontSize: 4.sp)),
+                ),
               ],
             )));
   }

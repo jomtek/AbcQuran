@@ -113,7 +113,7 @@ class ReadView extends ConsumerWidget {
                         },
                         child: Text(cursor.sura.toString(),
                             style: GoogleFonts.inter(
-                                fontSize: 4.sp, fontWeight: FontWeight.w600)),
+                                fontSize: 4.sp, fontWeight: FontWeight.w500)),
                       ),
                     ],
                   ),
@@ -182,6 +182,8 @@ class ReadView extends ConsumerWidget {
                             ),
                           ],
                         )),
+                    /*
+                    TODO: implement 'favorite' feature
                     const Spacer(),
                     Icon(
                       Icons.favorite_rounded,
@@ -192,9 +194,9 @@ class ReadView extends ConsumerWidget {
                             color: AppTheme.accentColor.withOpacity(0.5),
                             blurRadius: 20.0)
                       ],
-                    ),
+                    ),*/
                     SizedBox(
-                      width: 5.sp,
+                      width: 8.sp,
                     ),
                   ],
                 ))

@@ -1,7 +1,6 @@
 import 'package:abc_quran/models/glyph.dart';
 import 'package:abc_quran/providers/sura_info_provider.dart';
 import 'package:abc_quran/ui/app/app_theme.dart';
-import 'package:abc_quran/ui/views/quran/read/cursor/cursor_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,7 +14,6 @@ class QuranMushafPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final cursorState = ref.watch(cursorProvider);
     final mushafState = ref.watch(mushafProvider);
     final suraList = ref.watch(suraListProvider);
 

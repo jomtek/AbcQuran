@@ -5,7 +5,6 @@ import 'package:abc_quran/ui/views/frames/reciters_navigator/results/reciter_res
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:path/path.dart';
 
 class RecitersNavigatorFrame extends ConsumerWidget {
   RecitersNavigatorFrame({super.key});

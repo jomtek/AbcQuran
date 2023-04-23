@@ -50,9 +50,9 @@ class HomeView extends ConsumerWidget {
                       controller: _pageController,
                       children: const [
                         SuraMenuView(),
-                        Center(
+                        /*Center(
                           child: Text('Contribution'),
-                        ),
+                        ),*/
                         Center(
                           child: Text('Paramètres'),
                         ),
@@ -62,8 +62,8 @@ class HomeView extends ConsumerWidget {
                   AbcSidebar(
                     [
                       SidebarItem(0, "Lire et écouter", Icons.menu_book, true),
-                      SidebarItem(1, "Contribution", Icons.handshake, false),
-                      SidebarItem(2, "Paramètres", Icons.settings, false)
+                      //SidebarItem(1, "Contribution", Icons.handshake, false),
+                      SidebarItem(/*2*/ 1, "Paramètres", Icons.settings, false)
                     ],
                     onTap: (id) {
                       _pageController.jumpToPage(id);
@@ -74,8 +74,7 @@ class HomeView extends ConsumerWidget {
             ),
           ),
         ),
-        if (state.isFrameShown)
-          Center(child: state.frame)
+        if (state.isFrameShown) Center(child: state.frame)
       ]),
     );
   }

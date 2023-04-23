@@ -1,4 +1,3 @@
-import 'package:abc_quran/models/reciter.dart';
 import 'package:abc_quran/models/sura.dart';
 
 class CursorState {

@@ -12,7 +12,7 @@ import 'package:native_context_menu/native_context_menu.dart';
 import 'number_cube.dart';
 
 class QuranVerseBox extends ConsumerWidget {
-  QuranVerseBox(
+  const QuranVerseBox(
       {required this.id,
       required this.text,
       required this.glyphs,
@@ -23,8 +23,6 @@ class QuranVerseBox extends ConsumerWidget {
   final String text;
   final List<Glyph> glyphs;
   final CursorState cursor;
-
-  bool _hovered = false;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

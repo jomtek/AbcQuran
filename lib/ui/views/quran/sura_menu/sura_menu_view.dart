@@ -20,7 +20,6 @@ class SuraMenuViewState extends ConsumerState<SuraMenuView>
   Widget _buildListing(BuildContext context, WidgetRef ref) {
     final size = MediaQuery.of(context).size;
 
-    final state = ref.watch(suraMenuProvider);
     final suraList = ref.watch(suraListProvider);
 
     if (suraList.isEmpty) {
