@@ -48,7 +48,7 @@ class ReadView extends ConsumerWidget {
         Expanded(
           child: settings.showMushaf
               ? const QuranMushafView()
-              : QuranTextView(),
+              : const QuranTextView(),
         ),
         Container(
             decoration: BoxDecoration(

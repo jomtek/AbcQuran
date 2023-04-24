@@ -1,4 +1,6 @@
 import 'package:abc_quran/models/glyph.dart';
+import 'package:abc_quran/providers/sura/current_sura_provider.dart';
+import 'package:abc_quran/providers/sura/sura_list_provider.dart';
 import 'package:abc_quran/services/quran/fonts/mushaf_font_service.dart';
 import 'package:abc_quran/services/quran/quran_mushaf_service.dart';
 import 'package:abc_quran/ui/views/quran/read/cursor/cursor_provider.dart';
@@ -40,7 +42,21 @@ class MushafNotifier extends StateNotifier<MushafState> {
     }
   }
 
+  // Here any glyph symbolises its whole verse
   void hover(Glyph glyph) {
-    state = state.copyWith(hoveredVerse: glyph.verse, hoveredPage: glyph.page);
+    state = state.copyWith(hoveredVerse: glyph.verse, hoveredSura: glyph.sura);
+  }
+
+  void moveTo(Glyph glyph) {
+    final currentSura = _ref.read(currentSuraProvider);
+    if (glyph.sura != currentSura.id) {
+      final targetSura = _ref.read(suraListProvider)[glyph.sura - 1];
+      _ref.read(currentSuraProvider.notifier).setSura(targetSura, reloadMushaf: false);
+    }
+    _ref.read(cursorProvider.notifier).moveBookmarkAt(glyph.verse!);
+  }
+
+  void startFrom(Glyph glyph) {
+    _ref.read(cursorProvider.notifier).startBookmarkFrom(glyph.verse!);
   }
 }

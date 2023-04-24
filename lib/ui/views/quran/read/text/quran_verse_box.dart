@@ -84,14 +84,14 @@ class QuranVerseBox extends ConsumerWidget {
             },
             menuItems: [
               MenuItem(
-                  title: "Move here",
+                  title: "Se déplacer ici",
                   onSelected: () {
                     ref.read(cursorProvider.notifier).moveBookmarkAt(id);
                   }),
               MenuItem(
-                  title: "Start here",
+                  title: "Commencer ici",
                   onSelected: () {
-                    ref.read(cursorProvider.notifier).startBookmarkAt(id);
+                    ref.read(cursorProvider.notifier).startBookmarkFrom(id);
                   }),
             ],
             child: NumberCube(

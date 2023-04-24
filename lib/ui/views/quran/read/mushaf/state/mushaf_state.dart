@@ -4,31 +4,31 @@ class MushafState {
   List<List<Glyph>> rightPageGlyphs;
   List<List<Glyph>> leftPageGlyphs;
   int hoveredVerse;
-  int hoveredPage;
+  int hoveredSura;
 
   MushafState(
       {required this.rightPageGlyphs,
       required this.leftPageGlyphs,
       required this.hoveredVerse,
-      required this.hoveredPage});
+      required this.hoveredSura});
 
   factory MushafState.initial() {
     return MushafState(
         rightPageGlyphs: [],
         leftPageGlyphs: [],
         hoveredVerse: -1,
-        hoveredPage: -1);
+        hoveredSura: -1);
   }
 
   MushafState copyWith(
       {List<List<Glyph>>? rightPageGlyphs,
       List<List<Glyph>>? leftPageGlyphs,
       int? hoveredVerse,
-      int? hoveredPage}) {
+      int? hoveredSura}) {
     return MushafState(
         rightPageGlyphs: rightPageGlyphs ?? this.rightPageGlyphs,
         leftPageGlyphs: leftPageGlyphs ?? this.leftPageGlyphs,
         hoveredVerse: hoveredVerse ?? this.hoveredVerse,
-        hoveredPage: hoveredPage ?? this.hoveredPage);
+        hoveredSura: hoveredSura ?? this.hoveredSura);
   }
 }

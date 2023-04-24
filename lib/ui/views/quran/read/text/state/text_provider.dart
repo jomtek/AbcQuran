@@ -1,4 +1,5 @@
 import 'package:abc_quran/models/sura.dart';
+import 'package:abc_quran/providers/sura/current_sura_provider.dart';
 import 'package:abc_quran/services/quran/fonts/mushaf_font_service.dart';
 import 'package:abc_quran/services/quran/quran_mushaf_service.dart';
 import 'package:abc_quran/services/quran/quran_text_service.dart';
@@ -15,6 +16,11 @@ class TextNotifier extends StateNotifier<TextState> {
   final StateNotifierProviderRef<TextNotifier, TextState> _ref;
 
   TextNotifier(this._ref) : super(TextState.initial());
+
+  Future reloadSura() async {
+    final sura = _ref.read(currentSuraProvider);
+    await loadSura(sura);
+  }
 
   Future loadSura(SuraModel sura) async {
     final verses = await _ref.read(quranTextServiceProvider).getAyahsFromSura(sura.id);

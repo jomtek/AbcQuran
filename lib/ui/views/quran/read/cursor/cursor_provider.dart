@@ -17,12 +17,14 @@ class CursorNotifier extends StateNotifier<CursorState> {
 
   CursorNotifier(this._ref) : super(CursorState.initial());
 
-  void selectSura(SuraModel sura) async {
+  void selectSura(SuraModel sura, {bool reloadMushaf = true}) async {
     int page = await _ref.read(quranMushafServiceProvider).getSuraPage(sura.id);
     state = state.copyWith(page: page);
 
     if (_ref.read(settingsProvider).showMushaf) {
-      _ref.read(mushafProvider.notifier).reloadPageCouple();
+      if (reloadMushaf) {
+        _ref.read(mushafProvider.notifier).reloadPageCouple();
+      }
     } else {
       // Reset sura navigation
       _ref.read(textProvider.notifier).resetScrollPos();
@@ -53,7 +55,7 @@ class CursorNotifier extends StateNotifier<CursorState> {
     }
   }
 
-  void startBookmarkAt(int verse) {
+  void startBookmarkFrom(int verse) {
     if (verse > state.bookmarkStop) {
       state = state.copyWith(bookmarkStop: verse);
     }

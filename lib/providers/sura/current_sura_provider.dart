@@ -25,12 +25,12 @@ class CurrentSuraNotifier extends StateNotifier<SuraModel> {
     }
   }
 
-  void setSura(SuraModel sura) async {
+  void setSura(SuraModel sura, {bool reloadMushaf = true}) async {
     if (sura.id != state.id) {
       state = sura;
 
       // Reflect changes on cursor data
-      _ref.read(cursorProvider.notifier).selectSura(sura);
+      _ref.read(cursorProvider.notifier).selectSura(sura, reloadMushaf: reloadMushaf);
     }
   }
 }
