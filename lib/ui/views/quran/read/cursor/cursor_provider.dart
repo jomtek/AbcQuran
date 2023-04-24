@@ -45,13 +45,15 @@ class CursorNotifier extends StateNotifier<CursorState> {
     }
   }
 
-  void moveBookmarkAt(int verse) {
+  void moveBookmarkAt(int verse, int page) {
     // Bookmark logic
     if (verse >= state.bookmarkStart) {
       state = state.copyWith(bookmarkStop: verse);
     } else {
       state = state.copyWith(bookmarkStart: verse, bookmarkStop: verse);
     }
+
+    state = state.copyWith(page: page);
   }
 
   void startBookmarkFrom(int verse) {

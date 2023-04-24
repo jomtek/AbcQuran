@@ -86,7 +86,9 @@ class QuranVerseBox extends ConsumerWidget {
               MenuItem(
                   title: "Se déplacer ici",
                   onSelected: () {
-                    ref.read(cursorProvider.notifier).moveBookmarkAt(id);
+                    (verse) => ref
+                        .read(cursorProvider.notifier)
+                        .moveBookmarkAt(verse, glyphs[0].page);
                   }),
               MenuItem(
                   title: "Commencer ici",
@@ -96,7 +98,9 @@ class QuranVerseBox extends ConsumerWidget {
             ],
             child: NumberCube(
                 id: id,
-                onTap: ref.read(cursorProvider.notifier).moveBookmarkAt),
+                onTap: (verse) => ref
+                    .read(cursorProvider.notifier)
+                    .moveBookmarkAt(verse, glyphs[0].page)),
           ),
 
           SizedBox(width: 2.sp),
@@ -128,7 +132,8 @@ class QuranVerseBox extends ConsumerWidget {
                                           ? 1.3
                                           : (glyph.isSmall ? 0.4.sp : 0.38.sp),
                                   style: TextStyle(
-                                      fontFamily: glyph.page.toString(),)),
+                                    fontFamily: glyph.page.toString(),
+                                  )),
                           ],
                         ),
                       ),
