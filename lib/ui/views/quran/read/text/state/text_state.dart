@@ -1,32 +1,20 @@
 import 'package:abc_quran/models/glyph.dart';
-import 'package:flutter/material.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class TextState {
   final List<String> loadedVerses;
   final List<List<Glyph>> loadedGlyphs;
 
-  // Keep the scroll state
-  final ScrollController scrollController;
-
-  TextState(
-      {required this.loadedVerses,
-      required this.loadedGlyphs,
-      required this.scrollController});
+  TextState({required this.loadedVerses, required this.loadedGlyphs});
 
   factory TextState.initial() {
-    return TextState(
-        loadedVerses: [],
-        loadedGlyphs: [],
-        scrollController: ScrollController());
+    return TextState(loadedVerses: [], loadedGlyphs: []);
   }
 
   TextState copyWith(
-      {List<String>? loadedVerses,
-      List<List<Glyph>>? loadedGlyphs,
-      ScrollController? scrollController}) {
+      {List<String>? loadedVerses, List<List<Glyph>>? loadedGlyphs}) {
     return TextState(
         loadedVerses: loadedVerses ?? this.loadedVerses,
-        loadedGlyphs: loadedGlyphs ?? this.loadedGlyphs,
-        scrollController: scrollController ?? this.scrollController);
+        loadedGlyphs: loadedGlyphs ?? this.loadedGlyphs);
   }
 }

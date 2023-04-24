@@ -33,8 +33,4 @@ class TextNotifier extends StateNotifier<TextState> {
 
     state = state.copyWith(loadedVerses: verses, loadedGlyphs: glyphs);
   }
-
-  void resetScrollPos() {
-    state.scrollController.jumpTo(0);
-  }
 }
