@@ -15,7 +15,7 @@ class QuranMushafView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final cursorState = ref.watch(cursorProvider);
     final ctrlKeyEnabled = ref.watch(ctrlKeyProvider);
-    
+
     const radius = 10.0;
 
     return KeyboardWidget(
@@ -33,7 +33,6 @@ class QuranMushafView extends ConsumerWidget {
         scaleEnabled: ctrlKeyEnabled,
         minScale: 0.8,
         maxScale: 1.6,
-        //panAxis: PanAxis.vertical,
         scaleFactor: 800,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

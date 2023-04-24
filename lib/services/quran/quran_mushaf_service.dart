@@ -34,24 +34,14 @@ class QuranMushafService {
     db = await openDatabase(path, readOnly: true);
   }
 
-  Future<List<String>> _getAyahsFromPage(int page) async {
-    final query = await db!
-        .rawQuery("SELECT ayah,text FROM sura_ayah_page_text WHERE page=$page");
-    var result = <String>[];
-    for (final ayah in query) {
-      final text = parseFragment(ayah["text"] as String).text!;
-      result.add(text);
-    }
-    return result;
-  }
-
   // Returns 15 lists of glyphs that draw the 15 lines of the mushaf page
   Future<List<List<Glyph>>> getPageGlyphs(int page) async {
     if (db == null) {
       await _init();
     }
 
-    final pageAyahs = await _getAyahsFromPage(page);
+    final pageAyahsQuery = await db!
+        .rawQuery("SELECT ayah,text FROM sura_ayah_page_text WHERE page=$page");
     final query = await db!.rawQuery(
         "SELECT page,sura,ayah,text FROM madani_page_text WHERE page=$page");
 
@@ -63,10 +53,13 @@ class QuranMushafService {
       for (var glyph in parseFragment(text).text!.runes) {
         int? verse = line["ayah"] as int?;
 
+        // Unify glyphs by the ayah they belong to
         if (![null, 0].contains(verse)) {
-          for (int i = 1; i <= pageAyahs.length; i++) {
-            if (pageAyahs[i - 1].contains(String.fromCharCode(glyph))) {
-              verse = i;
+          for (final ayah in pageAyahsQuery) {
+            final text = parseFragment(ayah["text"] as String).text!;
+            if (text.contains(String.fromCharCode(glyph))) {
+              verse = ayah["ayah"] as int;
+              break;
             }
           }
         }

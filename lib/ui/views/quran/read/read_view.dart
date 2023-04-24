@@ -1,6 +1,6 @@
-import 'package:abc_quran/providers/current_reciter_provider.dart';
-import 'package:abc_quran/providers/current_sura_provider.dart';
+import 'package:abc_quran/providers/reciter/current_reciter_provider.dart';
 import 'package:abc_quran/providers/settings/settings_provider.dart';
+import 'package:abc_quran/providers/sura/current_sura_provider.dart';
 import 'package:abc_quran/ui/app/app_theme.dart';
 import 'package:abc_quran/ui/views/frames/quran_navigator/quran_navigator_frame.dart';
 import 'package:abc_quran/ui/views/frames/reciters_navigator/quran_navigator_frame.dart';
@@ -48,7 +48,7 @@ class ReadView extends ConsumerWidget {
         Expanded(
           child: settings.showMushaf
               ? const QuranMushafView()
-              : const QuranTextView(),
+              : QuranTextView(),
         ),
         Container(
             decoration: BoxDecoration(

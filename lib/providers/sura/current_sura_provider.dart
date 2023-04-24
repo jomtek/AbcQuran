@@ -1,8 +1,9 @@
 import 'package:abc_quran/models/sura.dart';
-import 'package:abc_quran/providers/sura_list_provider.dart';
 import 'package:abc_quran/ui/views/quran/read/cursor/cursor_provider.dart';
 import 'package:abc_quran/ui/views/quran/read/text/state/text_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'sura_list_provider.dart';
 
 final currentSuraProvider =
     StateNotifierProvider<CurrentSuraNotifier, SuraModel>((ref) {

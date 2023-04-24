@@ -1,5 +1,5 @@
 import 'package:abc_quran/models/glyph.dart';
-import 'package:abc_quran/providers/sura_list_provider.dart';
+import 'package:abc_quran/providers/sura/sura_list_provider.dart';
 import 'package:abc_quran/ui/app/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -69,39 +69,52 @@ class QuranMushafPage extends ConsumerWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           for (final glyph in lineGlyphs.reversed)
-                            MouseRegion(
-                              cursor: SystemMouseCursors.grab,
-                              onHover: (_) {
-                                ref.read(mushafProvider.notifier).hover(glyph);
-                              },
-                              onExit: (_) {
-                                ref
-                                    .read(mushafProvider.notifier)
-                                    .hover(Glyph("", -1, -1, -1));
-                              },
-                              child: glyph.verse == null
-                                  ? Padding(
-                                      padding: EdgeInsets.only(top: 0.75.sp),
-                                      child: Text(glyph.text,
-                                          style: TextStyle(
-                                              fontFamily: "BSML",
-                                              fontSize: 6.sp)),
-                                    )
-                                  : glyph.verse == 0
-                                      ? Text(glyph.text,
-                                          style: TextStyle(
-                                              fontFamily: "BSML",
-                                              fontSize: glyph.isSmall
-                                                  ? 5.5.sp
-                                                  : 4.5.sp))
-                                      : Container(
+                            Container(
+                              decoration: BoxDecoration(
+                                  border: Border(
+                                      bottom: BorderSide(
                                           color: (mushafState.hoveredVerse ==
                                                       glyph.verse &&
                                                   mushafState.hoveredPage ==
                                                       glyph.page)
-                                              ? Colors.black26
+                                              ? AppTheme.darkColor
+                                                  .withOpacity(0.45)
                                               : Colors.transparent,
-                                          child: ClipRect(
+                                          width: 0.5.sp))),
+                              child: MouseRegion(
+                                cursor: SystemMouseCursors.grab,
+                                onHover: (_) {
+                                  ref
+                                      .read(mushafProvider.notifier)
+                                      .hover(glyph);
+                                },
+                                onExit: (_) {
+                                  ref
+                                      .read(mushafProvider.notifier)
+                                      .hover(Glyph("", -1, -1, -1));
+                                },
+                                child: glyph.verse == null
+                                    ? Padding(
+                                        padding: EdgeInsets.only(top: 0.75.sp),
+                                        child: Text(glyph.text,
+                                            style: TextStyle(
+                                                fontFamily: "BSML",
+                                                fontSize: 6.sp)),
+                                      )
+                                    : glyph.verse == 0
+                                        ? Text(glyph.text,
+                                            style: TextStyle(
+                                                fontFamily: "BSML",
+                                                fontSize: glyph.isSmall
+                                                    ? 5.5.sp
+                                                    : 4.5.sp))
+                                        : Container(
+                                            color: (mushafState.hoveredVerse ==
+                                                        glyph.verse &&
+                                                    mushafState.hoveredPage ==
+                                                        glyph.page)
+                                                ? Colors.blue.withOpacity(0.15)
+                                                : Colors.transparent,
                                             child: Container(
                                               transform: [1, 2]
                                                       .contains(glyph.page)
@@ -117,7 +130,7 @@ class QuranMushafPage extends ConsumerWidget {
                                                           .toString())),
                                             ),
                                           ),
-                                        ),
+                              ),
                             )
                         ],
                       ))

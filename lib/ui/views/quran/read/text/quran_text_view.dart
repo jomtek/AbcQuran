@@ -10,19 +10,6 @@ import 'state/text_provider.dart';
 class QuranTextView extends ConsumerWidget {
   const QuranTextView({Key? key}) : super(key: key);
 
-  EdgeInsets getVersePadding(int i, int total) {
-    double horizontal = 6.sp;
-
-    if (i == 0) {
-      return EdgeInsets.only(left: horizontal, top: 12.sp, right: horizontal);
-    } else if (i == total - 1) {
-      return EdgeInsets.only(
-          left: horizontal, right: horizontal, bottom: 12.sp);
-    } else {
-      return EdgeInsets.symmetric(horizontal: horizontal);
-    }
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final cursorState = ref.watch(cursorProvider);
@@ -31,9 +18,8 @@ class QuranTextView extends ConsumerWidget {
 
     return InteractiveViewer(
       scaleEnabled: ctrlKeyEnabled,
-      minScale: 1,
-      maxScale: 1.3,
-      panEnabled: false,
+      minScale: 0.8,
+      maxScale: 1.6,
       scaleFactor: 800,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 6.sp),
@@ -44,17 +30,26 @@ class QuranTextView extends ConsumerWidget {
               controller: state.scrollController,
               child: ListView.builder(
                 key: const PageStorageKey(0), // Keeps scroll position
-                physics: ctrlKeyEnabled ? const NeverScrollableScrollPhysics() : null,
+                physics: ctrlKeyEnabled
+                    ? const NeverScrollableScrollPhysics()
+                    : null,
                 controller: state.scrollController,
                 itemCount: state.loadedVerses.length,
                 itemBuilder: (_, i) {
                   return Padding(
-                    padding: getVersePadding(i, state.loadedVerses.length),
-                    child: QuranVerseBox(
-                      id: i + 1,
-                      text: state.loadedVerses[i],
-                      glyphs: state.loadedGlyphs[i],
-                      cursor: cursorState,
+                    padding: EdgeInsets.symmetric(horizontal: 6.sp),
+                    child: Column(
+                      children: [
+                        if (i == 0) SizedBox(height: 12.sp),
+                        QuranVerseBox(
+                          id: i + 1,
+                          text: state.loadedVerses[i],
+                          glyphs: state.loadedGlyphs[i],
+                          cursor: cursorState,
+                        ),
+                        if (i == state.loadedVerses.length - 1)
+                          SizedBox(height: 12.sp),
+                      ],
                     ),
                   );
                 },

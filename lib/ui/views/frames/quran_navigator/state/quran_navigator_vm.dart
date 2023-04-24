@@ -1,5 +1,5 @@
 import 'package:abc_quran/models/sura.dart';
-import 'package:abc_quran/providers/sura_list_provider.dart';
+import 'package:abc_quran/providers/sura/sura_list_provider.dart';
 import 'package:abc_quran/ui/views/frames/quran_navigator/state/quran_navigator_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

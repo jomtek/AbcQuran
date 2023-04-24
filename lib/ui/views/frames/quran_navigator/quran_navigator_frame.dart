@@ -1,4 +1,4 @@
-import 'package:abc_quran/providers/current_sura_provider.dart';
+import 'package:abc_quran/providers/sura/current_sura_provider.dart';
 import 'package:abc_quran/ui/app/app_theme.dart';
 import 'package:abc_quran/ui/views/common/searchbar_view.dart';
 import 'package:abc_quran/ui/views/frames/quran_navigator/results/sura_result_view.dart';
