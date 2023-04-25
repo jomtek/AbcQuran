@@ -4,12 +4,11 @@ import 'sidebar_state.dart';
 
 final sidebarVmProvider =
     StateNotifierProvider<SidebarNotifier, SidebarState>((ref) {
-  return SidebarNotifier(ref);
+  return SidebarNotifier();
 });
 
 class SidebarNotifier extends StateNotifier<SidebarState> {
-  final StateNotifierProviderRef<SidebarNotifier, SidebarState> _ref;
-  SidebarNotifier(this._ref) : super(SidebarState.initial());
+  SidebarNotifier() : super(SidebarState.initial());
 
   void setCollapsed(bool collapsed) {
     state = state.copyWith(isCollapsed: collapsed);

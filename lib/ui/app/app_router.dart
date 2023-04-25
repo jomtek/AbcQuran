@@ -1,4 +1,4 @@
-import 'package:abc_quran/ui/views/home/home_view.dart';
+import 'package:abc_quran/ui/app/views/home/home_view.dart';
 import 'package:auto_route/auto_route.dart';
 
 @MaterialAutoRouter(
