@@ -21,6 +21,8 @@ class _SearchBarState extends State<SearchBar> {
 
   @override
   Widget build(BuildContext context) {
+    focusNode.requestFocus();
+    
     return GestureDetector(
       onTap: () {
         focusNode.requestFocus();
