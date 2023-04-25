@@ -74,7 +74,7 @@ class QuranNavigatorFrame extends ConsumerWidget {
                       ref
                           .read(cursorProvider.notifier)
                           .teleportTo(hizb.startSura, hizb.startVerse);
-                      ref.read(homeProvider.notifier).toggleFrame(); // Hide frame
+                      ref.read(homeProvider.notifier).toggleFrame();
                     }),
               );
             },

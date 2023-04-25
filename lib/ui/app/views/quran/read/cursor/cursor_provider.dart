@@ -17,7 +17,9 @@ final cursorProvider =
 class CursorNotifier extends StateNotifier<CursorState> {
   final StateNotifierProviderRef<CursorNotifier, CursorState> _ref;
 
-  CursorNotifier(this._ref) : super(CursorState.initial());
+  CursorNotifier(this._ref) : super(CursorState.initial()) {
+    resetBookmark();
+  }
 
   void selectSura(SuraModel sura, {bool reloadMushaf = true}) async {
     int page = await _ref.read(quranMushafServiceProvider).getSuraPage(sura.id);
@@ -28,9 +30,7 @@ class CursorNotifier extends StateNotifier<CursorState> {
         _ref.read(mushafProvider.notifier).reloadPageCouple();
       }
     } else {
-      // Reset sura navigation
-      state = state.copyWith(bookmarkStart: 1, bookmarkStop: 1);
-      // Load
+      resetBookmark();
       _ref.read(textProvider.notifier).loadSura(sura);
     }
   }
@@ -65,13 +65,24 @@ class CursorNotifier extends StateNotifier<CursorState> {
     state = state.copyWith(bookmarkStart: verse);
   }
 
+  void resetBookmark() {
+    final sura = _ref.read(currentSuraProvider);
+    if (sura.hasBasmala()) {
+      startBookmarkFrom(0);
+      moveBookmarkAt(0, state.page);
+    } else {
+      startBookmarkFrom(1);
+      moveBookmarkAt(1, state.page);
+    }
+  }
+
   void teleportTo(int suraNum, int verseNum) {
     // Change sura
     final sura = _ref.read(suraListProvider)[suraNum - 1];
     _ref.read(currentSuraProvider.notifier).setSura(sura);
 
     // Change current verse
-    startBookmarkFrom(1);
+    resetBookmark();
     moveBookmarkAt(verseNum, state.page);
   }
 }

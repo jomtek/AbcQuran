@@ -2,6 +2,7 @@ import 'package:abc_quran/providers/reciter/current_reciter_provider.dart';
 import 'package:abc_quran/providers/reciter/reciter_list_provider.dart';
 import 'package:abc_quran/ui/app/app_theme.dart';
 import 'package:abc_quran/ui/app/views/frames/reciters_navigator/results/reciter_result_view.dart';
+import 'package:abc_quran/ui/app/views/home/state/home_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,6 +34,7 @@ class RecitersNavigatorFrame extends ConsumerWidget {
                 reciter: reciter,
                 onTap: (r) {
                   ref.read(currentReciterProvider.notifier).setReciter(r);
+                  ref.read(homeProvider.notifier).toggleFrame();
                 });
           },
         ),

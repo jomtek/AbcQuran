@@ -39,10 +39,18 @@ class _NumberCubeState extends State<NumberCube> {
           height: 12.sp > 50 ? 50 : 12.sp,
           child: Center(
               child: IgnorePointer(
-            child: Text(widget.id.toString(),
-                style: GoogleFonts.inter(
-                    fontSize: 4.sp > 17 ? 17 : 4.sp,
-                    fontWeight: FontWeight.w500)),
+            child: widget.id == 0
+                ? Container(
+                    width: 5.sp,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppTheme.lightColor,
+                    ),
+                  )
+                : Text(widget.id.toString(),
+                    style: GoogleFonts.inter(
+                        fontSize: 4.sp > 17 ? 17 : 4.sp,
+                        fontWeight: FontWeight.w500)),
           ))),
     );
   }

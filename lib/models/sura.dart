@@ -14,6 +14,10 @@ class SuraModel {
     return SuraModel(0, 0, "", "", RevelationType.mh);
   }
 
+  bool hasBasmala() {
+    return ![0, 1, 9].contains(id);
+  }
+
   static fromJson(Map<String, dynamic> json) => SuraModel(
       json["id"] as int,
       json["length"] as int,

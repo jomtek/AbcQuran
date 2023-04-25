@@ -75,7 +75,7 @@ class QuranVerseBox extends ConsumerWidget {
                 : null,
           ),
 
-          SizedBox(width: 4.sp),
+          SizedBox(width: 6.sp > 20 ? 20 : 6.sp),
 
           // Number cube
           ContextMenuRegion(
@@ -86,9 +86,9 @@ class QuranVerseBox extends ConsumerWidget {
               MenuItem(
                   title: "Se déplacer ici",
                   onSelected: () {
-                    (verse) => ref
+                    ref
                         .read(cursorProvider.notifier)
-                        .moveBookmarkAt(verse, glyphs[0].page);
+                        .moveBookmarkAt(id, glyphs[0].page);
                   }),
               MenuItem(
                   title: "Commencer ici",

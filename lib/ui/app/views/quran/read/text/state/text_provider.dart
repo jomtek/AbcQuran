@@ -7,15 +7,23 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'text_state.dart';
 
-final textProvider =
-    StateNotifierProvider<TextNotifier, TextState>((ref) {
+final textProvider = StateNotifierProvider<TextNotifier, TextState>((ref) {
   return TextNotifier(ref);
 });
 
 class TextNotifier extends StateNotifier<TextState> {
   final StateNotifierProviderRef<TextNotifier, TextState> _ref;
 
-  TextNotifier(this._ref) : super(TextState.initial());
+  TextNotifier(this._ref) : super(TextState.initial()) {
+    _loadBasmalaData();
+  }
+
+  Future _loadBasmalaData() async {
+    final verses =
+        await _ref.read(quranTextServiceProvider).getAyahsFromSura(1);
+    final glyphs = await _ref.read(quranMushafServiceProvider).getSuraGlyphs(1);
+    state = state.copyWith(basmalaText: verses[0], basmalaGlyphs: glyphs[0]);
+  }
 
   Future reloadSura() async {
     final sura = _ref.read(currentSuraProvider);
@@ -23,8 +31,10 @@ class TextNotifier extends StateNotifier<TextState> {
   }
 
   Future loadSura(SuraModel sura) async {
-    final verses = await _ref.read(quranTextServiceProvider).getAyahsFromSura(sura.id);
-    final glyphs = await _ref.read(quranMushafServiceProvider).getSuraGlyphs(sura.id);
+    final verses =
+        await _ref.read(quranTextServiceProvider).getAyahsFromSura(sura.id);
+    final glyphs =
+        await _ref.read(quranMushafServiceProvider).getSuraGlyphs(sura.id);
 
     for (final verse in glyphs) {
       final glyph = verse[0];
