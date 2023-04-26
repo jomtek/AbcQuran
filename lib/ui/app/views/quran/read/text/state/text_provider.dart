@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:abc_quran/models/sura.dart';
 import 'package:abc_quran/providers/sura/current_sura_provider.dart';
 import 'package:abc_quran/services/quran/fonts/mushaf_font_service.dart';
@@ -42,5 +44,11 @@ class TextNotifier extends StateNotifier<TextState> {
     }
 
     state = state.copyWith(loadedVerses: verses, loadedGlyphs: glyphs);
+  }
+
+  Future scrollTo(int verse) async {
+    //await state.scrollController.scrollTo(
+    //    index: max(verse - 1, 0), duration: const Duration(milliseconds: 300));
+    state.scrollController.jumpTo(index: max(verse - 1, 0));
   }
 }

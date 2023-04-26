@@ -1,12 +1,14 @@
 import 'dart:ui';
 
 import 'package:abc_quran/providers/ctrl_key_provider.dart';
+import 'package:abc_quran/ui/app/views/frames/quran_navigator/state/quran_navigator_vm.dart';
 import 'package:abc_quran/ui/components/sidebar/abc_sidebar.dart';
 import 'package:abc_quran/ui/components/sidebar/sidebar_item.dart';
 import 'package:abc_quran/ui/app/views/frames/quran_navigator/quran_navigator_frame.dart';
 import 'package:abc_quran/ui/app/views/home/state/home_vm.dart';
 import 'package:abc_quran/ui/app/views/quran/read/read_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -23,9 +25,11 @@ class HomeView extends ConsumerWidget {
       focusNode: FocusNode(),
       autofocus: true,
       onKey: (e) {
-        if (!e.repeat &&
+        if (e is RawKeyDownEvent &&
+            !e.repeat &&
             e.isControlPressed &&
             ["F", "K"].contains(e.logicalKey.keyLabel)) {
+          ref.read(quranNavigatorProvider.notifier).reinitializeResults();
           ref.read(homeProvider.notifier).setFrame(const QuranNavigatorFrame());
           ref.read(homeProvider.notifier).toggleFrame();
         }

@@ -53,4 +53,8 @@ class QuranNavigatorNotifier extends StateNotifier<QuranNavigatorState> {
 
     state = state.copyWith(relevantElements: relevantElements);
   }
+
+  void reinitializeResults() {
+    state = state.copyWith(relevantElements: state.allElements);
+  }
 }

@@ -13,7 +13,7 @@ final quranMushafServiceProvider = Provider((ref) => QuranMushafService());
 
 // This service fulfills most mushaf quran needs.
 // It provides essential text data for displaying the interactive Madani mushaf.
-class QuranMushafService {
+  class QuranMushafService {
   Database? db;
 
   Future _init() async {
@@ -80,6 +80,13 @@ class QuranMushafService {
     }
 
     return lines;
+  }
+
+  // Unsafe (TODO: make it safe)
+  Future<int> getPageNum(int sura, int verse) async {
+    final pageQuery = await db!
+        .rawQuery("SELECT page FROM sura_ayah_page_text WHERE sura=$sura AND ayah=$verse");
+    return pageQuery[0]["page"] as int;
   }
 
   Future<List<List<Glyph>>> getSuraGlyphs(int sura) async {

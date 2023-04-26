@@ -35,6 +35,7 @@ class QuranTextView extends ConsumerWidget {
             child: ScrollablePositionedList.builder(
               initialScrollIndex:
                   max(cursorState.bookmarkStop - 2, 0), // Center the verse
+              itemScrollController: state.scrollController,
               physics:
                   ctrlKeyEnabled ? const NeverScrollableScrollPhysics() : null,
               itemCount: sura.hasBasmala() && state.loadedVerses.isNotEmpty
