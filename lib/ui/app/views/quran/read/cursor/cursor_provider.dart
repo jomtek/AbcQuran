@@ -18,7 +18,7 @@ class CursorNotifier extends StateNotifier<CursorState> {
   final StateNotifierProviderRef<CursorNotifier, CursorState> _ref;
 
   CursorNotifier(this._ref) : super(CursorState.initial()) {
-    resetBookmark();
+    //resetBookmark();
   }
 
   void selectSura(SuraModel sura,
@@ -50,7 +50,7 @@ class CursorNotifier extends StateNotifier<CursorState> {
     }
   }
 
-  void moveBookmarkAt(int verse, int page, {bool automatic = true}) {
+  void moveBookmarkTo(int verse, int page, {bool automatic = true}) async {
     // Bookmark logic
     if (verse >= state.bookmarkStart) {
       state = state.copyWith(bookmarkStop: verse);
@@ -61,7 +61,10 @@ class CursorNotifier extends StateNotifier<CursorState> {
     state = state.copyWith(page: page);
 
     if (automatic) {
-      _ref.read(textProvider.notifier).scrollTo(verse);
+      final settings = _ref.read(settingsProvider);
+      if (!settings.showMushaf) {
+        await _ref.read(textProvider.notifier).scrollTo(verse);
+      }
     }
   }
 
@@ -76,10 +79,10 @@ class CursorNotifier extends StateNotifier<CursorState> {
     final sura = _ref.read(currentSuraProvider);
     if (sura.hasBasmala()) {
       startBookmarkFrom(0);
-      moveBookmarkAt(0, state.page);
+      moveBookmarkTo(0, state.page);
     } else {
       startBookmarkFrom(1);
-      moveBookmarkAt(1, state.page);
+      moveBookmarkTo(1, state.page);
     }
   }
 
@@ -92,6 +95,6 @@ class CursorNotifier extends StateNotifier<CursorState> {
     final page = await _ref
         .read(quranMushafServiceProvider)
         .getPageNum(suraNum, verseNum);
-    moveBookmarkAt(verseNum, page);
+    moveBookmarkTo(verseNum, page);
   }
 }

@@ -88,7 +88,7 @@ class QuranVerseBox extends ConsumerWidget {
                   onSelected: () {
                     ref
                         .read(cursorProvider.notifier)
-                        .moveBookmarkAt(id, glyphs[0].page, automatic: false);
+                        .moveBookmarkTo(id, glyphs[0].page, automatic: false);
                   }),
               MenuItem(
                   title: "Commencer ici",
@@ -100,7 +100,7 @@ class QuranVerseBox extends ConsumerWidget {
                 id: id,
                 onTap: (verse) => ref
                     .read(cursorProvider.notifier)
-                    .moveBookmarkAt(verse, glyphs[0].page, automatic: false)),
+                    .moveBookmarkTo(verse, glyphs[0].page, automatic: false)),
           ),
 
           SizedBox(width: 2.sp),

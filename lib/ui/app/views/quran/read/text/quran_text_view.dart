@@ -61,7 +61,10 @@ class QuranTextView extends ConsumerWidget {
                                   .loadedGlyphs[sura.hasBasmala() ? i - 1 : i],
                               cursor: cursorState,
                             ),
-                      if (i == state.loadedVerses.length)
+                      if (i ==
+                          (sura.hasBasmala()
+                              ? state.loadedVerses.length
+                              : state.loadedVerses.length - 1))
                         SizedBox(height: 12.sp),
                     ],
                   ),

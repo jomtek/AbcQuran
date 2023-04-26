@@ -135,8 +135,8 @@ class ReadView extends ConsumerWidget {
                         width: 50.sp,
                         decoration: BoxDecoration(
                             color: AppTheme.primaryColor,
-                            border: Border.all(
-                                color: Colors.black38, width: 1.25)),
+                            border:
+                                Border.all(color: Colors.black38, width: 1.25)),
                         margin: EdgeInsets.symmetric(vertical: 1.75.sp),
                         child: Row(
                           children: [
