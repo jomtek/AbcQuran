@@ -31,13 +31,13 @@ class CurrentSuraNotifier extends StateNotifier<SuraModel> {
     if (sura.id != state.id) {
       state = sura;
 
+      // Reflect changes on player data
+      await _ref.read(playerProvider.notifier).refreshPlayer();
+      
       // Reflect changes on cursor data
       _ref
           .read(cursorProvider.notifier)
           .selectSura(sura, reloadMushaf: reloadMushaf, resetBm: resetBm);
-    
-      // Reflect changes on player data
-      await _ref.read(playerProvider.notifier).refreshPlayer();
     }
   }
 }

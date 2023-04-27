@@ -27,14 +27,15 @@ class CursorNotifier extends StateNotifier<CursorState> {
     int page = await _ref.read(quranMushafServiceProvider).getSuraPage(sura.id);
     state = state.copyWith(page: page);
 
+    if (resetBm) {
+      resetBookmark();
+    }
+
     if (_ref.read(settingsProvider).showMushaf) {
       if (reloadMushaf) {
         _ref.read(mushafProvider.notifier).reloadPageCouple();
       }
     } else {
-      if (resetBm) {
-        resetBookmark();
-      }
       _ref.read(textProvider.notifier).loadSura(sura);
     }
   }
@@ -80,13 +81,8 @@ class CursorNotifier extends StateNotifier<CursorState> {
 
   void resetBookmark() {
     final sura = _ref.read(currentSuraProvider);
-    if (sura.hasBasmala()) {
-      startBookmarkFrom(0);
-      moveBookmarkTo(0, state.page);
-    } else {
-      startBookmarkFrom(1);
-      moveBookmarkTo(1, state.page);
-    }
+    startBookmarkFrom(sura.getFirstVerseId());
+    moveBookmarkTo(sura.getFirstVerseId(), state.page);
   }
 
   void teleportTo(int suraNum, int verseNum) async {

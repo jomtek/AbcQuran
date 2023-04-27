@@ -53,7 +53,7 @@ class MushafNotifier extends StateNotifier<MushafState> {
       final targetSura = _ref.read(suraListProvider)[glyph.sura - 1];
       _ref.read(currentSuraProvider.notifier).setSura(targetSura, reloadMushaf: false);
     }
-    _ref.read(cursorProvider.notifier).moveBookmarkTo(glyph.verse!, glyph.page);
+    _ref.read(cursorProvider.notifier).moveBookmarkTo(glyph.verse!, glyph.page, automatic: false);
   }
 
   void startFrom(Glyph glyph) {

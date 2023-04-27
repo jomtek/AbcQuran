@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:abc_quran/providers/reciter/current_reciter_provider.dart';
 import 'package:abc_quran/providers/sura/current_sura_provider.dart';
 import 'package:abc_quran/ui/app/views/quran/read/cursor/cursor_provider.dart';
@@ -25,6 +27,12 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
   // Should be called in case the reciter or sura changes.
   // What it does : build a new source url and refresh the mp3 offsets
   Future refreshPlayer() async {
+    bool wasPlaying = false;
+    if (state.isPlaying) {
+      wasPlaying = true;
+      play(); // pause
+    }
+
     final sura = _ref.read(currentSuraProvider);
     final reciter = _ref.read(currentReciterProvider);
     final source = reciter.buildSourceFor(sura);
@@ -45,34 +53,57 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
       final timecodes = response.body.split("\n");
       state = state.copyWith(timecodes: timecodes);
     }
+
+    if (wasPlaying) {
+      play();
+    }
   }
 
   Future seekTo(int verse) async {
-    final timecode = state.timecodes[verse - 1];
-    await state.player.seek(Duration(milliseconds: int.parse(timecode)));
+    if (state.timecodes.length < verse) {
+      await refreshPlayer();
+    }
+
+    final sura = _ref.read(currentSuraProvider);
+    final tcIndex = verse - 1 - sura.getFirstVerseId();
+    int timecode;
+    if (tcIndex < 0) {
+      timecode = 0;
+    } else {
+      timecode = int.parse(
+          state.timecodes[max(verse - 1 - sura.getFirstVerseId(), 0)]);
+    }
+    await state.player.seek(Duration(milliseconds: timecode));
   }
 
   void onPositionChanged(Duration pos) {
+    final sura = _ref.read(currentSuraProvider);
     final stop = _ref.read(cursorProvider).bookmarkStop;
-    for (int i = state.timecodes.length; i > stop; i--) {
+    for (int i = state.timecodes.length;
+        i > stop - sura.getFirstVerseId();
+        i--) {
       final tc = state.timecodes[i - 1];
       // TODO: how costly are the int.parse operations ? should I cast first ?
       if (pos.inMilliseconds > int.parse(tc)) {
-        print("Moved to $tc");
-        _ref
-            .read(cursorProvider.notifier)
-            .moveBookmarkTo(i, _ref.read(cursorProvider).page);
+        _ref.read(cursorProvider.notifier).moveBookmarkTo(
+            i + sura.getFirstVerseId(), _ref.read(cursorProvider).page);
         break;
       }
     }
   }
 
   void play() async {
-    if (state.timecodes.isEmpty) {
-      await refreshPlayer();
-    }
+    if (!state.isPlaying) {
+      state = state.copyWith(isPlaying: true);
+      if (state.timecodes.isEmpty) {
+        await refreshPlayer();
+      }
 
-    // Fire and forget
-    state.player.play(UrlSource(state.sourceUrl));
+      // Fire and forget
+      state.player.play(UrlSource(state.sourceUrl));
+    } else {
+      state = state.copyWith(isPlaying: false);
+      state.player.pause();
+    }
   }
 }

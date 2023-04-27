@@ -38,6 +38,7 @@ class ReadView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(settingsProvider);
+    final player = ref.watch(playerProvider);
 
     final reciter = ref.watch(currentReciterProvider);
     final sura = ref.watch(currentSuraProvider);
@@ -132,20 +133,30 @@ class ReadView extends ConsumerWidget {
                       child: InkWell(
                         borderRadius: BorderRadius.circular(360),
                         onTap: () {},
-                        child: Icon(Icons.fast_rewind, size: 8.sp),),
+                        child: Icon(Icons.fast_rewind, size: 8.sp),
+                      ),
                     ),
                     Material(
                       child: InkWell(
-                        borderRadius: BorderRadius.circular(360),
-                        onTap: () {},
-                        child: Icon(Icons.play_arrow_sharp, size: 10.sp)),
+                          borderRadius: BorderRadius.circular(360),
+                          onTap: () {
+                            ref.read(playerProvider.notifier).play();
+                            return;
+                          },
+                          child: Icon(
+                              player.isPlaying
+                                  ? Icons.pause_sharp
+                                  : Icons.play_arrow_sharp,
+                              size: 10.sp)),
                     ),
                     Material(
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(360),
-                        onTap: () {},
-                        child: Icon(Icons.fast_forward, size: 8.sp),)
-                    ),
+                        child: InkWell(
+                      borderRadius: BorderRadius.circular(360),
+                      onTap: () {
+                        
+                      },
+                      child: Icon(Icons.fast_forward, size: 8.sp),
+                    )),
                     const Spacer(flex: 5),
                     Container(
                         width: 50.sp,
@@ -163,8 +174,6 @@ class ReadView extends ConsumerWidget {
                                     : AppTheme.goldenColor,
                                 child: InkWell(
                                   onTap: () {
-                                    ref.read(playerProvider.notifier).play();
-                                    return;
                                     ref
                                         .read(settingsProvider.notifier)
                                         .setShowMushaf(false);
