@@ -54,7 +54,7 @@ class QuranTextView extends ConsumerWidget {
                               glyphs: state.basmalaGlyphs,
                               cursor: cursorState)
                           : QuranVerseBox(
-                              id: sura.hasBasmala() ? i : i + 1,
+                              id: i + sura.getFirstVerseId(),
                               text: state
                                   .loadedVerses[sura.hasBasmala() ? i - 1 : i],
                               glyphs: state

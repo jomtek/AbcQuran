@@ -13,7 +13,7 @@ class CursorState {
       required this.bookmarkStop});
 
   factory CursorState.initial() {
-    return CursorState(page: 3, bookmarkStart: 1, bookmarkStop: 1);
+    return CursorState(page: 1, bookmarkStart: 1, bookmarkStop: 1);
   }
 
   CursorState copyWith({int? page, int? bookmarkStart, int? bookmarkStop}) {

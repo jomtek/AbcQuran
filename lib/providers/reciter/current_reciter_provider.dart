@@ -1,4 +1,5 @@
 import 'package:abc_quran/models/reciter.dart';
+import 'package:abc_quran/providers/player/player_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'reciter_list_provider.dart';
@@ -9,7 +10,7 @@ final currentReciterProvider =
 });
 
 class CurrentReciterNotifier extends StateNotifier<ReciterModel> {
-    final StateNotifierProviderRef<CurrentReciterNotifier, ReciterModel> _ref;
+  final StateNotifierProviderRef<CurrentReciterNotifier, ReciterModel> _ref;
 
   CurrentReciterNotifier(this._ref) : super(ReciterModel.initial()) {
     _getDefaultReciter();
@@ -22,9 +23,12 @@ class CurrentReciterNotifier extends StateNotifier<ReciterModel> {
     }
   }
 
-  void setReciter(ReciterModel reciter) {
+  void setReciter(ReciterModel reciter) async {
     if (reciter.id != state.id) {
       state = reciter;
+
+      // Reflect changes on player data
+      await _ref.read(playerProvider.notifier).refreshPlayer();
     }
   }
 }

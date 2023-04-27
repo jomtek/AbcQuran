@@ -1,3 +1,4 @@
+import 'package:abc_quran/providers/player/player_provider.dart';
 import 'package:abc_quran/providers/reciter/current_reciter_provider.dart';
 import 'package:abc_quran/providers/settings/settings_provider.dart';
 import 'package:abc_quran/providers/sura/current_sura_provider.dart';
@@ -118,18 +119,33 @@ class ReadView extends ConsumerWidget {
                     child: Row(
                   children: [
                     SizedBox(
-                      width: 2.5.sp,
+                      width: 8.sp,
                     ),
-                    Icon(
+                    /*Icon(
                       Icons.volume_up,
-                      size: 7.sp,
+                      size: 8.sp,
                     ),
                     SizedBox(
                       width: 5.sp,
+                    ),*/
+                    Material(
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(360),
+                        onTap: () {},
+                        child: Icon(Icons.fast_rewind, size: 8.sp),),
                     ),
-                    Icon(Icons.fast_rewind, size: 8.sp),
-                    Icon(Icons.play_circle, size: 9.sp),
-                    Icon(Icons.fast_forward, size: 8.sp),
+                    Material(
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(360),
+                        onTap: () {},
+                        child: Icon(Icons.play_arrow_sharp, size: 10.sp)),
+                    ),
+                    Material(
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(360),
+                        onTap: () {},
+                        child: Icon(Icons.fast_forward, size: 8.sp),)
+                    ),
                     const Spacer(flex: 5),
                     Container(
                         width: 50.sp,
@@ -147,6 +163,8 @@ class ReadView extends ConsumerWidget {
                                     : AppTheme.goldenColor,
                                 child: InkWell(
                                   onTap: () {
+                                    ref.read(playerProvider.notifier).play();
+                                    return;
                                     ref
                                         .read(settingsProvider.notifier)
                                         .setShowMushaf(false);

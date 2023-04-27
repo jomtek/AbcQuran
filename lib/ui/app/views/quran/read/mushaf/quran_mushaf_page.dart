@@ -105,7 +105,9 @@ class QuranMushafPage extends ConsumerWidget {
                           for (final glyph in lineGlyphs.reversed)
                             GestureDetector(
                               onTap: () {
-                                ref.read(mushafProvider.notifier).moveTo(glyph);
+                                ref
+                                    .read(mushafProvider.notifier)
+                                    .moveTo(glyph);
                               },
                               child: ContextMenuRegion(
                                 onItemSelected: (item) {
@@ -128,6 +130,7 @@ class QuranMushafPage extends ConsumerWidget {
                                       }),
                                 ],
                                 child: MouseRegion(
+                                  // TODO: fix cursor is not changing
                                   cursor: SystemMouseCursors.grab,
                                   onHover: (_) {
                                     ref
@@ -176,8 +179,10 @@ class QuranMushafPage extends ConsumerWidget {
                                                         .withOpacity(0.2)
                                                     : Colors.transparent,
                                                 child: Container(
-                                                  transform: [1, 2]
-                                                          .contains(glyph.page)
+                                                  transform: [
+                                                    1,
+                                                    2
+                                                  ].contains(glyph.page)
                                                       ? Matrix4
                                                           .translationValues(
                                                               -1, -7.0, 0.0)
@@ -188,7 +193,8 @@ class QuranMushafPage extends ConsumerWidget {
                                                               ? 0.45.sp
                                                               : 0.38.sp,
                                                       style: TextStyle(
-                                                          fontFamily: glyph.page
+                                                          fontFamily: glyph
+                                                              .page
                                                               .toString())),
                                                 ),
                                               ),

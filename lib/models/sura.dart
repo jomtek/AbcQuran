@@ -18,6 +18,19 @@ class SuraModel {
     return ![0, 1, 9].contains(id);
   }
 
+  int getFirstVerseId() {
+    if (hasBasmala()) {
+      return 0;
+    }
+    else {
+      return 1;
+    }
+  }
+
+  String getPaddedId() {
+    return id.toString().padLeft(3, "0");
+  }
+
   static fromJson(Map<String, dynamic> json) => SuraModel(
       json["id"] as int,
       json["length"] as int,

@@ -1,4 +1,5 @@
 import 'package:abc_quran/models/sura.dart';
+import 'package:abc_quran/providers/player/player_provider.dart';
 import 'package:abc_quran/providers/settings/settings_provider.dart';
 import 'package:abc_quran/providers/sura/current_sura_provider.dart';
 import 'package:abc_quran/providers/sura/sura_list_provider.dart';
@@ -65,6 +66,8 @@ class CursorNotifier extends StateNotifier<CursorState> {
       if (!settings.showMushaf) {
         await _ref.read(textProvider.notifier).scrollTo(verse);
       }
+    } else {
+      await _ref.read(playerProvider.notifier).seekTo(verse);
     }
   }
 

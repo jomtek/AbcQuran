@@ -1,4 +1,5 @@
 import 'package:abc_quran/models/sura.dart';
+import 'package:abc_quran/providers/player/player_provider.dart';
 import 'package:abc_quran/ui/app/views/quran/read/cursor/cursor_provider.dart';
 import 'package:abc_quran/ui/app/views/quran/read/text/state/text_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -34,6 +35,9 @@ class CurrentSuraNotifier extends StateNotifier<SuraModel> {
       _ref
           .read(cursorProvider.notifier)
           .selectSura(sura, reloadMushaf: reloadMushaf, resetBm: resetBm);
+    
+      // Reflect changes on player data
+      await _ref.read(playerProvider.notifier).refreshPlayer();
     }
   }
 }
