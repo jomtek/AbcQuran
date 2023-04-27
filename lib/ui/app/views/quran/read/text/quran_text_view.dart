@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:abc_quran/models/sura.dart';
 import 'package:abc_quran/providers/ctrl_key_provider.dart';
 import 'package:abc_quran/providers/sura/current_sura_provider.dart';
 import 'package:abc_quran/ui/app/views/quran/read/cursor/cursor_provider.dart';

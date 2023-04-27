@@ -23,8 +23,15 @@ class MushafNotifier extends StateNotifier<MushafState> {
   }
 
   void reloadPageCouple() async {
-    await _loadPage(_ref.read(cursorProvider).page, false);
-    await _loadPage(_ref.read(cursorProvider).page + 1, true);
+    final page = _ref.read(cursorProvider).page;
+    // Ensure page order coherence
+    if (page % 2 == 0) {
+      await _loadPage(_ref.read(cursorProvider).page - 1, false);
+      await _loadPage(_ref.read(cursorProvider).page, true);
+    } else {
+      await _loadPage(_ref.read(cursorProvider).page, false);
+      await _loadPage(_ref.read(cursorProvider).page + 1, true);
+    }
   }
 
   Future _loadPage(int page, bool isLeft) async {
@@ -51,9 +58,13 @@ class MushafNotifier extends StateNotifier<MushafState> {
     final currentSura = _ref.read(currentSuraProvider);
     if (glyph.sura != currentSura.id) {
       final targetSura = _ref.read(suraListProvider)[glyph.sura - 1];
-      _ref.read(currentSuraProvider.notifier).setSura(targetSura, reloadMushaf: false);
+      _ref
+          .read(currentSuraProvider.notifier)
+          .setSura(targetSura, reloadMushaf: false);
     }
-    _ref.read(cursorProvider.notifier).moveBookmarkTo(glyph.verse!, glyph.page, automatic: false);
+    _ref
+        .read(cursorProvider.notifier)
+        .moveBookmarkTo(glyph.verse!, glyph.page, automatic: false);
   }
 
   void startFrom(Glyph glyph) {
