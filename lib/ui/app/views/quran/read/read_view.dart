@@ -6,6 +6,7 @@ import 'package:abc_quran/ui/app/app_theme.dart';
 import 'package:abc_quran/ui/app/views/frames/quran_navigator/quran_navigator_frame.dart';
 import 'package:abc_quran/ui/app/views/frames/reciters_navigator/quran_navigator_frame.dart';
 import 'package:abc_quran/ui/app/views/home/state/home_vm.dart';
+import 'package:abc_quran/ui/app/views/quran/read/cursor/cursor_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -132,7 +133,14 @@ class ReadView extends ConsumerWidget {
                     Material(
                       child: InkWell(
                         borderRadius: BorderRadius.circular(360),
-                        onTap: () {},
+                        onTap: () {
+                          final previous = ref
+                              .read(currentSuraProvider.notifier)
+                              .whatsBefore();
+                          ref
+                              .read(currentSuraProvider.notifier)
+                              .setSura(previous);
+                        },
                         child: Icon(Icons.fast_rewind, size: 8.sp),
                       ),
                     ),
@@ -153,7 +161,9 @@ class ReadView extends ConsumerWidget {
                         child: InkWell(
                       borderRadius: BorderRadius.circular(360),
                       onTap: () {
-                        
+                        final next =
+                            ref.read(currentSuraProvider.notifier).whatsNext();
+                        ref.read(currentSuraProvider.notifier).setSura(next);
                       },
                       child: Icon(Icons.fast_forward, size: 8.sp),
                     )),

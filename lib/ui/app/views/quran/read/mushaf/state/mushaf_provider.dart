@@ -60,6 +60,8 @@ class MushafNotifier extends StateNotifier<MushafState> {
     // Here the 5-steps order is very important, as it is designed in order to
     // move safely, preventing any graphical/auditive abnormality.
 
+    bool wasPlaying = _ref.read(playerProvider).isPlaying;
+
     // Stop the player, in order to avoid any unexpected behavior
     await _ref.read(playerProvider.notifier).stop();
 
@@ -79,8 +81,10 @@ class MushafNotifier extends StateNotifier<MushafState> {
     // Finally, seek the audio
     await _ref.read(playerProvider.notifier).seekTo(glyph.verse!);
 
-    // Restart the player
-    _ref.read(playerProvider.notifier).play();
+    if (wasPlaying) {
+      // Restart the player
+      _ref.read(playerProvider.notifier).play();
+    }
   }
 
   void startFrom(Glyph glyph) {

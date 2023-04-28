@@ -40,4 +40,14 @@ class CurrentSuraNotifier extends StateNotifier<SuraModel> {
           .selectSura(sura, reloadMushaf: reloadMushaf, resetBm: resetBm);
     }
   }
+
+  // (!) Both methods are unsafe
+  SuraModel whatsBefore() {
+    final suraList = _ref.read(suraListProvider);
+    return suraList[state.id - 1 - 1];
+  }
+  SuraModel whatsNext() {
+    final suraList = _ref.read(suraListProvider);
+    return suraList[state.id - 1 + 1];
+  }
 }
