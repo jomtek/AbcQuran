@@ -26,6 +26,7 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
 
   PlayerNotifier(this._ref) : super(PlayerState2.initial()) {
     state.player.onPositionChanged.listen(onPositionChanged);
+    state.player.onPlayerStateChanged.listen(onPlayerStateChanged);
   }
 
   // Should be called in case the reciter or sura changes.
@@ -34,7 +35,7 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
     bool wasPlaying = false;
     if (state.isPlaying) {
       wasPlaying = true;
-      stop();
+      await state.player.stop();
     }
 
     final sura = _ref.read(currentSuraProvider);
@@ -84,32 +85,34 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
   void onPositionChanged(Duration pos) {
     final sura = _ref.read(currentSuraProvider);
     final stop = _ref.read(cursorProvider).bookmarkStop;
-    for (int i = state.timecodes.length;
+    for (int i = state.timecodes.length - 1;
         i > stop - sura.getFirstVerseId();
         i--) {
       final tc = state.timecodes[i - 1];
       // TODO: How costly are the int.parse operations ? should I cast first ?
       if (pos.inMilliseconds > int.parse(tc)) {
-        _ref.read(cursorProvider.notifier).moveBookmarkTo(
-            i + sura.getFirstVerseId(), _ref.read(cursorProvider).page);
+          _ref.read(cursorProvider.notifier).moveBookmarkTo(
+              i + sura.getFirstVerseId(), _ref.read(cursorProvider).page);
         break;
       }
     }
   }
 
-  void _pause() {
-    state = state.copyWith(isPlaying: false);
-    state.player.pause();
+  void onPlayerStateChanged(PlayerState pState) {
+    if (pState == PlayerState.playing) {
+      state = state.copyWith(isPlaying: true);
+    }
+    else {
+      state = state.copyWith(isPlaying: false);
+    }
   }
 
   Future stop() async {
-    state = state.copyWith(isPlaying: false);
     await state.player.stop();
   }
 
   void play() async {
     if (!state.isPlaying) {
-      state = state.copyWith(isPlaying: true);
       if (state.timecodes.isEmpty) {
         await refreshPlayer();
       }
@@ -117,7 +120,7 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
       // Fire and forget
       state.player.play(UrlSource(state.sourceUrl));
     } else {
-      _pause();
+      state.player.pause();
     }
   }
 }
