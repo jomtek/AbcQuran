@@ -26,14 +26,14 @@ class CurrentSuraNotifier extends StateNotifier<SuraModel> {
     }
   }
 
-  void setSura(SuraModel sura,
+  Future setSura(SuraModel sura,
       {bool reloadMushaf = true, bool resetBm = true}) async {
     if (sura.id != state.id) {
       state = sura;
 
       // Reflect changes on player data
       await _ref.read(playerProvider.notifier).refreshPlayer();
-      
+
       // Reflect changes on cursor data
       _ref
           .read(cursorProvider.notifier)

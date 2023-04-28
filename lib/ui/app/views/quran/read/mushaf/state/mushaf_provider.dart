@@ -1,4 +1,5 @@
 import 'package:abc_quran/models/glyph.dart';
+import 'package:abc_quran/providers/player/player_provider.dart';
 import 'package:abc_quran/providers/sura/current_sura_provider.dart';
 import 'package:abc_quran/providers/sura/sura_list_provider.dart';
 import 'package:abc_quran/services/quran/fonts/mushaf_font_service.dart';
@@ -54,17 +55,32 @@ class MushafNotifier extends StateNotifier<MushafState> {
     state = state.copyWith(hoveredVerse: glyph.verse, hoveredSura: glyph.sura);
   }
 
-  void moveTo(Glyph glyph) {
+  void moveTo(Glyph glyph) async {
     final currentSura = _ref.read(currentSuraProvider);
+    // Here the 5-steps order is very important, as it is designed in order to
+    // move safely, preventing any graphical/auditive abnormality.
+
+    // Stop the player, in order to avoid any unexpected behavior
+    await _ref.read(playerProvider.notifier).stop();
+
+    // First, move bookmark
+    await _ref.read(cursorProvider.notifier).moveBookmarkTo(
+        glyph.verse!, glyph.page,
+        automatic: false, canSeek: false);
+
+    // Then, if needed, change the sura
     if (glyph.sura != currentSura.id) {
       final targetSura = _ref.read(suraListProvider)[glyph.sura - 1];
-      _ref
+      await _ref
           .read(currentSuraProvider.notifier)
-          .setSura(targetSura, reloadMushaf: false);
+          .setSura(targetSura, reloadMushaf: false, resetBm: false);
     }
-    _ref
-        .read(cursorProvider.notifier)
-        .moveBookmarkTo(glyph.verse!, glyph.page, automatic: false);
+
+    // Finally, seek the audio
+    await _ref.read(playerProvider.notifier).seekTo(glyph.verse!);
+
+    // Restart the player
+    _ref.read(playerProvider.notifier).play();
   }
 
   void startFrom(Glyph glyph) {

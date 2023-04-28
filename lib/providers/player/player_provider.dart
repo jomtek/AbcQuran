@@ -16,6 +16,10 @@ final playerProvider =
 
 // This provider provides everything thats necessary for streaming the quran
 // Most of the methods it contains, such as `refreshPlayer` or `seek`, must be called externally
+// (!) DEVELOPER NOTE : Most of the time, I found out that player-related bugs can be fixed
+//                      simply by pausing/stopping the player, operating, then restarting it.
+// TODO: Address any safety concerns. Code looks a bit messy/unstable in its actual form.
+
 class PlayerNotifier extends StateNotifier<PlayerState2> {
   final StateNotifierProviderRef<PlayerNotifier, PlayerState2> _ref;
   final http.Client _httpClient = http.Client();
@@ -30,13 +34,14 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
     bool wasPlaying = false;
     if (state.isPlaying) {
       wasPlaying = true;
-      play(); // pause
+      stop();
     }
 
     final sura = _ref.read(currentSuraProvider);
     final reciter = _ref.read(currentReciterProvider);
     final source = reciter.buildSourceFor(sura);
     state = state.copyWith(sourceUrl: source);
+    state.player.setSourceUrl(source);
 
     // Fetch new mp3 offsets
     final offsetsUri = Uri.parse(
@@ -60,7 +65,7 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
   }
 
   Future seekTo(int verse) async {
-    if (state.timecodes.length < verse) {
+    if (state.timecodes.isEmpty) {
       await refreshPlayer();
     }
 
@@ -83,13 +88,23 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
         i > stop - sura.getFirstVerseId();
         i--) {
       final tc = state.timecodes[i - 1];
-      // TODO: how costly are the int.parse operations ? should I cast first ?
+      // TODO: How costly are the int.parse operations ? should I cast first ?
       if (pos.inMilliseconds > int.parse(tc)) {
         _ref.read(cursorProvider.notifier).moveBookmarkTo(
             i + sura.getFirstVerseId(), _ref.read(cursorProvider).page);
         break;
       }
     }
+  }
+
+  void _pause() {
+    state = state.copyWith(isPlaying: false);
+    state.player.pause();
+  }
+
+  Future stop() async {
+    state = state.copyWith(isPlaying: false);
+    await state.player.stop();
   }
 
   void play() async {
@@ -102,8 +117,7 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
       // Fire and forget
       state.player.play(UrlSource(state.sourceUrl));
     } else {
-      state = state.copyWith(isPlaying: false);
-      state.player.pause();
+      _pause();
     }
   }
 }

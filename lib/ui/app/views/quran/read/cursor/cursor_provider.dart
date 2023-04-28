@@ -18,9 +18,7 @@ final cursorProvider =
 class CursorNotifier extends StateNotifier<CursorState> {
   final StateNotifierProviderRef<CursorNotifier, CursorState> _ref;
 
-  CursorNotifier(this._ref) : super(CursorState.initial()) {
-    //resetBookmark();
-  }
+  CursorNotifier(this._ref) : super(CursorState.initial());
 
   void selectSura(SuraModel sura,
       {bool reloadMushaf = true, bool resetBm = true}) async {
@@ -52,7 +50,17 @@ class CursorNotifier extends StateNotifier<CursorState> {
     }
   }
 
-  void moveBookmarkTo(int verse, int page, {bool automatic = true}) async {
+  Future moveBookmarkTo(int verse, int page,
+      {bool automatic = true, bool canSeek = true}) async {
+    if (automatic) {
+      final settings = _ref.read(settingsProvider);
+      if (!settings.showMushaf) {
+        await _ref.read(textProvider.notifier).scrollTo(verse);
+      }
+    } else if (canSeek) {
+      await _ref.read(playerProvider.notifier).seekTo(verse);
+    }
+
     // Bookmark logic
     if (verse >= state.bookmarkStart) {
       state = state.copyWith(bookmarkStop: verse);
@@ -61,15 +69,6 @@ class CursorNotifier extends StateNotifier<CursorState> {
     }
 
     state = state.copyWith(page: page);
-
-    if (automatic) {
-      final settings = _ref.read(settingsProvider);
-      if (!settings.showMushaf) {
-        await _ref.read(textProvider.notifier).scrollTo(verse);
-      }
-    } else {
-      await _ref.read(playerProvider.notifier).seekTo(verse);
-    }
   }
 
   void startBookmarkFrom(int verse) {
