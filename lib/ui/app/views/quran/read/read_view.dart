@@ -6,7 +6,6 @@ import 'package:abc_quran/ui/app/app_theme.dart';
 import 'package:abc_quran/ui/app/views/frames/quran_navigator/quran_navigator_frame.dart';
 import 'package:abc_quran/ui/app/views/frames/reciters_navigator/quran_navigator_frame.dart';
 import 'package:abc_quran/ui/app/views/home/state/home_vm.dart';
-import 'package:abc_quran/ui/app/views/quran/read/cursor/cursor_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -123,25 +122,23 @@ class ReadView extends ConsumerWidget {
                     SizedBox(
                       width: 8.sp,
                     ),
-                    /*Icon(
-                      Icons.volume_up,
-                      size: 8.sp,
-                    ),
-                    SizedBox(
-                      width: 5.sp,
-                    ),*/
                     Material(
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(360),
-                        onTap: () {
-                          final previous = ref
-                              .read(currentSuraProvider.notifier)
-                              .whatsBefore();
-                          ref
-                              .read(currentSuraProvider.notifier)
-                              .setSura(previous);
-                        },
-                        child: Icon(Icons.fast_rewind, size: 8.sp),
+                      child: AbsorbPointer(
+                        absorbing: sura.id == 1,
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(360),
+                          onTap: () {
+                            final previous = ref
+                                .read(currentSuraProvider.notifier)
+                                .whatsBefore();
+                            ref
+                                .read(currentSuraProvider.notifier)
+                                .setSura(previous);
+                          },
+                          child: Icon(Icons.fast_rewind,
+                              color: sura.id == 1 ? Colors.grey : null,
+                              size: 8.sp),
+                        ),
                       ),
                     ),
                     Material(
@@ -158,15 +155,34 @@ class ReadView extends ConsumerWidget {
                               size: 10.sp)),
                     ),
                     Material(
-                        child: InkWell(
-                      borderRadius: BorderRadius.circular(360),
-                      onTap: () {
-                        final next =
-                            ref.read(currentSuraProvider.notifier).whatsNext();
-                        ref.read(currentSuraProvider.notifier).setSura(next);
-                      },
-                      child: Icon(Icons.fast_forward, size: 8.sp),
+                        child: AbsorbPointer(
+                      absorbing: sura.id == 114,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(360),
+                        onTap: () {
+                          final next = ref
+                              .read(currentSuraProvider.notifier)
+                              .whatsNext();
+                          ref.read(currentSuraProvider.notifier).setSura(next);
+                        },
+                        child: Icon(Icons.fast_forward,
+                            color: sura.id == 114 ? Colors.grey : null,
+                            size: 8.sp),
+                      ),
                     )),
+                    SizedBox(width: 3.sp),
+                    Material(
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(360),
+                        onTap: () {
+                          ref.read(playerProvider.notifier).toggleLoopMode();
+                        },
+                        child: Icon(Icons.loop_rounded,
+                            color:
+                                player.isLooping ? AppTheme.goldenColor : null,
+                            size: 8.sp),
+                      ),
+                    ),
                     const Spacer(flex: 5),
                     Container(
                         width: 50.sp,

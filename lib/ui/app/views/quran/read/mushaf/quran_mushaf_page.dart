@@ -1,5 +1,6 @@
 import 'package:abc_quran/models/glyph.dart';
 import 'package:abc_quran/models/sura.dart';
+import 'package:abc_quran/providers/player/player_provider.dart';
 import 'package:abc_quran/providers/sura/current_sura_provider.dart';
 import 'package:abc_quran/providers/sura/sura_list_provider.dart';
 import 'package:abc_quran/ui/app/app_theme.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:native_context_menu/native_context_menu.dart';
 
+import '../../../../../../providers/player/player_state2.dart';
 import 'state/mushaf_provider.dart';
 import 'state/mushaf_state.dart';
 
@@ -28,8 +30,19 @@ class QuranMushafPage extends ConsumerWidget {
     return glyph.verse! == cursor.bookmarkStop;
   }
 
-  Color getBorderColorForGlyph(Glyph glyph, CursorState cursor,
-      MushafState mushafState, SuraModel currentSura) {
+  bool isLooped(Glyph glyph, PlayerState2 player, SuraModel currentSura) {
+    return player.isLooping &&
+        glyph.sura == currentSura.id &&
+        glyph.verse! >= player.loopStartVerse &&
+        glyph.verse! <= player.loopEndVerse;
+  }
+
+  Color getBorderColorForGlyph(
+      Glyph glyph,
+      CursorState cursor,
+      MushafState mushafState,
+      PlayerState2 playerState,
+      SuraModel currentSura) {
     if (isBookmarked(glyph, cursor, currentSura)) {
       if (isBeingRead(glyph, cursor)) {
         return AppTheme.goldenColor.withOpacity(0.85);
@@ -40,7 +53,9 @@ class QuranMushafPage extends ConsumerWidget {
       return (mushafState.hoveredVerse == glyph.verse &&
               mushafState.hoveredSura == glyph.sura)
           ? Colors.blue.withOpacity(0.2)
-          : Colors.transparent;
+          : (isLooped(glyph, playerState, currentSura)
+              ? AppTheme.goldenColor.withOpacity(0.2)
+              : Colors.transparent);
     }
   }
 
@@ -48,6 +63,7 @@ class QuranMushafPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final cursorState = ref.watch(cursorProvider);
     final mushafState = ref.watch(mushafProvider);
+    final playerState = ref.watch(playerProvider);
     final suraList = ref.watch(suraListProvider);
     final currentSura = ref.watch(currentSuraProvider);
 
@@ -105,9 +121,7 @@ class QuranMushafPage extends ConsumerWidget {
                           for (final glyph in lineGlyphs.reversed)
                             GestureDetector(
                               onTap: () {
-                                ref
-                                    .read(mushafProvider.notifier)
-                                    .moveTo(glyph);
+                                ref.read(mushafProvider.notifier).moveTo(glyph);
                               },
                               child: ContextMenuRegion(
                                 onItemSelected: (item) {
@@ -117,6 +131,7 @@ class QuranMushafPage extends ConsumerWidget {
                                   MenuItem(
                                       title: "Se déplacer ici",
                                       onSelected: () {
+                                        print("hey");
                                         ref
                                             .read(mushafProvider.notifier)
                                             .moveTo(glyph);
@@ -124,6 +139,7 @@ class QuranMushafPage extends ConsumerWidget {
                                   MenuItem(
                                       title: "Commencer ici",
                                       onSelected: () {
+                                        print("hey");
                                         ref
                                             .read(mushafProvider.notifier)
                                             .startFrom(glyph);
@@ -150,6 +166,7 @@ class QuranMushafPage extends ConsumerWidget {
                                                     glyph,
                                                     cursorState,
                                                     mushafState,
+                                                    playerState,
                                                     currentSura),
                                                 width: 0.5.sp))),
                                     child: glyph.verse == null
@@ -177,12 +194,16 @@ class QuranMushafPage extends ConsumerWidget {
                                                             glyph.sura)
                                                     ? Colors.blue
                                                         .withOpacity(0.2)
-                                                    : Colors.transparent,
+                                                    : (isLooped(
+                                                            glyph,
+                                                            playerState,
+                                                            currentSura)
+                                                        ? AppTheme.goldenColor
+                                                            .withOpacity(0.2)
+                                                        : Colors.transparent),
                                                 child: Container(
-                                                  transform: [
-                                                    1,
-                                                    2
-                                                  ].contains(glyph.page)
+                                                  transform: [1, 2]
+                                                          .contains(glyph.page)
                                                       ? Matrix4
                                                           .translationValues(
                                                               -1, -7.0, 0.0)
@@ -193,9 +214,9 @@ class QuranMushafPage extends ConsumerWidget {
                                                               ? 0.45.sp
                                                               : 0.38.sp,
                                                       style: TextStyle(
-                                                          fontFamily: glyph
-                                                              .page
-                                                              .toString())),
+                                                        fontFamily: glyph.page
+                                                            .toString(),
+                                                      )),
                                                 ),
                                               ),
                                   ),

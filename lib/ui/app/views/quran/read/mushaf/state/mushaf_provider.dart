@@ -56,11 +56,20 @@ class MushafNotifier extends StateNotifier<MushafState> {
   }
 
   void moveTo(Glyph glyph) async {
-    final currentSura = _ref.read(currentSuraProvider);
-    // Here the 5-steps order is very important, as it is designed in order to
+    // Here the 6-steps order is very important, as it is designed in order to
     // move safely, preventing any graphical/auditive abnormality.
 
-    bool wasPlaying = _ref.read(playerProvider).isPlaying;
+    final player = _ref.read(playerProvider);
+
+    bool wasPlaying = player.isPlaying;
+
+    if (player.isLooping) {
+      if (glyph.verse! < player.loopStartVerse ||
+          glyph.verse! > player.loopEndVerse) {
+        // If the glyph is outside of the loop region, disable the loop mode
+        _ref.read(playerProvider.notifier).toggleLoopMode();
+      }
+    }
 
     // Stop the player, in order to avoid any unexpected behavior
     await _ref.read(playerProvider.notifier).stop();
@@ -71,6 +80,7 @@ class MushafNotifier extends StateNotifier<MushafState> {
         automatic: false, canSeek: false);
 
     // Then, if needed, change the sura
+    final currentSura = _ref.read(currentSuraProvider);
     if (glyph.sura != currentSura.id) {
       final targetSura = _ref.read(suraListProvider)[glyph.sura - 1];
       await _ref
@@ -82,12 +92,26 @@ class MushafNotifier extends StateNotifier<MushafState> {
     await _ref.read(playerProvider.notifier).seekTo(glyph.verse!);
 
     if (wasPlaying) {
-      // Restart the player
+      // Restart the player if needed
       _ref.read(playerProvider.notifier).play();
     }
   }
 
-  void startFrom(Glyph glyph) {
+  void startFrom(Glyph glyph) async {
     _ref.read(cursorProvider.notifier).startBookmarkFrom(glyph.verse!);
+
+    // If needed, change the sura
+    final currentSura = _ref.read(currentSuraProvider);
+    if (glyph.sura != currentSura.id) {
+      final targetSura = _ref.read(suraListProvider)[glyph.sura - 1];
+      await _ref
+          .read(currentSuraProvider.notifier)
+          .setSura(targetSura, reloadMushaf: false, resetBm: false);
+    }
+
+    final cursor = _ref.read(cursorProvider);
+    if (glyph.verse! >= cursor.bookmarkStop) {
+      moveTo(glyph);
+    }
   }
 }

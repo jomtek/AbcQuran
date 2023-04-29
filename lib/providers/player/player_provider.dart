@@ -66,6 +66,10 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
     }
   }
 
+  Future stop() async {
+    await state.player.stop();
+  }
+
   Future seekTo(int verse) async {
     if (state.timecodes.isEmpty) {
       await refreshPlayer();
@@ -90,9 +94,16 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
         i > stop - sura.getFirstVerseId();
         i--) {
       final tc = state.timecodes[i - 1];
+      
       // TODO: How costly are the int.parse operations ? should I cast first ?
       if (pos.inMilliseconds > int.parse(tc)) {
-        final nextVerseNum = i + sura.getFirstVerseId();
+        int nextVerseNum = i + sura.getFirstVerseId();
+
+        if (state.isLooping && nextVerseNum > state.loopEndVerse) {
+          await seekTo(state.loopStartVerse);
+          nextVerseNum = state.loopStartVerse;
+        }
+
         // TODO: Is it messy to await/make an SQL request HERE each time the verse changes ?
         final nextPageNum = await _ref
             .read(quranMushafServiceProvider)
@@ -100,8 +111,27 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
         _ref
             .read(cursorProvider.notifier)
             .moveBookmarkTo(nextVerseNum, nextPageNum);
+
         break;
       }
+    }
+  }
+
+  void play() async {
+    if (!state.isPlaying) {
+      if (state.timecodes.isEmpty) {
+        await refreshPlayer();
+      }
+      if (state.wasCompleted) {
+        // If sura was completed and user clicks the play button, reset the bookmark
+        _ref.read(cursorProvider.notifier).resetBookmark();
+        state = state.copyWith(wasCompleted: false);
+      }
+
+      // Fire and forget
+      state.player.play(UrlSource(state.sourceUrl));
+    } else {
+      state.player.pause();
     }
   }
 
@@ -110,23 +140,20 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
       state = state.copyWith(isPlaying: true);
     } else {
       state = state.copyWith(isPlaying: false);
+      if (pState == PlayerState.completed) {
+        state = state.copyWith(wasCompleted: true);
+      }
     }
   }
 
-  Future stop() async {
-    await state.player.stop();
-  }
-
-  void play() async {
-    if (!state.isPlaying) {
-      if (state.timecodes.isEmpty) {
-        await refreshPlayer();
-      }
-
-      // Fire and forget
-      state.player.play(UrlSource(state.sourceUrl));
-    } else {
-      state.player.pause();
+  // TODO: create a specific provider for the loop mode
+  void toggleLoopMode() {
+    state = state.copyWith(isLooping: !state.isLooping);
+    if (state.isLooping) {
+      // Update the loop range
+      state = state.copyWith(
+          loopStartVerse: _ref.read(cursorProvider).bookmarkStart,
+          loopEndVerse: _ref.read(cursorProvider).bookmarkStop);
     }
   }
 }
