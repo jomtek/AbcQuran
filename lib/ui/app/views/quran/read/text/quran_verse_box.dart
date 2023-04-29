@@ -2,12 +2,12 @@ import 'package:abc_quran/models/glyph.dart';
 import 'package:abc_quran/ui/app/app_theme.dart';
 import 'package:abc_quran/ui/app/views/quran/read/cursor/cursor_provider.dart';
 import 'package:abc_quran/ui/app/views/quran/read/cursor/cursor_state.dart';
+import 'package:context_menus/context_menus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:native_context_menu/native_context_menu.dart';
 
 import 'number_cube.dart';
 
@@ -79,23 +79,18 @@ class QuranVerseBox extends ConsumerWidget {
 
           // Number cube
           ContextMenuRegion(
-            onItemSelected: (item) {
-              item.onSelected!();
-            },
-            menuItems: [
-              MenuItem(
-                  title: "Se déplacer ici",
-                  onSelected: () {
-                    ref
-                        .read(cursorProvider.notifier)
-                        .moveBookmarkTo(id, glyphs[0].page, automatic: false);
-                  }),
-              MenuItem(
-                  title: "Commencer ici",
-                  onSelected: () {
-                    ref.read(cursorProvider.notifier).startBookmarkFrom(id);
-                  }),
-            ],
+            contextMenu: GenericContextMenu(
+              buttonConfigs: [
+                ContextMenuButtonConfig("Move here", onPressed: () {
+                  ref
+                      .read(cursorProvider.notifier)
+                      .moveBookmarkTo(id, glyphs[0].page, automatic: false);
+                }),
+                ContextMenuButtonConfig("Start here", onPressed: () {
+                  ref.read(cursorProvider.notifier).startBookmarkFrom(id);
+                }),
+              ],
+            ),
             child: NumberCube(
                 id: id,
                 onTap: (verse) => ref

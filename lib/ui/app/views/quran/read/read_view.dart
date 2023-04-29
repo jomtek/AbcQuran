@@ -196,24 +196,6 @@ class ReadView extends ConsumerWidget {
                             Expanded(
                               child: Material(
                                 color: settings.showMushaf
-                                    ? AppTheme.primaryColor
-                                    : AppTheme.goldenColor,
-                                child: InkWell(
-                                  onTap: () {
-                                    ref
-                                        .read(settingsProvider.notifier)
-                                        .setShowMushaf(false);
-                                  },
-                                  child: Center(
-                                      child: Text("Text",
-                                          style: GoogleFonts.inter(
-                                              fontSize: 3.5.sp))),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Material(
-                                color: settings.showMushaf
                                     ? AppTheme.goldenColor
                                     : AppTheme.primaryColor,
                                 child: InkWell(
@@ -224,6 +206,25 @@ class ReadView extends ConsumerWidget {
                                   },
                                   child: Center(
                                       child: Text("Mushaf",
+                                          style: GoogleFonts.inter(
+                                              fontSize: 3.5.sp))),
+                                ),
+                              ),
+                            ),
+
+                            Expanded(
+                              child: Material(
+                                color: settings.showMushaf
+                                    ? AppTheme.primaryColor
+                                    : AppTheme.goldenColor,
+                                child: InkWell(
+                                  onTap: () {
+                                    ref
+                                        .read(settingsProvider.notifier)
+                                        .setShowMushaf(false);
+                                  },
+                                  child: Center(
+                                      child: Text("Text",
                                           style: GoogleFonts.inter(
                                               fontSize: 3.5.sp))),
                                 ),

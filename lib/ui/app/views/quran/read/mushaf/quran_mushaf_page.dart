@@ -6,10 +6,10 @@ import 'package:abc_quran/providers/sura/sura_list_provider.dart';
 import 'package:abc_quran/ui/app/app_theme.dart';
 import 'package:abc_quran/ui/app/views/quran/read/cursor/cursor_provider.dart';
 import 'package:abc_quran/ui/app/views/quran/read/cursor/cursor_state.dart';
+import 'package:context_menus/context_menus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:native_context_menu/native_context_menu.dart';
 
 import '../../../../../../providers/player/player_state2.dart';
 import 'state/mushaf_provider.dart';
@@ -124,29 +124,24 @@ class QuranMushafPage extends ConsumerWidget {
                                 ref.read(mushafProvider.notifier).moveTo(glyph);
                               },
                               child: ContextMenuRegion(
-                                onItemSelected: (item) {
-                                  item.onSelected!();
-                                },
-                                menuItems: [
-                                  MenuItem(
-                                      title: "Se déplacer ici",
-                                      onSelected: () {
-                                        print("hey");
-                                        ref
-                                            .read(mushafProvider.notifier)
-                                            .moveTo(glyph);
-                                      }),
-                                  MenuItem(
-                                      title: "Commencer ici",
-                                      onSelected: () {
-                                        print("hey");
-                                        ref
-                                            .read(mushafProvider.notifier)
-                                            .startFrom(glyph);
-                                      }),
-                                ],
+                                contextMenu: GenericContextMenu(
+                                  buttonConfigs: [
+                                    ContextMenuButtonConfig("Move here",
+                                        onPressed: () {
+                                      ref
+                                          .read(mushafProvider.notifier)
+                                          .moveTo(glyph);
+                                    }),
+                                    ContextMenuButtonConfig("Start here",
+                                        onPressed: () {
+                                      ref
+                                          .read(mushafProvider.notifier)
+                                          .startFrom(glyph);
+                                    })
+                                  ],
+                                ),
                                 child: MouseRegion(
-                                  // TODO: fix cursor is not changing
+                                  // TODO: Fix cursor is not changing
                                   cursor: SystemMouseCursors.grab,
                                   onHover: (_) {
                                     ref

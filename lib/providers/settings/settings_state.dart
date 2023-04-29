@@ -5,13 +5,11 @@ class SettingsState {
 
   factory SettingsState.initial() {
     return SettingsState(
-        showMushaf: false,
-        );
+      showMushaf: true,
+    );
   }
 
-  SettingsState copyWith(
-      {bool? showMushaf}) {
-    return SettingsState(
-        showMushaf: showMushaf ?? this.showMushaf);
+  SettingsState copyWith({bool? showMushaf}) {
+    return SettingsState(showMushaf: showMushaf ?? this.showMushaf);
   }
 }
