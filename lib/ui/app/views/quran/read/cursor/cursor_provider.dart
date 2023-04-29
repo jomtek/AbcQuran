@@ -68,7 +68,12 @@ class CursorNotifier extends StateNotifier<CursorState> {
       state = state.copyWith(bookmarkStart: verse, bookmarkStop: verse);
     }
 
-    state = state.copyWith(page: page);
+    if (page != state.page) {
+      state = state.copyWith(page: page);
+      _ref.read(mushafProvider.notifier).reloadPageCouple();
+    } else {
+      state = state.copyWith(page: page);
+    }
   }
 
   void startBookmarkFrom(int verse) {

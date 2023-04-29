@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:abc_quran/providers/reciter/current_reciter_provider.dart';
 import 'package:abc_quran/providers/sura/current_sura_provider.dart';
+import 'package:abc_quran/services/quran/quran_mushaf_service.dart';
 import 'package:abc_quran/ui/app/views/quran/read/cursor/cursor_provider.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -82,7 +83,7 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
     await state.player.seek(Duration(milliseconds: timecode));
   }
 
-  void onPositionChanged(Duration pos) {
+  void onPositionChanged(Duration pos) async {
     final sura = _ref.read(currentSuraProvider);
     final stop = _ref.read(cursorProvider).bookmarkStop;
     for (int i = state.timecodes.length - 1;
@@ -91,8 +92,14 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
       final tc = state.timecodes[i - 1];
       // TODO: How costly are the int.parse operations ? should I cast first ?
       if (pos.inMilliseconds > int.parse(tc)) {
-          _ref.read(cursorProvider.notifier).moveBookmarkTo(
-              i + sura.getFirstVerseId(), _ref.read(cursorProvider).page);
+        final nextVerseNum = i + sura.getFirstVerseId();
+        // TODO: Is it messy to await/make an SQL request HERE each time the verse changes ?
+        final nextPageNum = await _ref
+            .read(quranMushafServiceProvider)
+            .getPageNum(sura.id, nextVerseNum);
+        _ref
+            .read(cursorProvider.notifier)
+            .moveBookmarkTo(nextVerseNum, nextPageNum);
         break;
       }
     }
@@ -101,8 +108,7 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
   void onPlayerStateChanged(PlayerState pState) {
     if (pState == PlayerState.playing) {
       state = state.copyWith(isPlaying: true);
-    }
-    else {
+    } else {
       state = state.copyWith(isPlaying: false);
     }
   }
