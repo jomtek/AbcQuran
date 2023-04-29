@@ -56,20 +56,10 @@ class MushafNotifier extends StateNotifier<MushafState> {
   }
 
   void moveTo(Glyph glyph) async {
-    // Here the 6-steps order is very important, as it is designed in order to
+    // Here, the 5-steps order is very important, as it is designed in order to
     // move safely, preventing any graphical/auditive abnormality.
 
-    final player = _ref.read(playerProvider);
-
-    bool wasPlaying = player.isPlaying;
-
-    if (player.isLooping) {
-      if (glyph.verse! < player.loopStartVerse ||
-          glyph.verse! > player.loopEndVerse) {
-        // If the glyph is outside of the loop region, disable the loop mode
-        _ref.read(playerProvider.notifier).toggleLoopMode();
-      }
-    }
+    bool wasPlaying = _ref.read(playerProvider).isPlaying;
 
     // Stop the player, in order to avoid any unexpected behavior
     await _ref.read(playerProvider.notifier).stop();

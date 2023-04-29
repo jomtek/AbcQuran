@@ -94,7 +94,7 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
         i > stop - sura.getFirstVerseId();
         i--) {
       final tc = state.timecodes[i - 1];
-      
+
       // TODO: How costly are the int.parse operations ? should I cast first ?
       if (pos.inMilliseconds > int.parse(tc)) {
         int nextVerseNum = i + sura.getFirstVerseId();
@@ -152,7 +152,9 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
     if (state.isLooping) {
       // Update the loop range
       state = state.copyWith(
-          loopStartVerse: _ref.read(cursorProvider).bookmarkStart,
+          loopStartVerse: _ref.read(cursorProvider).bookmarkStart == 0
+              ? 1
+              : _ref.read(cursorProvider).bookmarkStart,
           loopEndVerse: _ref.read(cursorProvider).bookmarkStop);
     }
   }

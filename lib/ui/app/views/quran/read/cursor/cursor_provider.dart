@@ -74,6 +74,14 @@ class CursorNotifier extends StateNotifier<CursorState> {
     } else {
       state = state.copyWith(page: page);
     }
+
+    final player = _ref.read(playerProvider);
+    if (player.isLooping) {
+      if (verse < player.loopStartVerse || verse > player.loopEndVerse) {
+        // If the glyph is outside of the loop region, disable the loop mode
+        _ref.read(playerProvider.notifier).toggleLoopMode();
+      }
+    }
   }
 
   void startBookmarkFrom(int verse) async {

@@ -54,7 +54,7 @@ class QuranMushafPage extends ConsumerWidget {
               mushafState.hoveredSura == glyph.sura)
           ? Colors.blue.withOpacity(0.2)
           : (isLooped(glyph, playerState, currentSura)
-              ? AppTheme.goldenColor.withOpacity(0.2)
+              ? AppTheme.goldenColor.withOpacity(0.1)
               : Colors.transparent);
     }
   }
@@ -194,7 +194,7 @@ class QuranMushafPage extends ConsumerWidget {
                                                             playerState,
                                                             currentSura)
                                                         ? AppTheme.goldenColor
-                                                            .withOpacity(0.2)
+                                                            .withOpacity(0.1)
                                                         : Colors.transparent),
                                                 child: Container(
                                                   transform: [1, 2]

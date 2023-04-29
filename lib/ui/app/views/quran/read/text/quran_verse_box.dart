@@ -1,4 +1,5 @@
 import 'package:abc_quran/models/glyph.dart';
+import 'package:abc_quran/providers/player/player_provider.dart';
 import 'package:abc_quran/ui/app/app_theme.dart';
 import 'package:abc_quran/ui/app/views/quran/read/cursor/cursor_provider.dart';
 import 'package:abc_quran/ui/app/views/quran/read/cursor/cursor_state.dart';
@@ -26,6 +27,8 @@ class QuranVerseBox extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final player = ref.watch(playerProvider);
+
     return IntrinsicHeight(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -145,7 +148,17 @@ class QuranVerseBox extends ConsumerWidget {
                 ),
               )),
 
-          SizedBox(width: 4.sp),
+          // Loop mode
+          Padding(
+            padding: EdgeInsets.only(left: 4.sp),
+            child: VerticalDivider(
+                thickness: 7.sp,
+                color: (player.isLooping &&
+                        id >= player.loopStartVerse &&
+                        id <= player.loopEndVerse)
+                    ? AppTheme.goldenColor.withOpacity(0.6)
+                    : Colors.transparent),
+          ),
         ],
       ),
     );

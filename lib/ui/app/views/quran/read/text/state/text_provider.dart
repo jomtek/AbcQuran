@@ -48,7 +48,7 @@ class TextNotifier extends StateNotifier<TextState> {
 
   Future scrollTo(int verse) async {
     await state.scrollController.scrollTo(
-        index: max(verse - 1, 0), duration: const Duration(milliseconds: 300));
+        index: max(verse - 1, 0), duration: const Duration(milliseconds: 1200));
     //state.scrollController.jumpTo(index: max(verse - 1, 0));
   }
 }
