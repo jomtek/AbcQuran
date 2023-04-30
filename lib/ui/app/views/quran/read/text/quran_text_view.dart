@@ -41,32 +41,27 @@ class QuranTextView extends ConsumerWidget {
                   ? state.loadedVerses.length + 1
                   : state.loadedVerses.length,
               itemBuilder: (_, i) {
-                return Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 6.sp),
-                  child: Column(
-                    children: [
-                      if (i == 0) SizedBox(height: 12.sp),
-                      (sura.hasBasmala() && i == 0)
-                          ? QuranVerseBox(
-                              id: 0,
-                              text: state.basmalaText,
-                              glyphs: state.basmalaGlyphs,
-                              cursor: cursorState)
-                          : QuranVerseBox(
-                              id: i + sura.getFirstVerseId(),
-                              text: state
-                                  .loadedVerses[sura.hasBasmala() ? i - 1 : i],
-                              glyphs: state
-                                  .loadedGlyphs[sura.hasBasmala() ? i - 1 : i],
-                              cursor: cursorState,
-                            ),
-                      if (i ==
-                          (sura.hasBasmala()
-                              ? state.loadedVerses.length
-                              : state.loadedVerses.length - 1))
-                        SizedBox(height: 12.sp),
-                    ],
-                  ),
+                return Column(
+                  children: [
+                    if (i == 0) SizedBox(height: 12.sp),
+                    (sura.hasBasmala() && i == 0)
+                        ? QuranVerseBox(
+                            id: 0,
+                            text: state.basmalaText,
+                            glyphs: state.basmalaGlyphs)
+                        : QuranVerseBox(
+                            id: i + sura.getFirstVerseId(),
+                            text: state
+                                .loadedVerses[sura.hasBasmala() ? i - 1 : i],
+                            glyphs: state
+                                .loadedGlyphs[sura.hasBasmala() ? i - 1 : i],
+                          ),
+                    if (i ==
+                        (sura.hasBasmala()
+                            ? state.loadedVerses.length
+                            : state.loadedVerses.length - 1))
+                      SizedBox(height: 12.sp),
+                  ],
                 );
               },
             ),

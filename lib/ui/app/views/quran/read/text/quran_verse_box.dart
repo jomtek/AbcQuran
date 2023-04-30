@@ -14,20 +14,16 @@ import 'number_cube.dart';
 
 class QuranVerseBox extends ConsumerWidget {
   const QuranVerseBox(
-      {required this.id,
-      required this.text,
-      required this.glyphs,
-      required this.cursor,
-      super.key});
+      {required this.id, required this.text, required this.glyphs, super.key});
 
   final int id;
   final String text;
   final List<Glyph> glyphs;
-  final CursorState cursor;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final player = ref.watch(playerProvider);
+    final cursor = ref.watch(cursorProvider);
 
     return IntrinsicHeight(
       child: Row(
@@ -35,45 +31,43 @@ class QuranVerseBox extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Bookmark
-          SizedBox(
+          Container(
+            color: id >= cursor.bookmarkStart && id < cursor.bookmarkStop
+                ? AppTheme.darkColor
+                : null,
             width: 14.sp > 60 ? 60 : 14.sp,
             height: id == cursor.bookmarkStop
-                ? (12.sp > 50 ? 50 : 12.sp) + (id == 1 ? 0 : 1)
+                ? (12.sp > 50 ? 50 : 12.sp)
                 : double.infinity,
             child: (id >= cursor.bookmarkStart && id <= cursor.bookmarkStop)
-                ? Transform.translate(
-                    // Reduce anti-aliasing visual bugs
-                    // As a thin white line annoyingly appears
-                    offset: Offset(0, id == 1 ? 0 : -1),
-                    child: Stack(
-                      alignment: Alignment.bottomCenter,
-                      children: [
-                        Align(
-                          alignment: Alignment.topCenter,
-                          child: Container(
-                              margin: id == cursor.bookmarkStop
-                                  ? EdgeInsets.only(bottom: 3.sp)
-                                  : EdgeInsets.zero,
-                              decoration: BoxDecoration(
-                                  color: AppTheme.lightColor,
-                                  border: Border(
-                                      left: BorderSide(
-                                          color: AppTheme.darkColor, width: 6),
-                                      right: BorderSide(
-                                          color: AppTheme.darkColor, width: 6),
-                                      top: id == cursor.bookmarkStart
-                                          ? (BorderSide(
-                                              color: AppTheme.darkColor,
-                                              width: 6))
-                                          : BorderSide.none))),
+                ? Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: Container(
+                            margin: id == cursor.bookmarkStop
+                                ? EdgeInsets.only(bottom: 3.sp)
+                                : EdgeInsets.zero,
+                            decoration: BoxDecoration(
+                                color: AppTheme.lightColor,
+                                border: Border(
+                                    left: BorderSide(
+                                        color: AppTheme.darkColor, width: 6),
+                                    right: BorderSide(
+                                        color: AppTheme.darkColor, width: 6),
+                                    top: id == cursor.bookmarkStart
+                                        ? (BorderSide(
+                                            color: AppTheme.darkColor,
+                                            width: 6))
+                                        : BorderSide.none))),
+                      ),
+                      if (id == cursor.bookmarkStop)
+                        SvgPicture.asset(
+                          "assets/icons/bookmark_end.svg",
+                          width: 14.sp > 60 ? 60 : 14.sp,
                         ),
-                        if (id == cursor.bookmarkStop)
-                          SvgPicture.asset(
-                            "assets/icons/bookmark_end.svg",
-                            width: 14.sp > 60 ? 60 : 14.sp,
-                          ),
-                      ],
-                    ),
+                    ],
                   )
                 : null,
           ),

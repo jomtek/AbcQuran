@@ -49,6 +49,8 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
     final offsetsUri = Uri.parse(
         "http://141.145.204.116/reciters/${reciter.id}/timecodes/${sura.getPaddedId()}.txt");
 
+    print(offsetsUri);
+
     http.Response response;
     try {
       response = await _httpClient.get(offsetsUri);
@@ -98,7 +100,10 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
       // TODO: How costly are the int.parse operations ? should I cast first ?
       if (pos.inMilliseconds > int.parse(tc)) {
         int nextVerseNum = i + sura.getFirstVerseId();
-
+        
+        if (nextVerseNum > sura.length) {
+          break;
+        }
         if (state.isLooping && nextVerseNum > state.loopEndVerse) {
           await seekTo(state.loopStartVerse);
           nextVerseNum = state.loopStartVerse;
