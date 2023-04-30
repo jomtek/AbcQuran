@@ -26,6 +26,7 @@ class MushafNotifier extends StateNotifier<MushafState> {
   void reloadPageCouple() async {
     final page = _ref.read(cursorProvider).page;
     // Ensure page order coherence
+    // 1
     if (page % 2 == 0) {
       await _loadPage(_ref.read(cursorProvider).page - 1, false);
       await _loadPage(_ref.read(cursorProvider).page, true);
