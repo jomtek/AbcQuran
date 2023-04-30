@@ -4,6 +4,7 @@ import 'package:abc_quran/providers/sura/current_sura_provider.dart';
 import 'package:abc_quran/providers/sura/sura_list_provider.dart';
 import 'package:abc_quran/services/quran/fonts/mushaf_font_service.dart';
 import 'package:abc_quran/services/quran/quran_mushaf_service.dart';
+import 'package:abc_quran/ui/app/views/contribute/state/contribute_vm.dart';
 import 'package:abc_quran/ui/app/views/quran/read/cursor/cursor_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -62,29 +63,34 @@ class MushafNotifier extends StateNotifier<MushafState> {
 
     bool wasPlaying = _ref.read(playerProvider).isPlaying;
 
-    // Stop the player, in order to avoid any unexpected behavior
-    await _ref.read(playerProvider.notifier).stop();
+      // First, move bookmark
+      await _ref.read(cursorProvider.notifier).moveBookmarkTo(
+          glyph.verse!, glyph.page,
+          automatic: false, canSeek: false);
 
-    // First, move bookmark
-    await _ref.read(cursorProvider.notifier).moveBookmarkTo(
-        glyph.verse!, glyph.page,
-        automatic: false, canSeek: false);
+    final contribute = _ref.read(contributeVmProvider);
+    if (contribute.isContributing) {
+      _ref.read(contributeVmProvider.notifier).saveTimecode();
+    } else {
+      // Stop the player, in order to avoid any unexpected behavior
+      await _ref.read(playerProvider.notifier).stop();
 
-    // Then, if needed, change the sura
-    final currentSura = _ref.read(currentSuraProvider);
-    if (glyph.sura != currentSura.id) {
-      final targetSura = _ref.read(suraListProvider)[glyph.sura - 1];
-      await _ref
-          .read(currentSuraProvider.notifier)
-          .setSura(targetSura, reloadMushaf: false, resetBm: false);
-    }
+      // Then, if needed, change the sura
+      final currentSura = _ref.read(currentSuraProvider);
+      if (glyph.sura != currentSura.id) {
+        final targetSura = _ref.read(suraListProvider)[glyph.sura - 1];
+        await _ref
+            .read(currentSuraProvider.notifier)
+            .setSura(targetSura, reloadMushaf: false, resetBm: false);
+      }
 
-    // Finally, seek the audio
-    await _ref.read(playerProvider.notifier).seekTo(glyph.verse!);
+      // Finally, seek the audio
+      await _ref.read(playerProvider.notifier).seekTo(glyph.verse!);
 
-    if (wasPlaying) {
-      // Restart the player if needed
-      _ref.read(playerProvider.notifier).play();
+      if (wasPlaying) {
+        // Restart the player if needed
+        _ref.read(playerProvider.notifier).play();
+      }
     }
   }
 

@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:abc_quran/providers/reciter/current_reciter_provider.dart';
 import 'package:abc_quran/providers/sura/current_sura_provider.dart';
 import 'package:abc_quran/services/quran/quran_mushaf_service.dart';
+import 'package:abc_quran/ui/app/views/contribute/state/contribute_vm.dart';
 import 'package:abc_quran/ui/app/views/quran/read/cursor/cursor_provider.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -70,6 +71,8 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
       }
 
       state = state.copyWith(timecodes: timecodes);
+
+      _ref.read(contributeVmProvider.notifier).refreshNewTimecodes();
     }
 
     if (keepPosition) {
@@ -85,6 +88,11 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
   }
 
   Future seekTo(int verse) async {
+    final contributeState = _ref.read(contributeVmProvider);
+    if (contributeState.isContributing) {
+      return;
+    }
+
     if (state.timecodes.isEmpty) {
       await refreshPlayer();
     }
@@ -102,6 +110,9 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
   }
 
   void onPositionChanged(Duration pos) async {
+    _ref.read(contributeVmProvider.notifier).setCurrentTime(pos.inMilliseconds);
+
+    final contributeState = _ref.read(contributeVmProvider);
     final sura = _ref.read(currentSuraProvider);
     final stop = _ref.read(cursorProvider).bookmarkStop;
     for (int i = state.timecodes.length - 1;
@@ -122,12 +133,15 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
         }
 
         // TODO: Is it messy to await/make an SQL request HERE each time the verse changes ?
-        final nextPageNum = await _ref
-            .read(quranMushafServiceProvider)
-            .getPageNum(sura.id, nextVerseNum);
-        _ref
-            .read(cursorProvider.notifier)
-            .moveBookmarkTo(nextVerseNum, nextPageNum);
+        if (!contributeState.isContributing) {
+          // If user is actually contributing the timecodes, do not move the bookmark
+          final nextPageNum = await _ref
+              .read(quranMushafServiceProvider)
+              .getPageNum(sura.id, nextVerseNum);
+          _ref
+              .read(cursorProvider.notifier)
+              .moveBookmarkTo(nextVerseNum, nextPageNum);
+        }
 
         break;
       }

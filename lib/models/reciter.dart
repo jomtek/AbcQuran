@@ -8,6 +8,9 @@ class ReciterModel {
   final String? photoUrl;
   final String? audioSource;
 
+  // Tells if the reciter data is stable or not (i.e. needs contribution or not)
+  final bool stable;
+
   // An array containing the ids of each sura where the basmala audio is missing
   final List<int> missingBasmala;
 
@@ -21,11 +24,12 @@ class ReciterModel {
       this.displayName,
       this.photoUrl,
       this.audioSource,
+      this.stable,
       this.missingBasmala,
       this.unwantedBasmala);
 
   factory ReciterModel.initial() {
-    return ReciterModel("", "", "", "", null, "", [], []);
+    return ReciterModel("", "", "", "", null, "", true, [], []);
   }
 
   static fromJson(Map<String, dynamic> json) => ReciterModel(
@@ -35,6 +39,7 @@ class ReciterModel {
       json["display_name"] as String,
       json["photo"] as String,
       json["audio_source"] as String,
+      json["stable"] as bool,
       json["missing_basmala"].cast<int>(),
       json["unwanted_basmala"].cast<int>());
 

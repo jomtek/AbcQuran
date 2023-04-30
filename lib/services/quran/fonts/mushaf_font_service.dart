@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -58,6 +59,8 @@ class MushafFontService {
   }
 
   Future<ByteData> _fetchPageFromApi(String page) async {
+    page = min(1, int.parse(page)).toString();
+
     final paddedPageNum = page.toString().padLeft(3, "0");
 
     var fontName = "QCF_P$paddedPageNum";

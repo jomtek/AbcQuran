@@ -39,15 +39,24 @@ class _ReciterResultViewState extends State<ReciterResultView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (widget.reciter.photoUrl != null)
-              SizedBox(
-                  width: 40.sp,
-                  height: 32.sp,
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Image.network(
-                        widget.reciter.photoUrl!,
-                        fit: BoxFit.cover,
-                      ))),
+              Stack(
+                alignment: Alignment.bottomRight,
+                children: [
+                SizedBox(
+                    width: 40.sp,
+                    height: 32.sp,
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.network(
+                          widget.reciter.photoUrl!,
+                          fit: BoxFit.cover,
+                        ))),
+                if (!widget.reciter.stable)
+                  Container(
+                    color: Colors.yellow,
+                    padding: EdgeInsets.symmetric(horizontal: 4.sp, vertical: 1.sp),
+                    child: Text("Unstable", style: GoogleFonts.inter(fontSize: 4.sp, fontWeight: FontWeight.bold)))
+              ]),
             SizedBox(height: 2.sp),
             AnimatedContainer(
                 duration: const Duration(milliseconds: 75),
