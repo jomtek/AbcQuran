@@ -60,6 +60,16 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
 
     if (response.statusCode == 200) {
       final timecodes = response.body.split("\n");
+
+      // Fix the timecodes by adding or excluding the basmala
+      if (reciter.missingBasmala.contains(sura.id)) {
+        timecodes.insert(0, "0");
+      }
+      else if (reciter.unwantedBasmala.contains(sura.id)) {
+        // Suras such as At-Tawba do not need a basmala
+        timecodes.removeAt(0);
+      }
+
       state = state.copyWith(timecodes: timecodes);
     }
 

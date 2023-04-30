@@ -8,11 +8,24 @@ class ReciterModel {
   final String? photoUrl;
   final String? audioSource;
 
-  ReciterModel(this.id, this.firstName, this.lastName, this.displayName,
-      this.photoUrl, this.audioSource);
+  // An array containing the ids of each sura where the basmala audio is missing
+  final List<int> missingBasmala;
+
+  // An array containing the ids of each sura where the basmala audio is unwanted
+  final List<int> unwantedBasmala;
+
+  ReciterModel(
+      this.id,
+      this.firstName,
+      this.lastName,
+      this.displayName,
+      this.photoUrl,
+      this.audioSource,
+      this.missingBasmala,
+      this.unwantedBasmala);
 
   factory ReciterModel.initial() {
-    return ReciterModel("", "", "", "", null, "");
+    return ReciterModel("", "", "", "", null, "", [], []);
   }
 
   static fromJson(Map<String, dynamic> json) => ReciterModel(
@@ -21,7 +34,9 @@ class ReciterModel {
       json["last_name"] as String,
       json["display_name"] as String,
       json["photo"] as String,
-      json["audio_source"] as String);
+      json["audio_source"] as String,
+      json["missing_basmala"].cast<int>(),
+      json["unwanted_basmala"].cast<int>());
 
   String buildSourceFor(SuraModel sura) {
     return "$audioSource/${sura.getPaddedId()}.mp3";
