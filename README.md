@@ -15,5 +15,5 @@ AbcQuran is a 100% free, open-source software available on Windows, Linux and Ma
 AbcQuran uses the Flutter framework with a Riverpod MVVM-like architecture.
 
 ## Contribute. Don't know where to start ?
-Let's make the greatest quran app ever. But we need your help to maintain the project.
+We need your help to maintain the project.<br>
 [Read the contributor docs](CONTRIBUTE.md)
