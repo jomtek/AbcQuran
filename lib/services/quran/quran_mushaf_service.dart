@@ -118,7 +118,7 @@ class QuranMushafService {
     }
 
     final query = await db!.rawQuery(
-        "SELECT page FROM madani_page_text WHERE sura=$sura AND ayah IS NULL");
+        "SELECT page FROM madani_page_text WHERE sura=$sura AND ayah=1");
     final page = query[0]["page"] as int;
     return page;
   }

@@ -32,7 +32,7 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
 
   // Should be called in case the reciter or sura changes.
   // What it does : build a new source url and refresh the mp3 offsets
-  Future refreshPlayer() async {
+  Future refreshPlayer({bool keepPosition = false}) async {
     bool wasPlaying = false;
     if (state.isPlaying) {
       wasPlaying = true;
@@ -64,8 +64,7 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
       // Fix the timecodes by adding or excluding the basmala
       if (reciter.missingBasmala.contains(sura.id)) {
         timecodes.insert(0, "0");
-      }
-      else if (reciter.unwantedBasmala.contains(sura.id)) {
+      } else if (reciter.unwantedBasmala.contains(sura.id)) {
         // Suras such as At-Tawba do not need a basmala
         timecodes.removeAt(0);
       }
@@ -73,6 +72,9 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
       state = state.copyWith(timecodes: timecodes);
     }
 
+    if (keepPosition) {
+      await seekTo(_ref.read(cursorProvider).bookmarkStop);
+    }
     if (wasPlaying) {
       play();
     }
@@ -110,7 +112,7 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
       // TODO: How costly are the int.parse operations ? should I cast first ?
       if (pos.inMilliseconds > int.parse(tc)) {
         int nextVerseNum = i + sura.getFirstVerseId();
-        
+
         if (nextVerseNum > sura.length) {
           break;
         }

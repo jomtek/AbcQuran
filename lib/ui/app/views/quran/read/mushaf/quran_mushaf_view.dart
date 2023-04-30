@@ -40,8 +40,7 @@ class QuranMushafView extends ConsumerWidget {
             // Page on the left
             Row(
               children: [
-                Text(
-                    "Page ${(cursorState.page + 1).toString().padLeft(3, '0')}"),
+                Text("Page ${(cursorState.page % 2 == 0 ? cursorState.page : cursorState.page + 1).toString().padLeft(3, '0')}"),
                 SizedBox(
                   width: 4.sp,
                 ),
@@ -93,7 +92,8 @@ class QuranMushafView extends ConsumerWidget {
                 SizedBox(
                   width: 4.sp,
                 ),
-                Text("Page ${(cursorState.page).toString().padLeft(3, '0')}"),
+                Text(
+                    "Page ${((cursorState.page - 1) % 2 == 1 ? cursorState.page - 1 : cursorState.page).toString().padLeft(3, '0')}"),
               ],
             )
           ],

@@ -28,7 +28,7 @@ class CurrentReciterNotifier extends StateNotifier<ReciterModel> {
       state = reciter;
 
       // Reflect changes on player data
-      await _ref.read(playerProvider.notifier).refreshPlayer();
+      await _ref.read(playerProvider.notifier).refreshPlayer(keepPosition: true);
     }
   }
 }
