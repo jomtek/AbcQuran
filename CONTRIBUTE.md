@@ -4,7 +4,8 @@
 
 - [The vision for AbcQuran](#vision)
 - [Riverpod architecture](#riverpod)
-- [Development setup](#setup)
+- [Development setup (make it run)](#setup)
+- [Help us with the audio](#sync)
 - [Documentation](#docs)
 
 ### The vision for AbcQuran <a name="vision"></a>
@@ -23,6 +24,12 @@ https://riverpod.dev/
 
 ### Development setup (make it run) <a name="setup"></a>
 wip...
+
+
+### Help us with the audio<a name="sync"></a>
+🔊 Help us synchronize the audio data
+- [English tutorial](https://www.youtube.com/watch?v=CL2cN2zhCm0)
+- [French tutorial](https://www.youtube.com/watch?v=p4eLZa9lC0M)
 
 
 ### Documentation <a name="docs"></a>

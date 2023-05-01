@@ -75,7 +75,7 @@ class ContributeView extends ConsumerWidget {
                     ),
                     SizedBox(height: 1.sp),
                     SizedBox(
-                      height: 80.sp,
+                      height: 60.sp,
                       child: SingleChildScrollView(
                         child: ListView.builder(
                           shrinkWrap: true,
@@ -83,17 +83,14 @@ class ContributeView extends ConsumerWidget {
                           itemBuilder: (BuildContext context, int index) {
                             final timecode = player.timecodes[index];
                             if (timecode.isEmpty) return Container();
-                            final previousTimecode = index - 1 < 0
-                                ? timecode
-                                : player.timecodes[index - 1];
+
+                            final previousTimecode =
+                                index > 0 ? state.newTimecodes[index - 1] : -1;
+
                             return Container(
-                              color: state.currentTime < int.parse(timecode) &&
-                                      state.currentTime >=
-                                          int.parse(previousTimecode)
-                                  ? AppTheme.goldenColor
-                                  : (index % 2 == 0
-                                      ? Colors.black12
-                                      : Colors.black26),
+                              color: index % 2 == 0
+                                  ? Colors.black12
+                                  : Colors.black26,
                               child: Row(
                                 children: [
                                   Expanded(
@@ -107,23 +104,37 @@ class ContributeView extends ConsumerWidget {
                                                   fontSize: 4.sp)))),
                                   SizedBox(
                                       height: 10.sp,
-                                      child: const VerticalDivider(
-                                          thickness: 2, color: Colors.black38)),
+                                      child: VerticalDivider(
+                                          thickness: 0.5.sp,
+                                          width: 0.5.sp,
+                                          color: Colors.black38)),
                                   Expanded(
-                                      child: Padding(
-                                    padding: EdgeInsets.only(left: 2.sp),
-                                    child: Text(
-                                        state.currentTime <
-                                                    int.parse(timecode) &&
-                                                state.currentTime >=
-                                                    int.parse(previousTimecode)
-                                            ? "(Next verse)"
-                                            : (state.newTimecodes[index] == -1
-                                                ? ""
-                                                : state.newTimecodes[index]
-                                                    .toString()),
-                                        style:
-                                            GoogleFonts.inter(fontSize: 4.sp)),
+                                      child: Container(
+                                    height: 10.sp,
+                                    color: index == state.currentVerse
+                                        ? AppTheme.goldenColor
+                                        : null,
+                                    child: Center(
+                                      child: Text(
+                                          state.newTimecodes[index] == -1
+                                              ? ""
+                                              : state.newTimecodes[index].toString() +
+                                                  (state.newTimecodes[index] <= previousTimecode
+                                                      ? "⚠️"
+                                                      : ""),
+                                          style: GoogleFonts.inter(
+                                              color: (state.newTimecodes[index] <=
+                                                          previousTimecode
+                                                      ? AppTheme.accentColor
+                                                          .withOpacity(0.9)
+                                                      : Colors.black)
+                                                  .withOpacity(state.newTimecodes[index] ==
+                                                          int.parse(player.timecodes[index])
+                                                      ? 0.5
+                                                      : 1),
+                                              fontSize: 4.sp,
+                                              fontWeight: FontWeight.w600)),
+                                    ),
                                   )),
                                 ],
                               ),
@@ -131,7 +142,96 @@ class ContributeView extends ConsumerWidget {
                           },
                         ),
                       ),
-                    )
+                    ),
+                    const Divider(),
+                    if (!state.isSending)
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 5,
+                            child: MaterialButton(
+                                onPressed: () {
+                                  ref
+                                      .read(contributeVmProvider.notifier)
+                                      .gotoPreviousTimecode();
+                                },
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 4.sp),
+                                  child: Text("<- Previous v.",
+                                      style: GoogleFonts.inter(
+                                          fontSize: 4.sp,
+                                          fontWeight: FontWeight.w500)),
+                                )),
+                          ),
+                          Expanded(
+                            flex: 4,
+                            child: MaterialButton(
+                              onPressed: () {
+                                ref
+                                    .read(contributeVmProvider.notifier)
+                                    .saveTimecode();
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 4.sp),
+                                child: Text("Mark v. ->",
+                                    style: GoogleFonts.inter(
+                                        fontSize: 4.sp,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    if (!state.isSending)
+                      Row(
+                        children: [
+                          Expanded(
+                            child: MaterialButton(
+                              color: AppTheme.secundaryColor,
+                              onPressed: () {
+                                ref
+                                    .read(contributeVmProvider.notifier)
+                                    .submit();
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 4.sp),
+                                child: Text("Submit",
+                                    style: GoogleFonts.inter(
+                                        fontSize: 4.sp,
+                                        fontWeight: FontWeight.w500)),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: MaterialButton(
+                              onPressed: () {
+                                ref
+                                    .read(contributeVmProvider.notifier)
+                                    .skipTimecode();
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 4.sp),
+                                child: Text("Skip v. ->",
+                                    style: GoogleFonts.inter(
+                                        fontSize: 4.sp,
+                                        fontWeight: FontWeight.w500)),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    if (state.isSending)
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 4.sp),
+                          Text("Sending contributions...",
+                              style: GoogleFonts.inter(fontSize: 5.sp)),
+                          SizedBox(height: 1.sp),
+                          Text("${state.contributionsSent} sent",
+                              style: GoogleFonts.inter(fontSize: 5.sp)),
+                        ],
+                      )
                   ],
                 ),
               ),

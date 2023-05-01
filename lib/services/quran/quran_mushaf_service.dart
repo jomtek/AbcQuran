@@ -84,6 +84,10 @@ class QuranMushafService {
 
   // Unsafe (TODO: make it safe)
   Future<int> getPageNum(int sura, int verse) async {
+    if (verse == 0) {
+      verse = 1;
+    }
+    
     final pageQuery = await db!.rawQuery(
         "SELECT page FROM sura_ayah_page_text WHERE sura=$sura AND ayah=$verse");
     return pageQuery[0]["page"] as int;

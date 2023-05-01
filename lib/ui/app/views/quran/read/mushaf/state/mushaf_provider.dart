@@ -58,39 +58,38 @@ class MushafNotifier extends StateNotifier<MushafState> {
   }
 
   void moveTo(Glyph glyph) async {
-    // Here, the 5-steps order is very important, as it is designed in order to
-    // move safely, preventing any graphical/auditive abnormality.
-
-    bool wasPlaying = _ref.read(playerProvider).isPlaying;
-
-      // First, move bookmark
-      await _ref.read(cursorProvider.notifier).moveBookmarkTo(
-          glyph.verse!, glyph.page,
-          automatic: false, canSeek: false);
-
     final contribute = _ref.read(contributeVmProvider);
     if (contribute.isContributing) {
-      _ref.read(contributeVmProvider.notifier).saveTimecode();
-    } else {
-      // Stop the player, in order to avoid any unexpected behavior
-      await _ref.read(playerProvider.notifier).stop();
+      return;
+    }
 
-      // Then, if needed, change the sura
-      final currentSura = _ref.read(currentSuraProvider);
-      if (glyph.sura != currentSura.id) {
-        final targetSura = _ref.read(suraListProvider)[glyph.sura - 1];
-        await _ref
-            .read(currentSuraProvider.notifier)
-            .setSura(targetSura, reloadMushaf: false, resetBm: false);
-      }
+    // Here, the 5-steps order is very important, as it is designed in order to
+    // move safely, preventing any graphical/auditive abnormality.
+    bool wasPlaying = _ref.read(playerProvider).isPlaying;
 
-      // Finally, seek the audio
-      await _ref.read(playerProvider.notifier).seekTo(glyph.verse!);
+    // Stop the player, in order to avoid any unexpected behavior
+    await _ref.read(playerProvider.notifier).stop();
 
-      if (wasPlaying) {
-        // Restart the player if needed
-        _ref.read(playerProvider.notifier).play();
-      }
+    // First, move the bookmark
+    await _ref.read(cursorProvider.notifier).moveBookmarkTo(
+        glyph.verse!, glyph.page,
+        automatic: false, canSeek: false);
+
+    // Then, if needed, change the sura
+    final currentSura = _ref.read(currentSuraProvider);
+    if (glyph.sura != currentSura.id) {
+      final targetSura = _ref.read(suraListProvider)[glyph.sura - 1];
+      await _ref
+          .read(currentSuraProvider.notifier)
+          .setSura(targetSura, reloadMushaf: false, resetBm: false);
+    }
+
+    // Finally, seek the audio
+    await _ref.read(playerProvider.notifier).seekTo(glyph.verse!);
+
+    if (wasPlaying) {
+      // Restart the player if needed
+      _ref.read(playerProvider.notifier).play();
     }
   }
 

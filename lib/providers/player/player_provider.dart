@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:abc_quran/models/sura.dart';
 import 'package:abc_quran/providers/reciter/current_reciter_provider.dart';
 import 'package:abc_quran/providers/sura/current_sura_provider.dart';
 import 'package:abc_quran/services/quran/quran_mushaf_service.dart';
@@ -135,12 +136,9 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
         // TODO: Is it messy to await/make an SQL request HERE each time the verse changes ?
         if (!contributeState.isContributing) {
           // If user is actually contributing the timecodes, do not move the bookmark
-          final nextPageNum = await _ref
-              .read(quranMushafServiceProvider)
-              .getPageNum(sura.id, nextVerseNum);
           _ref
               .read(cursorProvider.notifier)
-              .moveBookmarkTo(nextVerseNum, nextPageNum);
+              .moveBookmarkTo(nextVerseNum, -1, resolvePage: true);
         }
 
         break;

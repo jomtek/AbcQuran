@@ -51,7 +51,17 @@ class CursorNotifier extends StateNotifier<CursorState> {
   }
 
   Future moveBookmarkTo(int verse, int page,
-      {bool automatic = true, bool canSeek = true}) async {
+      {bool resolvePage = false,
+      bool automatic = true,
+      bool canSeek = true}) async {
+    if (resolvePage) {
+      // Get exact mushaf page
+      final sura = _ref.read(currentSuraProvider);
+      page = await _ref
+          .read(quranMushafServiceProvider)
+          .getPageNum(sura.id, verse);
+    }
+
     if (automatic) {
       final settings = _ref.read(settingsProvider);
       if (!settings.showMushaf) {
@@ -87,7 +97,6 @@ class CursorNotifier extends StateNotifier<CursorState> {
   void startBookmarkFrom(int verse) async {
     if (verse > state.bookmarkStop) {
       state = state.copyWith(bookmarkStop: verse);
-      // await moveBookmarkTo(verse, state.page, automatic: false);
     }
     state = state.copyWith(bookmarkStart: verse);
   }
@@ -95,7 +104,7 @@ class CursorNotifier extends StateNotifier<CursorState> {
   void resetBookmark() {
     final sura = _ref.read(currentSuraProvider);
     startBookmarkFrom(sura.getFirstVerseId());
-    moveBookmarkTo(sura.getFirstVerseId(), state.page);
+    moveBookmarkTo(sura.getFirstVerseId(), -1, resolvePage: true);
   }
 
   void teleportTo(int suraNum, int verseNum) async {
@@ -103,10 +112,6 @@ class CursorNotifier extends StateNotifier<CursorState> {
     final sura = _ref.read(suraListProvider)[suraNum - 1];
     _ref.read(currentSuraProvider.notifier).setSura(sura, resetBm: false);
 
-    // Get exact mushaf page
-    final page = await _ref
-        .read(quranMushafServiceProvider)
-        .getPageNum(suraNum, verseNum);
-    moveBookmarkTo(verseNum, page);
+    moveBookmarkTo(verseNum, -1, resolvePage: true);
   }
 }
