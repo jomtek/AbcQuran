@@ -86,7 +86,7 @@ class AbcSidebar extends ConsumerWidget {
                           : Colors.black12,
                       child: Container(
                         padding: EdgeInsets.symmetric(
-                            vertical: 1.5.sp, horizontal: 3.sp),
+                            vertical: 1.5.sp, horizontal: 2.sp),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -115,7 +115,8 @@ class AbcSidebar extends ConsumerWidget {
                 const Spacer(),
                 Padding(
                   padding: EdgeInsets.only(bottom: 4.sp),
-                  child: Text(version, style: TextStyle(color: Colors.white, fontSize: 4.sp)),
+                  child: Text(version,
+                      style: TextStyle(color: Colors.white, fontSize: 4.sp)),
                 ),
               ],
             )));

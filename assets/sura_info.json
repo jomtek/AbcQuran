@@ -3,798 +3,1368 @@
 		"id": 1,
 		"length": 7,
 		"phoneticName": "Al-Fatiha",
-		"translatedName": "Prologue",
+		"translatedName": {
+			"en": "The Opener",
+			"ar": "الفاتحة",
+			"fr": "L'ouverture",
+			"es": "La Apertura"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 2,
 		"length": 286,
 		"phoneticName": "Al-Baqarah",
-		"translatedName": "La vache",
+		"translatedName": {
+			"en": "The Cow",
+			"ar": "البقرة",
+			"fr": "La vache",
+			"es": "La Vaca"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 3,
 		"length": 200,
 		"phoneticName": "Al-Imran",
-		"translatedName": "La famille d'Imran",
+		"translatedName": {
+			"en": "Family of Imran",
+			"ar": "آل عمران",
+			"fr": "La famille de 'imran",
+			"es": "La Familia de Imran"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 4,
 		"length": 176,
 		"phoneticName": "An-Nisa",
-		"translatedName": "Les femmes",
+		"translatedName": {
+			"en": "The Women",
+			"ar": "النساء",
+			"fr": "Les femmes",
+			"es": "Las Mujeres"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 5,
 		"length": 120,
 		"phoneticName": "Al-Ma'ida",
-		"translatedName": "La table servie",
+		"translatedName": {
+			"en": "The Table Spread",
+			"ar": "المائدة",
+			"fr": "La table servie",
+			"es": "La Mesa Servida"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 6,
 		"length": 165,
 		"phoneticName": "Al-Anam",
-		"translatedName": "Les bestiaux",
+		"translatedName": {
+			"en": "The Cattle",
+			"ar": "الأنعام",
+			"fr": "Les bestiaux",
+			"es": "Los Rebaños"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 7,
 		"length": 206,
 		"phoneticName": "Al-Araf",
-		"translatedName": "Le purgatoire",
+		"translatedName": {
+			"en": "The Heights",
+			"ar": "الأعراف",
+			"fr": "Al-A'raf",
+			"es": "Los Lugares Elevados"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 8,
 		"length": 75,
 		"phoneticName": "Al-Anfal",
-		"translatedName": "Le butin",
+		"translatedName": {
+			"en": "The Spoils of War",
+			"ar": "الأنفال",
+			"fr": "Le butin",
+			"es": "Los Botines de Guerra"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 9,
 		"length": 129,
 		"phoneticName": "At-Tawbah",
-		"translatedName": "Le repentir",
+		"translatedName": {
+			"en": "The Repentance",
+			"ar": "التوبة",
+			"fr": "Le repentir",
+			"es": "El Arrepentimiento"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 10,
 		"length": 109,
 		"phoneticName": "Yunus",
-		"translatedName": "Jonas",
+		"translatedName": {
+			"en": "Jonah",
+			"ar": "يونس",
+			"fr": "Jonas",
+			"es": "Jonás"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 11,
 		"length": 123,
 		"phoneticName": "Hud",
-		"translatedName": "Hud",
+		"translatedName": {
+			"en": "Hud",
+			"ar": "هود",
+			"fr": "Houd",
+			"es": "Hud"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 12,
 		"length": 111,
 		"phoneticName": "Yusuf",
-		"translatedName": "Joseph",
+		"translatedName": {
+			"en": "Joseph",
+			"ar": "يوسف",
+			"fr": "Joseph",
+			"es": "José"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 13,
 		"length": 43,
 		"phoneticName": "Ar-Ra'd",
-		"translatedName": "Le tonnerre",
+		"translatedName": {
+			"en": "The Thunder",
+			"ar": "الرعد",
+			"fr": "Le tonnerre",
+			"es": "El Trueno"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 14,
 		"length": 52,
 		"phoneticName": "Ibrahim",
-		"translatedName": "Abraham",
+		"translatedName": {
+			"en": "Abraham",
+			"ar": "ابراهيم",
+			"fr": "Abraham",
+			"es": "Abraham"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 15,
 		"length": 99,
 		"phoneticName": "Al-Hijr",
-		"translatedName": "La vallée des pierres",
+		"translatedName": {
+			"en": "The Rocky Tract",
+			"ar": "الحجر",
+			"fr": "Al-Hijr",
+			"es": "Al-Hiyr"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 16,
 		"length": 128,
 		"phoneticName": "An-Nahl",
-		"translatedName": "Les abeilles",
+		"translatedName": {
+			"en": "The Bee",
+			"ar": "النحل",
+			"fr": "Les abeilles",
+			"es": "Las Abejas"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 17,
 		"length": 111,
 		"phoneticName": "Al-Isra",
-		"translatedName": "Le voyage nocturne",
+		"translatedName": {
+			"en": "The Night Journey",
+			"ar": "الإسراء",
+			"fr": "Le voyage nocturne",
+			"es": "El Viaje Nocturno"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 18,
 		"length": 110,
 		"phoneticName": "Al-Kahf",
-		"translatedName": "La caverne",
+		"translatedName": {
+			"en": "The Cave",
+			"ar": "الكهف",
+			"fr": "La caverne",
+			"es": "La Caverna"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 19,
 		"length": 98,
 		"phoneticName": "Maryam",
-		"translatedName": "Marie",
+		"translatedName": {
+			"en": "Mary",
+			"ar": "مريم",
+			"fr": "Marie",
+			"es": "María"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 20,
 		"length": 135,
 		"phoneticName": "Ta-Ha",
-		"translatedName": "Ta-Ha",
+		"translatedName": {
+			"en": "Ta-Ha",
+			"ar": "طه",
+			"fr": "Ta-Ha",
+			"es": "Ta-Ha"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 21,
 		"length": 112,
 		"phoneticName": "Al-Anbiya",
-		"translatedName": "Les prophètes",
+		"translatedName": {
+			"en": "The Prophets",
+			"ar": "الأنبياء",
+			"fr": "Les prophètes",
+			"es": "Los Profetas"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 22,
 		"length": 78,
 		"phoneticName": "Al-Hajj",
-		"translatedName": "Le pélerinage",
+		"translatedName": {
+			"en": "The Pilgrimage",
+			"ar": "الحج",
+			"fr": "Le pèlerinage",
+			"es": "La Peregrinación"
+		},
 		"revelationType": 2
 	},
 	{
 		"id": 23,
 		"length": 118,
 		"phoneticName": "Al-Mu'minun",
-		"translatedName": "Les croyants",
+		"translatedName": {
+			"en": "The Believers",
+			"ar": "المؤمنون",
+			"fr": "Les croyants",
+			"es": "Los Creyentes"
+		},
 		"revelationType": 2
 	},
 	{
 		"id": 24,
 		"length": 64,
 		"phoneticName": "An-Nur",
-		"translatedName": "La lumière",
+		"translatedName": {
+			"en": "The Light",
+			"ar": "النور",
+			"fr": "La lumière",
+			"es": "La Luz"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 25,
 		"length": 77,
 		"phoneticName": "Al-Furqan",
-		"translatedName": "Le discernement",
+		"translatedName": {
+			"en": "The Criterion",
+			"ar": "الفرقان",
+			"fr": "Le discernement",
+			"es": "El Discernimiento"
+		},
 		"revelationType": 2
 	},
 	{
 		"id": 26,
 		"length": 227,
 		"phoneticName": "Ash-Shu'ara",
-		"translatedName": "Les poètes",
+		"translatedName": {
+			"en": "The Poets",
+			"ar": "الشعراء",
+			"fr": "Les poètes",
+			"es": "Los Poetas"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 27,
 		"length": 93,
 		"phoneticName": "An-Naml",
-		"translatedName": "Les fourmis",
+		"translatedName": {
+			"en": "The Ant",
+			"ar": "النمل",
+			"fr": "Les fourmis",
+			"es": "Las Hormigas"
+		},
 		"revelationType": 2
 	},
 	{
 		"id": 28,
 		"length": 88,
 		"phoneticName": "Al-Qasas",
-		"translatedName": "Le récit",
+		"translatedName": {
+			"en": "The Stories",
+			"ar": "القصص",
+			"fr": "Le récit",
+			"es": "Los Relatos"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 29,
 		"length": 69,
 		"phoneticName": "Al-Ankabut",
-		"translatedName": "L'araignée",
+		"translatedName": {
+			"en": "The Spider",
+			"ar": "العنكبوت",
+			"fr": "L'araignée",
+			"es": "La Araña"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 30,
 		"length": 60,
 		"phoneticName": "Ar-Rum",
-		"translatedName": "Les romains",
+		"translatedName": {
+			"en": "The Romans",
+			"ar": "الروم",
+			"fr": "Les romains",
+			"es": "Los Romanos"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 31,
 		"length": 34,
 		"phoneticName": "Luqman",
-		"translatedName": "Luqman",
+		"translatedName": {
+			"en": "Luqman",
+			"ar": "لقمان",
+			"fr": "Louqman",
+			"es": "Luqmán"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 32,
 		"length": 30,
 		"phoneticName": "As-Sajda",
-		"translatedName": "La prosternation",
+		"translatedName": {
+			"en": "The Prostration",
+			"ar": "السجدة",
+			"fr": "La prosternation",
+			"es": "La Postración"
+		},
 		"revelationType": 2
 	},
 	{
 		"id": 33,
 		"length": 73,
 		"phoneticName": "Al-Ahzab",
-		"translatedName": "Les coalisés",
+		"translatedName": {
+			"en": "The Combined Forces",
+			"ar": "الأحزاب",
+			"fr": "Les coalisés",
+			"es": "Los Coligados"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 34,
 		"length": 54,
 		"phoneticName": "Saba",
-		"translatedName": "Saba",
+		"translatedName": {
+			"en": "Sheba",
+			"ar": "سبإ",
+			"fr": "Saba'",
+			"es": "Saba"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 35,
 		"length": 45,
 		"phoneticName": "Fatir",
-		"translatedName": "Le Créateur",
+		"translatedName": {
+			"en": "Originator",
+			"ar": "فاطر",
+			"fr": "Le Créateur",
+			"es": "El Originador"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 36,
 		"length": 83,
 		"phoneticName": "Ya-Sin",
-		"translatedName": "Ya-Sin",
+		"translatedName": {
+			"en": "Ya Sin",
+			"ar": "يس",
+			"fr": "Ya-Sin",
+			"es": "Ya Sin"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 37,
 		"length": 182,
 		"phoneticName": "As-Saffat",
-		"translatedName": "Les rangés",
+		"translatedName": {
+			"en": "Those who set the Ranks",
+			"ar": "الصافات",
+			"fr": "Les rangés",
+			"es": "Los Que se Ponen en Filas"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 38,
 		"length": 88,
 		"phoneticName": "Sad",
-		"translatedName": "Sad",
+		"translatedName": {
+			"en": "The Letter \"Saad\"",
+			"ar": "ص",
+			"fr": "Sad",
+			"es": "Sad"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 39,
 		"length": 75,
 		"phoneticName": "Az-Zumar",
-		"translatedName": "Les groupes",
+		"translatedName": {
+			"en": "The Troops",
+			"ar": "الزمر",
+			"fr": "Les groupes",
+			"es": "Los Grupos"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 40,
 		"length": 85,
 		"phoneticName": "Al-Ghafir",
-		"translatedName": "Le pardonneur",
+		"translatedName": {
+			"en": "The Forgiver",
+			"ar": "غافر",
+			"fr": "Le Pardonneur",
+			"es": "El Perdonador"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 41,
 		"length": 54,
 		"phoneticName": "Fussilat",
-		"translatedName": "Les versets détaillés",
+		"translatedName": {
+			"en": "Explained in Detail",
+			"ar": "فصلت",
+			"fr": "Les versets explicites",
+			"es": "Se Han Expresado Con Claridad"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 42,
 		"length": 53,
 		"phoneticName": "Ash-Shura",
-		"translatedName": "La consultation",
+		"translatedName": {
+			"en": "The Consultation",
+			"ar": "الشورى",
+			"fr": "La concertation",
+			"es": "La Consulta"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 43,
 		"length": 89,
 		"phoneticName": "Az-Zukhruf",
-		"translatedName": "L'ornement",
+		"translatedName": {
+			"en": "The Ornaments of Gold",
+			"ar": "الزخرف",
+			"fr": "L'ornement",
+			"es": "Los Dorados"
+		},
 		"revelationType": 2
 	},
 	{
 		"id": 44,
 		"length": 59,
 		"phoneticName": "Ad-Dukhan",
-		"translatedName": "La fumée",
+		"translatedName": {
+			"en": "The Smoke",
+			"ar": "الدخان",
+			"fr": "La fumée",
+			"es": "El Humo"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 45,
 		"length": 37,
 		"phoneticName": "Al-Jathiya",
-		"translatedName": "L'agenouillée",
+		"translatedName": {
+			"en": "The Crouching",
+			"ar": "الجاثية",
+			"fr": "L'agenouillée",
+			"es": "La Arrodillada"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 46,
 		"length": 35,
 		"phoneticName": "Al-Ahqaf",
-		"translatedName": "Les Dunes",
+		"translatedName": {
+			"en": "The Wind-Curved Sandhills",
+			"ar": "الأحقاف",
+			"fr": "Al-Ahqaf",
+			"es": "Las Dunas"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 47,
 		"length": 38,
 		"phoneticName": "Muhammad",
-		"translatedName": "Mohammed",
+		"translatedName": {
+			"en": "Muhammad",
+			"ar": "محمد",
+			"fr": "Mouhammad",
+			"es": "Muhammad"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 48,
 		"length": 29,
 		"phoneticName": "Al-Fath",
-		"translatedName": "La victoire éclatante",
+		"translatedName": {
+			"en": "The Victory",
+			"ar": "الفتح",
+			"fr": "La victoire éclatante",
+			"es": "La Victoria"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 49,
 		"length": 18,
 		"phoneticName": "Al-Hujurat",
-		"translatedName": "Les appartements",
+		"translatedName": {
+			"en": "The Rooms",
+			"ar": "الحجرات",
+			"fr": "Les appartements",
+			"es": "Los Aposentos Privados"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 50,
 		"length": 45,
 		"phoneticName": "Qaf",
-		"translatedName": "Qaf",
+		"translatedName": {
+			"en": "The Letter \"Qaf\"",
+			"ar": "ق",
+			"fr": "Qaf",
+			"es": "Qaf"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 51,
 		"length": 60,
 		"phoneticName": "Ad-Dhariyat",
-		"translatedName": "Qui éparpillent",
+		"translatedName": {
+			"en": "The Winnowing Winds",
+			"ar": "الذاريات",
+			"fr": "Qui éparpillent",
+			"es": "Los Que Levantan un Torbellino"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 52,
 		"length": 49,
 		"phoneticName": "At-Tur",
-		"translatedName": "La Montagne",
+		"translatedName": {
+			"en": "The Mount",
+			"ar": "الطور",
+			"fr": "Le mont At-Tour",
+			"es": "El Monte"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 53,
 		"length": 62,
 		"phoneticName": "An-Najm",
-		"translatedName": "L'étoile",
+		"translatedName": {
+			"en": "The Star",
+			"ar": "النجم",
+			"fr": "L'étoile",
+			"es": "El Astro"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 54,
 		"length": 55,
 		"phoneticName": "Al-Qamar",
-		"translatedName": "La lune",
+		"translatedName": {
+			"en": "The Moon",
+			"ar": "القمر",
+			"fr": "La lune",
+			"es": "La Luna"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 55,
 		"length": 78,
 		"phoneticName": "Ar-Rahman",
-		"translatedName": "Le Tout Miséricordieux",
+		"translatedName": {
+			"en": "The Beneficent",
+			"ar": "الرحمن",
+			"fr": "Le Tout Miséricordieux",
+			"es": "El Misericordioso"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 56,
 		"length": 96,
 		"phoneticName": "Al-Waqi'a",
-		"translatedName": "L'événement",
+		"translatedName": {
+			"en": "The Inevitable",
+			"ar": "الواقعة",
+			"fr": "L'inévitable",
+			"es": "Lo Que ha de Ocurrir"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 57,
 		"length": 29,
 		"phoneticName": "Al-Hadid",
-		"translatedName": "Le fer",
+		"translatedName": {
+			"en": "The Iron",
+			"ar": "الحديد",
+			"fr": "Le fer",
+			"es": "El Hierro"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 58,
 		"length": 22,
 		"phoneticName": "Al-Mujadila",
-		"translatedName": "La discussion",
+		"translatedName": {
+			"en": "The Pleading Woman",
+			"ar": "المجادلة",
+			"fr": "La discussion",
+			"es": "La Discusión"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 59,
 		"length": 24,
 		"phoneticName": "Al-Hachr",
-		"translatedName": "L'exode",
+		"translatedName": {
+			"en": "The Exile",
+			"ar": "الحشر",
+			"fr": "L'exode",
+			"es": "La Concentración"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 60,
 		"length": 13,
 		"phoneticName": "Al-Mumtahina",
-		"translatedName": "L'éprouvée",
+		"translatedName": {
+			"en": "She that is to be examined",
+			"ar": "الممتحنة",
+			"fr": "L'éprouvée",
+			"es": "La Examinada"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 61,
 		"length": 14,
 		"phoneticName": "As-Saff",
-		"translatedName": "Le rang",
+		"translatedName": {
+			"en": "The Ranks",
+			"ar": "الصف",
+			"fr": "Le rang",
+			"es": "La Fila"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 62,
 		"length": 11,
 		"phoneticName": "Al-Jumua",
-		"translatedName": "Le vendredi",
+		"translatedName": {
+			"en": "The Congregation, Friday",
+			"ar": "الجمعة",
+			"fr": "Le vendredi",
+			"es": "El Viernes"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 63,
 		"length": 11,
 		"phoneticName": "Al-Munafiqun",
-		"translatedName": "Les hypocrites",
+		"translatedName": {
+			"en": "The Hypocrites",
+			"ar": "المنافقون",
+			"fr": "Les hypocrites",
+			"es": "Los Hipócritas"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 64,
 		"length": 18,
 		"phoneticName": "At-Taghabun",
-		"translatedName": "La grande perte",
+		"translatedName": {
+			"en": "The Mutual Disillusion",
+			"ar": "التغابن",
+			"fr": "La grande perte",
+			"es": "El Desengaño"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 65,
 		"length": 12,
 		"phoneticName": "At-Talaq",
-		"translatedName": "Le divorce",
+		"translatedName": {
+			"en": "The Divorce",
+			"ar": "الطلاق",
+			"fr": "Le divorce",
+			"es": "El Divorcio"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 66,
 		"length": 12,
 		"phoneticName": "At-Tahrim",
-		"translatedName": "L'interdiction",
+		"translatedName": {
+			"en": "The Prohibition",
+			"ar": "التحريم",
+			"fr": "L'interdiction",
+			"es": "La Prohibición"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 67,
 		"length": 30,
 		"phoneticName": "Al-Mulk",
-		"translatedName": "La royauté",
+		"translatedName": {
+			"en": "The Sovereignty",
+			"ar": "الملك",
+			"fr": "La royauté",
+			"es": "La Soberanía"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 68,
 		"length": 52,
 		"phoneticName": "Al-Qalam",
-		"translatedName": "La plume",
+		"translatedName": {
+			"en": "The Pen",
+			"ar": "القلم",
+			"fr": "La plume",
+			"es": "El Cálamo"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 69,
 		"length": 52,
 		"phoneticName": "Al-Haqqah",
-		"translatedName": "Celle qui montre la vérité",
+		"translatedName": {
+			"en": "The Reality",
+			"ar": "الحاقة",
+			"fr": "L'inéluctable",
+			"es": "La Verdad Indefectible"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 70,
 		"length": 44,
 		"phoneticName": "Al-Maarij",
-		"translatedName": "Les voies d'ascension",
+		"translatedName": {
+			"en": "The Ascending Stairways",
+			"ar": "المعارج",
+			"fr": "Les voies d'ascension",
+			"es": "Los Grados de Elevación"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 71,
 		"length": 28,
 		"phoneticName": "Nuh",
-		"translatedName": "Noé",
+		"translatedName": {
+			"en": "Noah",
+			"ar": "نوح",
+			"fr": "Noé",
+			"es": "Noé"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 72,
 		"length": 28,
 		"phoneticName": "Al-Jinn",
-		"translatedName": "Les djinns",
+		"translatedName": {
+			"en": "The Jinn",
+			"ar": "الجن",
+			"fr": "Les djinns",
+			"es": "Los Genios"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 73,
 		"length": 20,
 		"phoneticName": "Al-Muzzamil",
-		"translatedName": "L'enveloppé",
+		"translatedName": {
+			"en": "The Enshrouded One",
+			"ar": "المزمل",
+			"fr": "L'enveloppé",
+			"es": "El Envuelto en El Manto"
+		},
 		"revelationType": 2
 	},
 	{
 		"id": 74,
 		"length": 56,
 		"phoneticName": "Al-Muddathir",
-		"translatedName": "Le revêtu d'un manteau",
+		"translatedName": {
+			"en": "The Cloaked One",
+			"ar": "المدثر",
+			"fr": "Celui qui se couvre",
+			"es": "El Arropado"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 75,
 		"length": 40,
 		"phoneticName": "Al-Qiyamah",
-		"translatedName": "La résurrection",
+		"translatedName": {
+			"en": "The Resurrection",
+			"ar": "القيامة",
+			"fr": "La résurrection",
+			"es": "El Levantamiento"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 76,
 		"length": 31,
 		"phoneticName": "Al-Insan",
-		"translatedName": "L'Homme",
+		"translatedName": {
+			"en": "The Man",
+			"ar": "الانسان",
+			"fr": "L'homme",
+			"es": "El Hombre"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 77,
 		"length": 50,
 		"phoneticName": "Al-Mursalat",
-		"translatedName": "Les envoyés",
+		"translatedName": {
+			"en": "The Emissaries",
+			"ar": "المرسلات",
+			"fr": "Les envoyés",
+			"es": "Los Que Son Enviados"
+		},
 		"revelationType": 2
 	},
 	{
 		"id": 78,
 		"length": 40,
 		"phoneticName": "An-Naba",
-		"translatedName": "La nouvelle",
+		"translatedName": {
+			"en": "The Tidings",
+			"ar": "النبإ",
+			"fr": "La nouvelle",
+			"es": "La Noticia"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 79,
 		"length": 46,
 		"phoneticName": "An-Naziat",
-		"translatedName": "Les anges qui arrachent",
+		"translatedName": {
+			"en": "Those who drag forth",
+			"ar": "النازعات",
+			"fr": "Ceux qui arrachent",
+			"es": "Los Que Arrancan"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 80,
 		"length": 42,
 		"phoneticName": "Abasa",
-		"translatedName": "Il s'est renfrogné",
+		"translatedName": {
+			"en": "He Frowned",
+			"ar": "عبس",
+			"fr": "Il s'est renfrogné",
+			"es": "Frunció El Ceño"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 81,
 		"length": 29,
 		"phoneticName": "At-Takwir",
-		"translatedName": "L'obscurcissement",
+		"translatedName": {
+			"en": "The Overthrowing",
+			"ar": "التكوير",
+			"fr": "L'obscurcissement",
+			"es": "El Arrollamiento"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 82,
 		"length": 19,
 		"phoneticName": "Al-Infitar",
-		"translatedName": "La rupture",
+		"translatedName": {
+			"en": "The Cleaving",
+			"ar": "الإنفطار",
+			"fr": "La rupture",
+			"es": "La Hendidura"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 83,
 		"length": 36,
 		"phoneticName": "Al-Mutaffifin",
-		"translatedName": "Les fraudeurs",
+		"translatedName": {
+			"en": "The Defrauding",
+			"ar": "المطففين",
+			"fr": "Les fraudeurs",
+			"es": "Los Defraudadores"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 84,
 		"length": 25,
 		"phoneticName": "Al-Insiqaq",
-		"translatedName": "La déchirure",
+		"translatedName": {
+			"en": "The Sundering",
+			"ar": "الإنشقاق",
+			"fr": "La déchirure",
+			"es": "El Resquebrajamiento"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 85,
 		"length": 22,
 		"phoneticName": "Al-Buruj",
-		"translatedName": "Les constellations",
+		"translatedName": {
+			"en": "The Mansions of the Stars",
+			"ar": "البروج",
+			"fr": "Les constellations",
+			"es": "Las Constelaciones"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 86,
 		"length": 17,
 		"phoneticName": "Al-Tariq",
-		"translatedName": "L'astre nocturne",
+		"translatedName": {
+			"en": "The Nightcommer",
+			"ar": "الطارق",
+			"fr": "L'astre nocturne",
+			"es": "El Que Viene de Noche"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 87,
 		"length": 19,
 		"phoneticName": "Al-Ala",
-		"translatedName": "Le Très-Haut",
+		"translatedName": {
+			"en": "The Most High",
+			"ar": "الأعلى",
+			"fr": "Le Très-Haut",
+			"es": "El Altísimo"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 88,
 		"length": 26,
 		"phoneticName": "Al-Ghasiyah",
-		"translatedName": "L'enveloppante",
+		"translatedName": {
+			"en": "The Overwhelming",
+			"ar": "الغاشية",
+			"fr": "L'enveloppante",
+			"es": "El Envolvente"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 89,
 		"length": 30,
 		"phoneticName": "Al-Fajr",
-		"translatedName": "L'aube",
+		"translatedName": {
+			"en": "The Dawn",
+			"ar": "الفجر",
+			"fr": "L'aube",
+			"es": "La Aurora"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 90,
 		"length": 20,
 		"phoneticName": "Al-Balad",
-		"translatedName": "La cité",
+		"translatedName": {
+			"en": "The City",
+			"ar": "البلد",
+			"fr": "La cité",
+			"es": "El Territorio"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 91,
 		"length": 15,
 		"phoneticName": "Ash-Shams",
-		"translatedName": "Le soleil",
+		"translatedName": {
+			"en": "The Sun",
+			"ar": "الشمس",
+			"fr": "Le soleil",
+			"es": "El Sol"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 92,
 		"length": 21,
 		"phoneticName": "Al-Layl",
-		"translatedName": "La nuit",
+		"translatedName": {
+			"en": "The Night",
+			"ar": "الليل",
+			"fr": "La nuit",
+			"es": "La Noche"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 93,
 		"length": 11,
 		"phoneticName": "Ad-Duha",
-		"translatedName": "Le jour montant",
+		"translatedName": {
+			"en": "The Morning Hours",
+			"ar": "الضحى",
+			"fr": "Le jour montant",
+			"es": "La Claridad de La Mañana"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 94,
 		"length": 8,
 		"phoneticName": "As-Sarh",
-		"translatedName": "L'ouverture",
+		"translatedName": {
+			"en": "The Relief",
+			"ar": "الشرح",
+			"fr": "L'ouverture",
+			"es": "No Te Hemos Abierto"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 95,
 		"length": 8,
 		"phoneticName": "At-Tin",
-		"translatedName": "Le figuier",
+		"translatedName": {
+			"en": "The Fig",
+			"ar": "التين",
+			"fr": "Les figues",
+			"es": "Los Higos"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 96,
 		"length": 19,
 		"phoneticName": "Al-Alaq",
-		"translatedName": "L'adhérence",
+		"translatedName": {
+			"en": "The Clot",
+			"ar": "العلق",
+			"fr": "L'adhérence",
+			"es": "El Coágulo"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 97,
 		"length": 5,
 		"phoneticName": "Al-Qadr",
-		"translatedName": "La Destinée",
+		"translatedName": {
+			"en": "The Power",
+			"ar": "القدر",
+			"fr": "La destinée",
+			"es": "El Decreto"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 98,
 		"length": 8,
 		"phoneticName": "Al-Bayyina",
-		"translatedName": "La preuve",
+		"translatedName": {
+			"en": "The Clear Proof",
+			"ar": "البينة",
+			"fr": "La preuve",
+			"es": "La Evidencia"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 99,
 		"length": 8,
 		"phoneticName": "Az-Zalzala",
-		"translatedName": "La secousse",
+		"translatedName": {
+			"en": "The Earthquake",
+			"ar": "الزلزلة",
+			"fr": "Le séisme",
+			"es": "El Temblor"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 100,
 		"length": 11,
 		"phoneticName": "Al-Adiyat",
-		"translatedName": "Les coursiers",
+		"translatedName": {
+			"en": "The Courser",
+			"ar": "العاديات",
+			"fr": "Les coursiers",
+			"es": "Los Que Galopan"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 101,
 		"length": 11,
 		"phoneticName": "Al-Qariah",
-		"translatedName": "Le fracas",
+		"translatedName": {
+			"en": "The Calamity",
+			"ar": "القارعة",
+			"fr": "Le fracas",
+			"es": "La Conmoción"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 102,
 		"length": 8,
 		"phoneticName": "At-Takatur",
-		"translatedName": "La course aux richesses",
+		"translatedName": {
+			"en": "The Rivalry in world increase",
+			"ar": "التكاثر",
+			"fr": "La course aux richesses",
+			"es": "La Rivalidad"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 103,
 		"length": 3,
 		"phoneticName": "Al-Asr",
-		"translatedName": "Le temps",
+		"translatedName": {
+			"en": "The Declining Day",
+			"ar": "العصر",
+			"fr": "Le temps",
+			"es": "El Tiempo"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 104,
 		"length": 9,
 		"phoneticName": "Al-Humazah",
-		"translatedName": "Les calomniateurs",
+		"translatedName": {
+			"en": "The Traducer",
+			"ar": "الهمزة",
+			"fr": "Les calomniateurs",
+			"es": "El Murmurador"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 105,
 		"length": 5,
 		"phoneticName": "Al-Fil",
-		"translatedName": "L'éléphant",
+		"translatedName": {
+			"en": "The Elephant",
+			"ar": "الفيل",
+			"fr": "L'éléphant",
+			"es": "El Elefante"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 106,
 		"length": 4,
 		"phoneticName": "Quraysh",
-		"translatedName": "Les Quraychites",
+		"translatedName": {
+			"en": "Quraysh",
+			"ar": "قريش",
+			"fr": "Les Quraysh",
+			"es": "Los Quraysh"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 107,
 		"length": 7,
 		"phoneticName": "Al-Maun",
-		"translatedName": "L'ustensile",
+		"translatedName": {
+			"en": "The Small kindnesses",
+			"ar": "الماعون",
+			"fr": "L'entraide",
+			"es": "La Ayuda Imprescindible"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 108,
 		"length": 3,
 		"phoneticName": "Al-Kawthar",
-		"translatedName": "L'abondance",
+		"translatedName": {
+			"en": "The Abundance",
+			"ar": "الكوثر",
+			"fr": "L'abondance",
+			"es": "La Abundancia"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 109,
 		"length": 6,
 		"phoneticName": "Al-Kafirun",
-		"translatedName": "Les infidèles",
+		"translatedName": {
+			"en": "The Disbelievers",
+			"ar": "الكافرون",
+			"fr": "Les mécréants",
+			"es": "Los Incrédulos"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 110,
 		"length": 3,
 		"phoneticName": "An-Nasr",
-		"translatedName": "Les secours",
+		"translatedName": {
+			"en": "The Divine Support",
+			"ar": "النصر",
+			"fr": "Le secours",
+			"es": "La Victoria"
+		},
 		"revelationType": 1
 	},
 	{
 		"id": 111,
 		"length": 5,
 		"phoneticName": "Al-Masad",
-		"translatedName": "Les fibres",
+		"translatedName": {
+			"en": "The Palm Fiber",
+			"ar": "المسد",
+			"fr": "Les fibres",
+			"es": "La Fibra"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 112,
 		"length": 4,
 		"phoneticName": "Al-Ikhlas",
-		"translatedName": "Le monothéisme pur",
+		"translatedName": {
+			"en": "The Sincerity",
+			"ar": "الإخلاص",
+			"fr": "La sincérité",
+			"es": "La Adoración Pura"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 113,
 		"length": 5,
 		"phoneticName": "Al-Falaq",
-		"translatedName": "L'aube naissante",
+		"translatedName": {
+			"en": "The Daybreak",
+			"ar": "الفلق",
+			"fr": "L'aube naissante",
+			"es": "El Rayar del Alba"
+		},
 		"revelationType": 0
 	},
 	{
 		"id": 114,
 		"length": 6,
 		"phoneticName": "An-Nas",
-		"translatedName": "Les Hommes",
+		"translatedName": {
+			"en": "Mankind",
+			"ar": "الناس",
+			"fr": "Les Hommes",
+			"es": "Los Hombres"
+		},
 		"revelationType": 0
 	}
 ]

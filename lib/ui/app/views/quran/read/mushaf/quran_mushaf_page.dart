@@ -1,3 +1,4 @@
+import 'package:abc_quran/localization/app_localization.dart';
 import 'package:abc_quran/models/glyph.dart';
 import 'package:abc_quran/models/sura.dart';
 import 'package:abc_quran/providers/player/player_provider.dart';
@@ -126,13 +127,17 @@ class QuranMushafPage extends ConsumerWidget {
                               child: ContextMenuRegion(
                                 contextMenu: GenericContextMenu(
                                   buttonConfigs: [
-                                    ContextMenuButtonConfig("Move here",
+                                    ContextMenuButtonConfig(
+                                        AppLocalization.of(context)!
+                                            .translate("move_here"),
                                         onPressed: () {
                                       ref
                                           .read(mushafProvider.notifier)
                                           .moveTo(glyph);
                                     }),
-                                    ContextMenuButtonConfig("Start here",
+                                    ContextMenuButtonConfig(
+                                        AppLocalization.of(context)!
+                                            .translate("start_here"),
                                         onPressed: () {
                                       ref
                                           .read(mushafProvider.notifier)
@@ -209,9 +214,8 @@ class QuranMushafPage extends ConsumerWidget {
                                                               ? 0.45.sp
                                                               : 0.38.sp,
                                                       style: TextStyle(
-                                                        fontFamily: glyph.page
-                                                            .toString(),
-                                                      )),
+                                                          fontFamily: glyph.page
+                                                              .toString())),
                                                 ),
                                               ),
                                   ),

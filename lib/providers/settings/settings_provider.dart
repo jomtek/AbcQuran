@@ -17,11 +17,19 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
   void setShowMushaf(bool showMushaf) async {
     if (showMushaf) {
       _ref.read(mushafProvider.notifier).reloadPageCouple();
-    }
-    else {
+    } else {
       await _ref.read(textProvider.notifier).reloadSura();
     }
 
     state = state.copyWith(showMushaf: showMushaf);
+  }
+
+  void setAppLanguage(String id) {
+    state = state.copyWith(languageId: id);
+  }
+
+  void setQuranLanguage(String id) {
+    state = state.copyWith(translationId: id);
+    _ref.read(textProvider.notifier).reloadSura();
   }
 }

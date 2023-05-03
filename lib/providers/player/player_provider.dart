@@ -1,9 +1,8 @@
 import 'dart:math';
 
-import 'package:abc_quran/models/sura.dart';
 import 'package:abc_quran/providers/reciter/current_reciter_provider.dart';
 import 'package:abc_quran/providers/sura/current_sura_provider.dart';
-import 'package:abc_quran/services/quran/quran_mushaf_service.dart';
+import 'package:abc_quran/ui/app/api_data.dart';
 import 'package:abc_quran/ui/app/views/contribute/state/contribute_vm.dart';
 import 'package:abc_quran/ui/app/views/quran/read/cursor/cursor_provider.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -21,7 +20,7 @@ final playerProvider =
 // Most of the methods it contains, such as `refreshPlayer` or `seek`, must be called externally
 // (!) DEVELOPER NOTE : Most of the time, I found out that player-related bugs can be fixed
 //                      simply by pausing/stopping the player, operating, then restarting it.
-// TODO: Address any safety concerns. Code looks a bit messy/unstable in its actual form.
+// TODO: Address any safety concern. Code looks a bit messy/unstable in its actual form.
 
 class PlayerNotifier extends StateNotifier<PlayerState2> {
   final StateNotifierProviderRef<PlayerNotifier, PlayerState2> _ref;
@@ -49,7 +48,7 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
 
     // Fetch new mp3 offsets
     final offsetsUri = Uri.parse(
-        "http://141.145.204.116/reciters/${reciter.id}/timecodes/${sura.getPaddedId()}.txt");
+        "${ApiData.baseUrl}/reciters/${reciter.id}/timecodes/${sura.getPaddedId()}.txt");
 
     print(offsetsUri);
 

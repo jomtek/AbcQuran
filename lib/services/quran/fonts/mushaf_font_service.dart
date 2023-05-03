@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:abc_quran/ui/app/api_data.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
@@ -26,6 +27,10 @@ class MushafFontService {
   }
 
   Future<void> loadPage(String page) async {
+    if (page == "-1") {
+      return; // TODO: Please fix this ! Bug seems to appear and disappear out of nowhere.
+    }
+
     if (_loadedPages.contains(page)) {
       return;
     } else {
@@ -39,14 +44,14 @@ class MushafFontService {
   }
 
   Future _loadFontByteData(String page, ByteData byteData) async {
-    final fontLoader = FontLoader(page.toString());
+    final fontLoader = FontLoader(page);
     fontLoader.addFont(Future.value(byteData));
     await fontLoader.load();
   }
 
   Future<ByteData?> _fetchPageFromDisk(String page) async {
     final fontFolder = await _localFontFolder;
-    final file = File("$fontFolder\\$page.ttf");
+    final file = File("$fontFolder\\$page");
 
     if (await file.exists()) {
       List<int> contents = await file.readAsBytes();
@@ -59,7 +64,9 @@ class MushafFontService {
   }
 
   Future<ByteData> _fetchPageFromApi(String page) async {
-    page = min(1, int.parse(page)).toString();
+    if (page != "BSML") {
+      page = max(1, int.parse(page)).toString();
+    }
 
     final paddedPageNum = page.toString().padLeft(3, "0");
 
@@ -68,11 +75,10 @@ class MushafFontService {
       fontName = "QCF_BSML";
     }
 
-    final fontUri = Uri.parse(
-        "http://141.145.204.116/mushaf/fonts/$fontName.TTF");
+    final fontUri = Uri.parse("${ApiData.baseUrl}/mushaf/fonts/$fontName.TTF");
 
     // Fetch font from the api
-    http.Response response; 
+    http.Response response;
     try {
       response = await _httpClient.get(fontUri);
     } catch (e) {
@@ -82,8 +88,8 @@ class MushafFontService {
     if (response.statusCode == 200) {
       // Cache the downloaded font
       final fontFolder = await _localFontFolder;
-      final file = File("$fontFolder/$page.ttf");
-      await file.writeAsBytes(response.bodyBytes);
+      final file = File("$fontFolder/$page");
+      await file.writeAsBytes(response.bodyBytes, flush: true);
 
       return ByteData.view(response.bodyBytes.buffer);
     } else {

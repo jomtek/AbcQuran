@@ -34,7 +34,7 @@ class RecitersNavigatorFrame extends ConsumerWidget {
                 reciter: reciter,
                 onTap: (r) {
                   ref.read(currentReciterProvider.notifier).setReciter(r);
-                  ref.read(homeProvider.notifier).toggleFrame();
+                  ref.read(homeVmProvider.notifier).toggleFrame();
                 });
           },
         ),

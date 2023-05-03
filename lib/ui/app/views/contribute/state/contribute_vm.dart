@@ -1,6 +1,7 @@
 import 'package:abc_quran/providers/player/player_provider.dart';
 import 'package:abc_quran/providers/reciter/current_reciter_provider.dart';
 import 'package:abc_quran/providers/sura/current_sura_provider.dart';
+import 'package:abc_quran/ui/app/api_data.dart';
 import 'package:abc_quran/ui/app/views/quran/read/cursor/cursor_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
@@ -102,7 +103,7 @@ class ContributeNotifier extends StateNotifier<ContributeState> {
       if (newTimecode != -1 && newTimecode != oldTimecode) {
         // Send the contribution
         final contributionUri = Uri.parse(
-            "http://141.145.204.116:5000/contribute?reciter=${reciter.id}&sura=${sura.id}&cursor=$i&timecode=$newTimecode");
+            "${ApiData.baseUrl}:5000/contribute?reciter=${reciter.id}&sura=${sura.id}&cursor=$i&timecode=$newTimecode");
 
         http.Response response;
         try {

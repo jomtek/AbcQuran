@@ -1,3 +1,4 @@
+import 'package:abc_quran/localization/app_localization.dart';
 import 'package:abc_quran/providers/player/player_provider.dart';
 import 'package:abc_quran/providers/reciter/current_reciter_provider.dart';
 import 'package:abc_quran/providers/settings/settings_provider.dart';
@@ -77,16 +78,21 @@ class ReadView extends ConsumerWidget {
                                 .read(contributeVmProvider.notifier)
                                 .setIsContributing(!contribute.isContributing);
                           },
-                          child: Text(contribute.isContributing ? "Annuler" : "Contribuer",
+                          child: Text(
+                              contribute.isContributing
+                                  ? AppLocalization.of(context)!
+                                      .translate("cancel")
+                                  : AppLocalization.of(context)!
+                                      .translate("contribute"),
                               style: TextStyle(fontSize: 4.5.sp)),
                         ),
                         const Spacer(),
                         _buildBottomBarContainer(
                           onTap: () {
                             ref
-                                .read(homeProvider.notifier)
+                                .read(homeVmProvider.notifier)
                                 .setFrame(RecitersNavigatorFrame());
-                            ref.read(homeProvider.notifier).toggleFrame();
+                            ref.read(homeVmProvider.notifier).toggleFrame();
                           },
                           child: ConstrainedBox(
                             constraints: BoxConstraints(minWidth: 50.sp),
@@ -122,11 +128,11 @@ class ReadView extends ConsumerWidget {
                         _buildBottomBarContainer(
                           onTap: () {
                             ref
-                                .read(homeProvider.notifier)
+                                .read(homeVmProvider.notifier)
                                 .setFrame(const QuranNavigatorFrame());
-                            ref.read(homeProvider.notifier).toggleFrame();
+                            ref.read(homeVmProvider.notifier).toggleFrame();
                           },
-                          child: Text(sura.toString(),
+                          child: Text(sura.pretty(settings.languageId),
                               style: GoogleFonts.inter(
                                   fontSize: 4.sp, fontWeight: FontWeight.w500)),
                         ),
@@ -225,7 +231,9 @@ class ReadView extends ConsumerWidget {
                                           .setShowMushaf(true);
                                     },
                                     child: Center(
-                                        child: Text("Mushaf",
+                                        child: Text(
+                                            AppLocalization.of(context)!
+                                                .translate("mushaf"),
                                             style: GoogleFonts.inter(
                                                 fontSize: 3.5.sp))),
                                   ),
@@ -243,7 +251,9 @@ class ReadView extends ConsumerWidget {
                                           .setShowMushaf(false);
                                     },
                                     child: Center(
-                                        child: Text("Text",
+                                        child: Text(
+                                            AppLocalization.of(context)!
+                                                .translate("text"),
                                             style: GoogleFonts.inter(
                                                 fontSize: 3.5.sp))),
                                   ),

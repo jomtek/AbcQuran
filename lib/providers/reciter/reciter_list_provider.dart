@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:abc_quran/models/reciter.dart';
+import 'package:abc_quran/ui/app/api_data.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
@@ -15,12 +16,12 @@ class ReciterListNotifier extends StateNotifier<List<ReciterModel>> {
   }
 
   Future _loadReciterList() async {
-    final fontUri = Uri.parse("http://141.145.204.116/reciters.json");
+    final recitersUri = Uri.parse("${ApiData.baseUrl}/reciters.json");
 
     // Fetch reciters data from the api
     http.Response response;
     try {
-      response = await http.Client().get(fontUri);
+      response = await http.Client().get(recitersUri);
     } catch (e) {
       throw Exception("Failed to load reciters data");
     }

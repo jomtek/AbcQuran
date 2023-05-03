@@ -9,10 +9,12 @@ class SuraResultView extends StatefulWidget {
       {super.key,
       required this.selected,
       required this.sura,
+      required this.languageId,
       required this.onTap});
 
   final bool selected;
   final SuraModel sura;
+  final String languageId;
   final Function(SuraModel) onTap;
 
   @override
@@ -48,7 +50,7 @@ class _SuraResultViewState extends State<SuraResultView> {
                   style: GoogleFonts.inter(
                       fontSize: 5.sp, fontWeight: FontWeight.w600)),
               SizedBox(width: 2.sp),
-              Text(widget.sura.translatedName,
+              Text(widget.sura.getName(widget.languageId),
                   style: GoogleFonts.inter(
                       color: Colors.black54,
                       fontSize: 4.sp,

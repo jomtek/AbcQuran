@@ -1,7 +1,9 @@
 import 'dart:ui';
 
+import 'package:abc_quran/localization/app_localization.dart';
 import 'package:abc_quran/providers/ctrl_key_provider.dart';
 import 'package:abc_quran/ui/app/views/frames/quran_navigator/state/quran_navigator_vm.dart';
+import 'package:abc_quran/ui/app/views/settings/settings_view.dart';
 import 'package:abc_quran/ui/components/sidebar/abc_sidebar.dart';
 import 'package:abc_quran/ui/components/sidebar/sidebar_item.dart';
 import 'package:abc_quran/ui/app/views/frames/quran_navigator/quran_navigator_frame.dart';
@@ -20,7 +22,7 @@ class HomeView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(homeProvider);
+    final state = ref.watch(homeVmProvider);
 
     return ContextMenuOverlay(
       child: RawKeyboardListener(
@@ -32,8 +34,8 @@ class HomeView extends ConsumerWidget {
               e.isControlPressed &&
               ["F", "K"].contains(e.logicalKey.keyLabel)) {
             ref.read(quranNavigatorProvider.notifier).reinitializeResults();
-            ref.read(homeProvider.notifier).setFrame(const QuranNavigatorFrame());
-            ref.read(homeProvider.notifier).toggleFrame();
+            ref.read(homeVmProvider.notifier).setFrame(const QuranNavigatorFrame());
+            ref.read(homeVmProvider.notifier).toggleFrame();
           }
     
           ref.read(ctrlKeyProvider.notifier).setCtrlKey(e.isControlPressed);
@@ -42,7 +44,7 @@ class HomeView extends ConsumerWidget {
           GestureDetector(
             onTap: () {
               if (state.isFrameShown) {
-                ref.read(homeProvider.notifier).toggleFrame();
+                ref.read(homeVmProvider.notifier).toggleFrame();
               }
             },
             child: AbsorbPointer(
@@ -59,16 +61,14 @@ class HomeView extends ConsumerWidget {
                         controller: _pageController,
                         children: const [
                           ReadView(),
-                          Center(
-                            child: Text('Paramètres'),
-                          ),
+                          SettingsView()
                         ],
                       ),
                     ),
                     AbcSidebar(
                       [
-                        SidebarItem(0, "Lire et écouter", Icons.menu_book, true),
-                        SidebarItem(1, "Paramètres", Icons.settings, false)
+                        SidebarItem(0, AppLocalization.of(context)!.translate("read_sidebar_title"), Icons.menu_book, true),
+                        SidebarItem(1, AppLocalization.of(context)!.translate("settings_sidebar_title"), Icons.settings, false)
                       ],
                       onTap: (id) {
                         _pageController.jumpToPage(id);

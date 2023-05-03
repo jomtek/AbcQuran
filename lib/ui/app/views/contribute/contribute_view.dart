@@ -1,14 +1,14 @@
+import 'package:abc_quran/localization/app_localization.dart';
 import 'package:abc_quran/providers/player/player_provider.dart';
 import 'package:abc_quran/providers/reciter/current_reciter_provider.dart';
 import 'package:abc_quran/providers/sura/current_sura_provider.dart';
 import 'package:abc_quran/ui/app/app_theme.dart';
 import 'package:abc_quran/ui/app/views/contribute/state/contribute_vm.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContributeView extends ConsumerWidget {
   const ContributeView({super.key});
@@ -27,36 +27,55 @@ class ContributeView extends ConsumerWidget {
               BoxShadow(blurRadius: 20, color: Colors.black26)
             ]),
         width: 70.sp,
-        height: 150.sp,
+        height: 160.sp,
         child: Column(
           children: [
             SizedBox(height: 4.sp),
-            Text("Contribution menu", style: TextStyle(fontSize: 6.sp)),
+            Text(AppLocalization.of(context)!.translate("contribution_menu"),
+                style: TextStyle(fontSize: 6.sp)),
             SizedBox(height: 4.sp),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 6.sp),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("📚 Data for ${sura.phoneticName}",
+                  Text(
+                      "📚 ${AppLocalization.of(context)!.translate("data_for")} ${sura.phoneticName}",
                       style: TextStyle(
                           fontSize: 4.sp, fontWeight: FontWeight.bold)),
-                  Text("👤 Reciter : ${reciter.lastName} (${reciter.id})",
+                  Text(
+                      "👤 ${AppLocalization.of(context)!.translate("reciter")} : ${reciter.lastName} (${reciter.id})",
                       style: TextStyle(fontSize: 4.sp)),
                   SizedBox(height: 2.sp),
                   const Divider(),
                 ],
               ),
             ),
-            SizedBox(height: 2.sp),
+            SizedBox(height: 1.sp),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 5.sp),
               child: Expanded(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    InkWell(
+                      onTap: () => launchUrl(Uri.parse(
+                        AppLocalization.of(context)!
+                            .translate("contribution_guide_url"),
+                      )),
+                      child: Text(
+                        AppLocalization.of(context)!
+                            .translate("contribution_guide_label"),
+                        style: const TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: Colors.blue),
+                      ),
+                    ),
+                    SizedBox(height: 4.sp),
                     Row(
                       children: [
-                        Text("⏲️ Curr. time :",
+                        Text(
+                            "⏲️ ${AppLocalization.of(context)!.translate("curr_time")} :",
                             style: TextStyle(fontSize: 4.sp)),
                         SizedBox(
                           width: 2.sp,
@@ -66,11 +85,17 @@ class ContributeView extends ConsumerWidget {
                                 fontSize: 5.sp, fontWeight: FontWeight.bold)),
                       ],
                     ),
-                    SizedBox(height: 6.sp),
+                    SizedBox(height: 4.sp),
                     Row(
-                      children: const [
-                        Expanded(child: Center(child: Text("Original"))),
-                        Expanded(child: Center(child: Text("New"))),
+                      children: [
+                        Expanded(
+                            child: Center(
+                                child: Text(AppLocalization.of(context)!
+                                    .translate("original")))),
+                        Expanded(
+                            child: Center(
+                                child: Text(AppLocalization.of(context)!
+                                    .translate("new")))),
                       ],
                     ),
                     SizedBox(height: 1.sp),
@@ -157,7 +182,8 @@ class ContributeView extends ConsumerWidget {
                                 },
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(vertical: 4.sp),
-                                  child: Text("<- Previous v.",
+                                  child: Text(
+                                      "<- ${AppLocalization.of(context)!.translate("previous_v")}",
                                       style: GoogleFonts.inter(
                                           fontSize: 4.sp,
                                           fontWeight: FontWeight.w500)),
@@ -173,7 +199,8 @@ class ContributeView extends ConsumerWidget {
                               },
                               child: Padding(
                                 padding: EdgeInsets.symmetric(vertical: 4.sp),
-                                child: Text("Mark v. ->",
+                                child: Text(
+                                    "${AppLocalization.of(context)!.translate("mark_v")} ->",
                                     style: GoogleFonts.inter(
                                         fontSize: 4.sp,
                                         fontWeight: FontWeight.bold)),
@@ -195,7 +222,9 @@ class ContributeView extends ConsumerWidget {
                               },
                               child: Padding(
                                 padding: EdgeInsets.symmetric(vertical: 4.sp),
-                                child: Text("Submit",
+                                child: Text(
+                                    AppLocalization.of(context)!
+                                        .translate("submit"),
                                     style: GoogleFonts.inter(
                                         fontSize: 4.sp,
                                         fontWeight: FontWeight.w500)),
@@ -211,7 +240,8 @@ class ContributeView extends ConsumerWidget {
                               },
                               child: Padding(
                                 padding: EdgeInsets.symmetric(vertical: 4.sp),
-                                child: Text("Skip v. ->",
+                                child: Text(
+                                    "${AppLocalization.of(context)!.translate("skip_v")} ->",
                                     style: GoogleFonts.inter(
                                         fontSize: 4.sp,
                                         fontWeight: FontWeight.w500)),
@@ -225,10 +255,13 @@ class ContributeView extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(height: 4.sp),
-                          Text("Sending contributions...",
+                          Text(
+                              AppLocalization.of(context)!
+                                  .translate("sending_contributions"),
                               style: GoogleFonts.inter(fontSize: 5.sp)),
                           SizedBox(height: 1.sp),
-                          Text("${state.contributionsSent} sent",
+                          Text(
+                              "${state.contributionsSent} ${AppLocalization.of(context)!.translate("sent")}",
                               style: GoogleFonts.inter(fontSize: 5.sp)),
                         ],
                       )

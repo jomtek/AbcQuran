@@ -1,3 +1,4 @@
+import 'package:abc_quran/localization/app_localization.dart';
 import 'package:abc_quran/models/glyph.dart';
 import 'package:abc_quran/providers/player/player_provider.dart';
 import 'package:abc_quran/ui/app/app_theme.dart';
@@ -78,12 +79,16 @@ class QuranVerseBox extends ConsumerWidget {
           ContextMenuRegion(
             contextMenu: GenericContextMenu(
               buttonConfigs: [
-                ContextMenuButtonConfig("Move here", onPressed: () {
+                ContextMenuButtonConfig(
+                    AppLocalization.of(context)!.translate("move_here"),
+                    onPressed: () {
                   ref
                       .read(cursorProvider.notifier)
                       .moveBookmarkTo(id, glyphs[0].page, automatic: false);
                 }),
-                ContextMenuButtonConfig("Start here", onPressed: () {
+                ContextMenuButtonConfig(
+                    AppLocalization.of(context)!.translate("start_here"),
+                    onPressed: () {
                   ref.read(cursorProvider.notifier).startBookmarkFrom(id);
                 }),
               ],

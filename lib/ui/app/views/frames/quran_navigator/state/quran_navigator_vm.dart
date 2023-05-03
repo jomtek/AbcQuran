@@ -1,4 +1,5 @@
 import 'package:abc_quran/models/sura.dart';
+import 'package:abc_quran/providers/settings/settings_provider.dart';
 import 'package:abc_quran/providers/sura/sura_list_provider.dart';
 import 'package:abc_quran/ui/app/views/frames/quran_navigator/state/quran_navigator_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,7 +10,8 @@ final quranNavigatorProvider =
 });
 
 class QuranNavigatorNotifier extends StateNotifier<QuranNavigatorState> {
-  final StateNotifierProviderRef<QuranNavigatorNotifier, QuranNavigatorState> _ref;
+  final StateNotifierProviderRef<QuranNavigatorNotifier, QuranNavigatorState>
+      _ref;
 
   QuranNavigatorNotifier(this._ref) : super(QuranNavigatorState.initial()) {
     state = state.copyWith(
@@ -18,6 +20,8 @@ class QuranNavigatorNotifier extends StateNotifier<QuranNavigatorState> {
   }
 
   void search(String text) {
+    final languageId = _ref.read(settingsProvider).languageId;
+
     // Make an aggregating, weighted search
     var resultsWeights = <SuraModel, int>{};
 
@@ -26,7 +30,7 @@ class QuranNavigatorNotifier extends StateNotifier<QuranNavigatorState> {
         kw = kw.toLowerCase();
 
         if (sura.phoneticName.toLowerCase().contains(kw) ||
-            sura.translatedName.toLowerCase().contains(kw) ||
+            sura.getName(languageId).toLowerCase().contains(kw) ||
             sura.id.toString() == kw) {
           if (resultsWeights.containsKey(sura)) {
             resultsWeights[sura] = resultsWeights[sura]! + 1;

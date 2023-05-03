@@ -1,3 +1,5 @@
+import 'package:abc_quran/localization/app_localization.dart';
+import 'package:abc_quran/providers/settings/settings_provider.dart';
 import 'package:abc_quran/providers/sura/current_sura_provider.dart';
 import 'package:abc_quran/providers/sura/hizb/hizb_list_provider.dart';
 import 'package:abc_quran/providers/sura/hizb/hizb_state.dart';
@@ -19,6 +21,7 @@ class QuranNavigatorFrame extends ConsumerWidget {
 
   Widget _buildSuraList(WidgetRef ref, QuranNavigatorState state) {
     final selectedSura = ref.watch(currentSuraProvider);
+    final language = ref.watch(settingsProvider).languageId;
 
     return Padding(
       padding: EdgeInsets.only(right: 8.sp),
@@ -35,11 +38,14 @@ class QuranNavigatorFrame extends ConsumerWidget {
             return SizedBox(
               height: 13.sp,
               child: SuraResultView(
-                  sura: sura,
                   selected: sura == selectedSura,
+                  sura: sura,
+                  languageId: language,
                   onTap: (s) {
                     ref.read(currentSuraProvider.notifier).setSura(s);
-                    ref.read(homeProvider.notifier).toggleFrame(); // Hide frame
+                    ref
+                        .read(homeVmProvider.notifier)
+                        .toggleFrame(); // Hide frame
                   }),
             );
           },
@@ -74,7 +80,7 @@ class QuranNavigatorFrame extends ConsumerWidget {
                       ref
                           .read(cursorProvider.notifier)
                           .teleportTo(hizb.startSura, hizb.startVerse);
-                      ref.read(homeProvider.notifier).toggleFrame();
+                      ref.read(homeVmProvider.notifier).toggleFrame();
                     }),
               );
             },
@@ -109,7 +115,8 @@ class QuranNavigatorFrame extends ConsumerWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 5.sp),
                 child: SearchBar(
-                  placeholder: "Sourate, récitateur...",
+                  placeholder: AppLocalization.of(context)!
+                      .translate("sura_list_searchbar_hint"),
                   textChanged: (text) {
                     ref.read(quranNavigatorProvider.notifier).search(text);
                   },

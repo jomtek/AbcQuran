@@ -1,3 +1,4 @@
+import 'package:abc_quran/localization/app_localization.dart';
 import 'package:abc_quran/providers/ctrl_key_provider.dart';
 import 'package:abc_quran/ui/app/views/quran/read/cursor/cursor_provider.dart';
 import 'package:abc_quran/ui/app/views/quran/read/mushaf/quran_mushaf_page.dart';
@@ -40,7 +41,8 @@ class QuranMushafView extends ConsumerWidget {
             // Page on the left
             Row(
               children: [
-                Text("Page ${(cursorState.page % 2 == 0 ? cursorState.page : cursorState.page + 1).toString().padLeft(3, '0')}"),
+                Text(
+                    "${AppLocalization.of(context)!.translate("page")} ${(cursorState.page % 2 == 0 ? cursorState.page : cursorState.page + 1).toString().padLeft(3, '0')}"),
                 SizedBox(
                   width: 4.sp,
                 ),
@@ -93,7 +95,7 @@ class QuranMushafView extends ConsumerWidget {
                   width: 4.sp,
                 ),
                 Text(
-                    "Page ${((cursorState.page - 1) % 2 == 1 ? cursorState.page - 1 : cursorState.page).toString().padLeft(3, '0')}"),
+                    "${AppLocalization.of(context)!.translate("page")} ${((cursorState.page - 1) % 2 == 1 ? cursorState.page - 1 : cursorState.page).toString().padLeft(3, '0')}"),
               ],
             )
           ],
