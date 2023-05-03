@@ -1,13 +1,14 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:abc_quran/providers/path_provider/abc_path_provider.dart';
 import 'package:abc_quran/ui/app/api_data.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 
-final mushafFontServiceProvider = Provider((ref) => MushafFontService());
+final mushafFontServiceProvider = Provider((ref) => MushafFontService(ref));
 
 // This service fulfills visual mushaf needs.
 // It provides font data for rendering the Madani mushaf, while smartly managing font caching.
@@ -15,18 +16,11 @@ class MushafFontService {
   final Set<String> _loadedPages = {};
   final http.Client _httpClient = http.Client();
 
-  Future<String> get _localFontFolder async {
-    final Directory cacheDirectory = await getApplicationDocumentsDirectory();
+  final ProviderRef _ref;
 
-    final String directory = "${cacheDirectory.path}\\AbcQuran\\cache\\mushaf";
-    if (!await Directory(directory).exists()) {
-      Directory(directory).create(recursive: true);
-    }
+  MushafFontService(this._ref);
 
-    return directory;
-  }
-
-  Future<void> loadPage(String page) async {
+  Future loadPage(String page) async {
     if (page == "-1") {
       return; // TODO: Please fix this ! Bug seems to appear and disappear out of nowhere.
     }
@@ -50,7 +44,7 @@ class MushafFontService {
   }
 
   Future<ByteData?> _fetchPageFromDisk(String page) async {
-    final fontFolder = await _localFontFolder;
+    final fontFolder = _ref.read(abcPathProvider).localFontsFolder;
     final file = File("$fontFolder\\$page");
 
     if (await file.exists()) {
@@ -87,7 +81,7 @@ class MushafFontService {
 
     if (response.statusCode == 200) {
       // Cache the downloaded font
-      final fontFolder = await _localFontFolder;
+      final fontFolder = _ref.read(abcPathProvider).localFontsFolder;
       final file = File("$fontFolder/$page");
       await file.writeAsBytes(response.bodyBytes, flush: true);
 

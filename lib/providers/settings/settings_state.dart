@@ -20,4 +20,15 @@ class SettingsState {
         languageId: languageId ?? this.languageId,
         translationId: translationId ?? this.translationId);
   }
+
+  static fromJson(Map<String, dynamic> json) => SettingsState(
+      showMushaf: json["show_mushaf"] as bool,
+      languageId: json["language_id"] as String,
+      translationId: json["translation_id"] as String);
+
+  Map<String, dynamic> toJson() => {
+        'show_mushaf': showMushaf,
+        'language_id': languageId,
+        'translation_id': translationId
+      };
 }

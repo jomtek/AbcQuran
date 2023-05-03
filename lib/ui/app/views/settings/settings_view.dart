@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsView extends ConsumerWidget {
   const SettingsView({super.key});
@@ -73,7 +74,7 @@ class SettingsView extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 8.sp),
-          Text("Paramètres",
+          Text(AppLocalization.of(context)!.translate("settings_sidebar_title"),
               style: GoogleFonts.inter(
                   fontSize: 6.sp, fontWeight: FontWeight.w500)),
           SizedBox(height: 4.sp),
@@ -81,7 +82,8 @@ class SettingsView extends ConsumerWidget {
             width: 125.sp < 400 ? 400 : 125.sp,
             child: Row(
               children: [
-                Text("Language", style: GoogleFonts.inter(fontSize: 4.5.sp)),
+                Text(AppLocalization.of(context)!.translate("language"),
+                    style: GoogleFonts.inter(fontSize: 4.5.sp)),
                 SizedBox(width: 2.sp),
                 const Expanded(
                     child: Divider(thickness: 1.5, color: Colors.black26)),
@@ -94,7 +96,7 @@ class SettingsView extends ConsumerWidget {
             width: 125.sp < 400 ? 400 : 125.sp,
             child: Row(
               children: [
-                Text("Quran translation",
+                Text(AppLocalization.of(context)!.translate("quran_language"),
                     style: GoogleFonts.inter(fontSize: 4.5.sp)),
                 SizedBox(width: 2.sp),
                 const Expanded(
@@ -105,6 +107,19 @@ class SettingsView extends ConsumerWidget {
               ],
             ),
           ),
+          const Spacer(),
+          InkWell(
+            onTap: () =>
+                launchUrl(Uri.parse("https://github.com/jomtek/AbcQuran")),
+            child: Text(
+              AppLocalization.of(context)!.translate("help_us_github"),
+              style: TextStyle(
+                  decoration: TextDecoration.underline,
+                  color: Colors.blue,
+                  fontSize: 6.sp),
+            ),
+          ),
+          SizedBox(height: 12.sp)
         ],
       ),
     );

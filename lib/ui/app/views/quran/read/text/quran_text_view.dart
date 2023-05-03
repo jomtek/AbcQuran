@@ -29,45 +29,50 @@ class QuranTextView extends ConsumerWidget {
       minScale: 0.8,
       maxScale: 1.6,
       scaleFactor: 800,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 6.sp),
-        child: Center(
-          child: SelectionArea(
-            // TODO: fix selection area
-            child: ScrollablePositionedList.builder(
-              initialScrollIndex:
-                  max(cursorState.bookmarkStop - 2, 0), // Center the verse
-              itemScrollController: state.scrollController,
-              physics:
-                  ctrlKeyEnabled ? const NeverScrollableScrollPhysics() : null,
-              itemCount: sura.hasBasmala() && verses.isNotEmpty
-                  ? verses.length + 1
-                  : verses.length,
-              itemBuilder: (_, i) {
-                return Column(
-                  children: [
-                    if (i == 0) SizedBox(height: 12.sp),
-                    (sura.hasBasmala() && i == 0)
-                        ? QuranVerseBox(
-                            id: 0,
-                            text: state.basmalaText,
-                            glyphs: state.basmalaGlyphs)
-                        : QuranVerseBox(
-                            id: i + sura.getFirstVerseId(),
-                            text: verses[sura.hasBasmala() ? i - 1 : i],
-                            glyphs: state
-                                .loadedGlyphs[sura.hasBasmala() ? i - 1 : i],
-                          ),
-                    if (i ==
-                        (sura.hasBasmala() ? verses.length : verses.length - 1))
-                      SizedBox(height: 12.sp),
-                  ],
-                );
-              },
+      child: state.loadedGlyphs.isEmpty
+          ? Container()
+          : Padding(
+              padding: EdgeInsets.symmetric(horizontal: 6.sp),
+              child: Center(
+                child: SelectionArea(
+                  // TODO: fix selection area
+                  child: ScrollablePositionedList.builder(
+                    initialScrollIndex: max(
+                        cursorState.bookmarkStop - 2, 0), // Center the verse
+                    itemScrollController: state.scrollController,
+                    physics: ctrlKeyEnabled
+                        ? const NeverScrollableScrollPhysics()
+                        : null,
+                    itemCount: sura.hasBasmala() && verses.isNotEmpty
+                        ? verses.length + 1
+                        : verses.length,
+                    itemBuilder: (_, i) {
+                      return Column(
+                        children: [
+                          if (i == 0) SizedBox(height: 12.sp),
+                          (sura.hasBasmala() && i == 0)
+                              ? QuranVerseBox(
+                                  id: 0,
+                                  text: state.basmalaText,
+                                  glyphs: state.basmalaGlyphs)
+                              : QuranVerseBox(
+                                  id: i + sura.getFirstVerseId(),
+                                  text: verses[sura.hasBasmala() ? i - 1 : i],
+                                  glyphs: state.loadedGlyphs[
+                                      sura.hasBasmala() ? i - 1 : i],
+                                ),
+                          if (i ==
+                              (sura.hasBasmala()
+                                  ? verses.length
+                                  : verses.length - 1))
+                            SizedBox(height: 12.sp),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
-      ),
     );
   }
 }

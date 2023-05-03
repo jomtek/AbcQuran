@@ -46,6 +46,9 @@ class AppLocalization {
       'submit': 'Submit',
       'sending_contributions': 'Sending contributions...',
       'sent': 'sent',
+      'language': 'Language',
+      'quran_language': 'Quran language',
+      'help_us_github': 'You know your stuff ? Join us on Github !'
     },
     'ar': {
       'page': 'رقم',
@@ -73,6 +76,9 @@ class AppLocalization {
       'submit': 'ينشر',
       'sending_contributions': 'النشر قيد التقدم...',
       'sent': 'مساهمات',
+      'language': 'اللغة',
+      'quran_language': 'لغة الترجمة',
+      'help_us_github': 'Github ساعدنا على'
     },
     'fr': {
       'page': 'Page',
@@ -100,6 +106,9 @@ class AppLocalization {
       'submit': 'Publier',
       'sending_contributions': 'Publication en cours...',
       'sent': 'contrib. envoyées',
+      'language': 'Langue du logiciel',
+      'quran_language': 'Langue du Coran',
+      'help_us_github': 'Contribuez au projet sur Github !'
     },
     'es': {
       'page': 'Página',
@@ -127,6 +136,9 @@ class AppLocalization {
       'submit': 'Publicar',
       'sending_contributions': 'Publicando...',
       'sent': 'publicaciones enviadas',
+      'language': 'El idioma de la aplicación',
+      'quran_language': 'El idioma del corán',
+      'help_us_github': '¡Puedes ayudarnos en el Github!'
     },
   };
 
