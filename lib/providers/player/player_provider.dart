@@ -50,8 +50,6 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
     final offsetsUri = Uri.parse(
         "${ApiData.baseUrl}/reciters/${reciter.id}/timecodes/${sura.getPaddedId()}.txt");
 
-    print(offsetsUri);
-
     http.Response response;
     try {
       response = await _httpClient.get(offsetsUri);

@@ -3,7 +3,6 @@ import 'package:abc_quran/models/glyph.dart';
 import 'package:abc_quran/providers/player/player_provider.dart';
 import 'package:abc_quran/ui/app/app_theme.dart';
 import 'package:abc_quran/ui/app/views/quran/read/cursor/cursor_provider.dart';
-import 'package:abc_quran/ui/app/views/quran/read/cursor/cursor_state.dart';
 import 'package:context_menus/context_menus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
