@@ -10,15 +10,15 @@
 
 ### The vision for AbcQuran <a name="vision"></a>
 
-AbcQuran was created as a personal reaction to the lack of fancy Islam-related software, especially in english-speaking countries. For instance, in France, the only famous "mushaf app" is quran.com, a very nicely shaped yet quite improvable project. Quran.com is sufficient in itself, however it was not open-sourced, and it deeply relies on already-existing quran data.<br>
-AbcQuran stands as a mean to unravel the software engineering talents of the Muslim community around the world, proposing, God willing, an app that will please everyone. By the way, IA is coming very soon and the muslim community has unfortunately not enough been prepared to take profit from it, because of the lack of any platform for quran-related technologies.<br>
-Meanwhile, AbcQuran is a sadaqa jariya that wants to be free and improved everyday by thousands of volunteers.
+AbcQuran was created as a personal reaction to the lack of fancy Islam-related software, especially in English-speaking countries. For instance, in France, the only famous "mushaf app" is [Quran.com](https://quran.com), a very nicely shaped yet quite improvable project. [Quran.com](https://quran.com) is sufficient in itself, however it was not open-sourced, and it deeply relies on already-existing qur'an data.<br>
+AbcQuran stands as a mean to unravel the software engineering talents of the Muslim community around the world, offering, God willing, an app that will please everyone. By the way, IA is coming very soon and the muslim community has unfortunately not been prepared enough to profit from it, mainly because of the lack of  platform for quranic technologies.<br>
+Meanwhile, AbcQuran is a sadaqa jariya that aims at being free and improved everyday by thousands of volunteers.
 
 
 ### Riverpod architecture <a name="riverpod"></a>
 
-AbcQuran uses Flutter with the Riverpod package for more clarity and in order to ease the group work.
-The app in itself is split in various UI-independent providers, mostly one for each feature. However, highly requested data (such as the current sura) have their own provider for performance reasons.
+AbcQuran uses Flutter with the Riverpod package for more clarity and in order to ease group work.
+The app in itself is split between various UI-independent providers, roughly one for each feature. However, highly requested data (such as the current sura) have their own provider for performance reasons.
 https://riverpod.dev/
 
 
