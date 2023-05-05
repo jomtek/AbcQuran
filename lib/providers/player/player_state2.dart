@@ -6,6 +6,7 @@ class PlayerState2 {
   final bool wasCompleted;
   final String sourceUrl;
   final List<String> timecodes;
+  final double playbackSpeed;
 
   // Loop mode
   final bool isLooping;
@@ -18,6 +19,7 @@ class PlayerState2 {
     required this.wasCompleted,
     required this.sourceUrl,
     required this.timecodes,
+    required this.playbackSpeed,
     required this.isLooping,
     required this.loopStartVerse,
     required this.loopEndVerse,
@@ -30,6 +32,7 @@ class PlayerState2 {
         wasCompleted: false,
         sourceUrl: "",
         timecodes: [],
+        playbackSpeed: 1,
         isLooping: false,
         loopStartVerse: 1,
         loopEndVerse: 1);
@@ -41,6 +44,7 @@ class PlayerState2 {
     bool? wasCompleted,
     String? sourceUrl,
     List<String>? timecodes,
+    double? playbackSpeed,
     bool? isLooping,
     int? loopStartVerse,
     int? loopEndVerse,
@@ -51,6 +55,7 @@ class PlayerState2 {
         wasCompleted: wasCompleted ?? this.wasCompleted,
         sourceUrl: sourceUrl ?? this.sourceUrl,
         timecodes: timecodes ?? this.timecodes,
+        playbackSpeed: playbackSpeed ?? this.playbackSpeed,
         isLooping: isLooping ?? this.isLooping,
         loopStartVerse: loopStartVerse ?? this.loopStartVerse,
         loopEndVerse: loopEndVerse ?? this.loopEndVerse);

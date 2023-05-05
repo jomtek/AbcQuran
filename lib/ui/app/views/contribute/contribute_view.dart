@@ -27,7 +27,7 @@ class ContributeView extends ConsumerWidget {
               BoxShadow(blurRadius: 20, color: Colors.black26)
             ]),
         width: 70.sp,
-        height: 160.sp,
+        height: 180.sp,
         child: Column(
           children: [
             SizedBox(height: 4.sp),
@@ -83,6 +83,14 @@ class ContributeView extends ConsumerWidget {
                           style: TextStyle(
                               fontSize: 5.sp, fontWeight: FontWeight.bold)),
                     ],
+                  ),
+                  Slider(
+                    min: 1,
+                    max: 7,
+                    value: player.playbackSpeed,
+                    onChanged: (double value) {
+                      ref.read(playerProvider.notifier).setPlaybackSpeed(value);
+                    },
                   ),
                   SizedBox(height: 4.sp),
                   Row(
@@ -152,10 +160,11 @@ class ContributeView extends ConsumerWidget {
                                                     ? AppTheme.accentColor
                                                         .withOpacity(0.9)
                                                     : Colors.black)
-                                                .withOpacity(state.newTimecodes[index] ==
-                                                        int.parse(player.timecodes[index])
-                                                    ? 0.5
-                                                    : 1),
+                                                .withOpacity(
+                                                    state.newTimecodes[index] ==
+                                                            int.parse(player.timecodes[index])
+                                                        ? 0.5
+                                                        : 1),
                                             fontSize: 4.sp,
                                             fontWeight: FontWeight.w600)),
                                   ),
@@ -215,9 +224,7 @@ class ContributeView extends ConsumerWidget {
                           child: MaterialButton(
                             color: AppTheme.secundaryColor,
                             onPressed: () {
-                              ref
-                                  .read(contributeVmProvider.notifier)
-                                  .submit();
+                              ref.read(contributeVmProvider.notifier).submit();
                             },
                             child: Padding(
                               padding: EdgeInsets.symmetric(vertical: 4.sp),

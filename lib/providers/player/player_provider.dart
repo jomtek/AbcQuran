@@ -79,6 +79,8 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
     if (wasPlaying) {
       play();
     }
+
+    setPlaybackSpeed(state.playbackSpeed);
   }
 
   Future stop() async {
@@ -104,7 +106,13 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
       timecode = int.parse(
           state.timecodes[max(verse - 1 - sura.getFirstVerseId(), 0)]);
     }
+    
     await state.player.seek(Duration(milliseconds: timecode));
+  }
+
+  void setPlaybackSpeed(double speed) {
+    state.player.setPlaybackRate(speed);
+    state = state.copyWith(playbackSpeed: speed);
   }
 
   void onPositionChanged(Duration pos) async {
@@ -133,6 +141,7 @@ class PlayerNotifier extends StateNotifier<PlayerState2> {
         // TODO: Is it messy to await/make an SQL request HERE each time the verse changes ?
         if (!contributeState.isContributing) {
           // If user is actually contributing the timecodes, do not move the bookmark
+          print("Seeked after passing $tc. Pos was ${pos.inMilliseconds}");
           _ref
               .read(cursorProvider.notifier)
               .moveBookmarkTo(nextVerseNum, -1, resolvePage: true);
