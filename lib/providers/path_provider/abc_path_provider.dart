@@ -23,7 +23,7 @@ class AbcPathNotifier extends StateNotifier<AbcPathState> {
   Future<String> get _localFontsFolder async {
     final Directory cacheDirectory = await getApplicationDocumentsDirectory();
 
-    final String directory = "${cacheDirectory.path}\\AbcQuran\\cache\\mushaf";
+    final String directory = "${cacheDirectory.path}/AbcQuran/cache/mushaf";
     if (!await Directory(directory).exists()) {
       Directory(directory).create(recursive: true);
     }
@@ -33,7 +33,7 @@ class AbcPathNotifier extends StateNotifier<AbcPathState> {
 
   Future<String> get _localTranslationsFolder async {
     final docsDir = await getApplicationDocumentsDirectory();
-    final dir = docsDir.path + r"\AbcQuran\cache\text";
+    final dir = "${docsDir.path}/AbcQuran/cache/text";
 
     if (!await Directory(dir).exists()) {
       Directory(dir).create(recursive: true);
