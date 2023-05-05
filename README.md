@@ -4,7 +4,7 @@
 ## A powerful quran app
 AbcQuran is a 100% free, open-source, community software available on Windows, Linux and MacOS. **Stream** high-quality quranic recitations from tens of reciters and **read suras** in hundreds of translations, including an interactive and authentic **Madani mushaf**.
 
-[![https://github.com/jomtek/AbcQuran/releases/tag/collaborative](https://custom-icon-badges.herokuapp.com/badge/-Download-blue?style=for-the-badge&logo=download)](https://github.com/jomtek/AbcQuran/releases/tag/collaborative) (can someone help build on linux/macos ?)
+[![https://github.com/jomtek/AbcQuran/releases/tag/collaborative](https://custom-icon-badges.herokuapp.com/badge/-Download-blue?style=for-the-badge&logo=download)](https://github.com/jomtek/AbcQuran/releases/tag/collaborative)
 
 <table border="0">
  <tr>
