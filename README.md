@@ -2,9 +2,9 @@
 <img src="https://i.imgur.com/aH0W4DG.png" alt="AbcQuran icon" align=right width=200px />
 
 ## A powerful quran app
-AbcQuran is a 100% free, open-source software available on Windows, Linux and MacOS. It allows one to stream high-quality quranic recitations and read suras in hundreds of translations, including a Madani mushaf. It is meant for students as well as for regular readers, muslim and non-muslim.
+AbcQuran is a 100% free, open-source, community software available on Windows, Linux and MacOS. **Stream** high-quality quranic recitations from tens of reciters and **read suras** in hundreds of translations, including an interactive and authentic **Madani mushaf**.
 
-[![https://github.com/jomtek/AbcQuran/releases/tag/collaborative](https://custom-icon-badges.herokuapp.com/badge/-Download-blue?style=for-the-badge&logo=download)](https://github.com/jomtek/AbcQuran/releases/tag/collaborative)
+[![https://github.com/jomtek/AbcQuran/releases/tag/collaborative](https://custom-icon-badges.herokuapp.com/badge/-Download-blue?style=for-the-badge&logo=download)](https://github.com/jomtek/AbcQuran/releases/tag/collaborative) (can someone help build on linux/macos ?)
 
 <table border="0">
  <tr>
@@ -13,10 +13,10 @@ AbcQuran is a 100% free, open-source software available on Windows, Linux and Ma
  </tr>
 </table>
 
-# Which technology does it use ?
+## Which technology does it use ?
 AbcQuran uses the Flutter framework with a Riverpod MVVM-like architecture.
 
-## Contribute. Don't know where to start ?
+## Contribute
 We need your help to improve AbcQuran<br>
-- [🔊 Help us synchronize the audio data](https://www.youtube.com/watch?v=CL2cN2zhCm0)&emsp;&emsp;[(french version here)](https://www.youtube.com/watch?v=p4eLZa9lC0M)
+- [🔊 Help us synchronize the audio data](https://www.youtube.com/watch?v=CL2cN2zhCm0)&emsp;&emsp;[(french version)](https://www.youtube.com/watch?v=p4eLZa9lC0M)
 - [📖 Read the contributor docs](CONTRIBUTE.md)
