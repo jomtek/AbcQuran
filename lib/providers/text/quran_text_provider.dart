@@ -7,7 +7,6 @@ import 'package:abc_quran/providers/sura/current_sura_provider.dart';
 import 'package:abc_quran/ui/app/api_data.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
-import 'package:path/path.dart';
 
 // This provider fulfills all textual quran needs.
 // It provides data for the translated versions of the holy book.
