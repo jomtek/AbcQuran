@@ -1,7 +1,6 @@
 import 'package:abc_quran/ui/app/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class NumberCube extends StatefulWidget {
   const NumberCube({super.key, required this.id, required this.onTap});
@@ -48,7 +47,7 @@ class _NumberCubeState extends State<NumberCube> {
                     ),
                   )
                 : Text(widget.id.toString(),
-                    style: GoogleFonts.inter(
+                    style: TextStyle(
                         fontSize: 4.sp > 17 ? 17 : 4.sp,
                         fontWeight: FontWeight.w500)),
           ))),

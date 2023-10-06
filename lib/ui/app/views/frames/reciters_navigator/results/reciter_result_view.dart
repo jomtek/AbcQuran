@@ -3,7 +3,6 @@ import 'package:abc_quran/models/reciter.dart';
 import 'package:abc_quran/ui/app/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ReciterResultView extends StatefulWidget {
   const ReciterResultView(
@@ -56,7 +55,7 @@ class _ReciterResultViewState extends State<ReciterResultView> {
                   Container(
                     color: Colors.yellow,
                     padding: EdgeInsets.symmetric(horizontal: 4.sp, vertical: 1.sp),
-                    child: Text(AppLocalization.of(context)!.translate("unstable"), style: GoogleFonts.inter(fontSize: 4.sp, fontWeight: FontWeight.bold)))
+                    child: Text(AppLocalization.of(context)!.translate("unstable"), style: TextStyle(fontSize: 4.sp, fontWeight: FontWeight.bold)))
               ]),
             SizedBox(height: 2.sp),
             AnimatedContainer(
@@ -69,12 +68,12 @@ class _ReciterResultViewState extends State<ReciterResultView> {
             SizedBox(height: 2.sp),
             Text(
               widget.reciter.firstName,
-              style: GoogleFonts.inter(
+              style: TextStyle(
                   fontSize: 3.5.sp, fontWeight: FontWeight.w500),
             ),
             Text(
               widget.reciter.lastName,
-              style: GoogleFonts.inter(
+              style: TextStyle(
                   fontSize: 4.5.sp, fontWeight: FontWeight.bold),
             ),
           ],

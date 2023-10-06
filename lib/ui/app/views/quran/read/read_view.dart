@@ -12,7 +12,6 @@ import 'package:abc_quran/ui/app/views/home/state/home_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'mushaf/quran_mushaf_view.dart';
 import 'text/quran_text_view.dart';
@@ -115,7 +114,7 @@ class ReadView extends ConsumerWidget {
                                     ],
                                   ),
                                 Text(reciter.displayName,
-                                    style: GoogleFonts.inter(
+                                    style: TextStyle(
                                         fontSize: 3.75.sp,
                                         fontWeight: FontWeight.w500)),
                               ],
@@ -133,7 +132,7 @@ class ReadView extends ConsumerWidget {
                             ref.read(homeVmProvider.notifier).toggleFrame();
                           },
                           child: Text(sura.pretty(settings.languageId),
-                              style: GoogleFonts.inter(
+                              style: TextStyle(
                                   fontSize: 4.sp, fontWeight: FontWeight.w500)),
                         ),
                       ],
@@ -234,7 +233,7 @@ class ReadView extends ConsumerWidget {
                                         child: Text(
                                             AppLocalization.of(context)!
                                                 .translate("mushaf"),
-                                            style: GoogleFonts.inter(
+                                            style: TextStyle(
                                                 fontSize: 3.5.sp))),
                                   ),
                                 ),
@@ -254,7 +253,7 @@ class ReadView extends ConsumerWidget {
                                         child: Text(
                                             AppLocalization.of(context)!
                                                 .translate("text"),
-                                            style: GoogleFonts.inter(
+                                            style: TextStyle(
                                                 fontSize: 3.5.sp))),
                                   ),
                                 ),

@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'number_cube.dart';
 
@@ -139,7 +138,7 @@ class QuranVerseBox extends ConsumerWidget {
                       alignment: Alignment.centerLeft,
                       child: Text(text,
                           textAlign: TextAlign.left,
-                          style: GoogleFonts.inter(
+                          style: TextStyle(
                               fontSize: 3.25.sp < 15 ? 15 : 3.25.sp)),
                     ),
                   ],

@@ -2,7 +2,6 @@ import 'package:abc_quran/models/sura.dart';
 import 'package:abc_quran/ui/app/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SuraResultView extends StatefulWidget {
   const SuraResultView(
@@ -43,15 +42,15 @@ class _SuraResultViewState extends State<SuraResultView> {
                   width: 13.sp,
                   child: Text(
                     "${widget.sura.id}.",
-                    style: GoogleFonts.inter(
+                    style: TextStyle(
                         fontSize: 5.sp, fontWeight: FontWeight.w500),
                   )),
               Text(widget.sura.phoneticName,
-                  style: GoogleFonts.inter(
+                  style: TextStyle(
                       fontSize: 5.sp, fontWeight: FontWeight.w600)),
               SizedBox(width: 2.sp),
               Text(widget.sura.getName(widget.languageId),
-                  style: GoogleFonts.inter(
+                  style: TextStyle(
                       color: Colors.black54,
                       fontSize: 4.sp,
                       fontWeight: FontWeight.w500))

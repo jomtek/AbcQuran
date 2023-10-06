@@ -5,7 +5,6 @@ import 'package:abc_quran/providers/path_provider/abc_path_provider.dart';
 import 'package:abc_quran/ui/app/api_data.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 
 final mushafFontServiceProvider = Provider((ref) => MushafFontService(ref));

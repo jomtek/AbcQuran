@@ -6,7 +6,6 @@ import 'package:abc_quran/providers/text/translation_list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsView extends ConsumerWidget {
@@ -75,7 +74,7 @@ class SettingsView extends ConsumerWidget {
         children: [
           SizedBox(height: 8.sp),
           Text(AppLocalization.of(context)!.translate("settings_sidebar_title"),
-              style: GoogleFonts.inter(
+              style: TextStyle(
                   fontSize: 6.sp, fontWeight: FontWeight.w500)),
           SizedBox(height: 4.sp),
           SizedBox(
@@ -83,7 +82,7 @@ class SettingsView extends ConsumerWidget {
             child: Row(
               children: [
                 Text(AppLocalization.of(context)!.translate("language"),
-                    style: GoogleFonts.inter(fontSize: 4.5.sp)),
+                    style: TextStyle(fontSize: 4.5.sp)),
                 SizedBox(width: 2.sp),
                 const Expanded(
                     child: Divider(thickness: 1.5, color: Colors.black26)),
@@ -97,7 +96,7 @@ class SettingsView extends ConsumerWidget {
             child: Row(
               children: [
                 Text(AppLocalization.of(context)!.translate("quran_language"),
-                    style: GoogleFonts.inter(fontSize: 4.5.sp)),
+                    style: TextStyle(fontSize: 4.5.sp)),
                 SizedBox(width: 2.sp),
                 const Expanded(
                     child: Divider(thickness: 1.5, color: Colors.black26)),

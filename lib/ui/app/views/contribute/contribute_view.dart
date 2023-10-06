@@ -7,7 +7,6 @@ import 'package:abc_quran/ui/app/views/contribute/state/contribute_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContributeView extends ConsumerWidget {
@@ -132,7 +131,7 @@ class ContributeView extends ConsumerWidget {
                                             top: 2.sp,
                                             bottom: 2.sp),
                                         child: Text(timecode,
-                                            style: GoogleFonts.inter(
+                                            style: TextStyle(
                                                 fontSize: 4.sp)))),
                                 SizedBox(
                                     height: 10.sp,
@@ -154,7 +153,7 @@ class ContributeView extends ConsumerWidget {
                                                 (state.newTimecodes[index] <= previousTimecode
                                                     ? "⚠️"
                                                     : ""),
-                                        style: GoogleFonts.inter(
+                                        style: TextStyle(
                                             color: (state.newTimecodes[index] <=
                                                         previousTimecode
                                                     ? AppTheme.accentColor
@@ -192,7 +191,7 @@ class ContributeView extends ConsumerWidget {
                                 padding: EdgeInsets.symmetric(vertical: 4.sp),
                                 child: Text(
                                     "<- ${AppLocalization.of(context)!.translate("previous_v")}",
-                                    style: GoogleFonts.inter(
+                                    style: TextStyle(
                                         fontSize: 4.sp,
                                         fontWeight: FontWeight.w500)),
                               )),
@@ -209,7 +208,7 @@ class ContributeView extends ConsumerWidget {
                               padding: EdgeInsets.symmetric(vertical: 4.sp),
                               child: Text(
                                   "${AppLocalization.of(context)!.translate("mark_v")} ->",
-                                  style: GoogleFonts.inter(
+                                  style: TextStyle(
                                       fontSize: 4.sp,
                                       fontWeight: FontWeight.bold)),
                             ),
@@ -231,7 +230,7 @@ class ContributeView extends ConsumerWidget {
                               child: Text(
                                   AppLocalization.of(context)!
                                       .translate("submit"),
-                                  style: GoogleFonts.inter(
+                                  style: TextStyle(
                                       fontSize: 4.sp,
                                       fontWeight: FontWeight.w500)),
                             ),
@@ -248,7 +247,7 @@ class ContributeView extends ConsumerWidget {
                               padding: EdgeInsets.symmetric(vertical: 4.sp),
                               child: Text(
                                   "${AppLocalization.of(context)!.translate("skip_v")} ->",
-                                  style: GoogleFonts.inter(
+                                  style: TextStyle(
                                       fontSize: 4.sp,
                                       fontWeight: FontWeight.w500)),
                             ),
@@ -264,11 +263,11 @@ class ContributeView extends ConsumerWidget {
                         Text(
                             AppLocalization.of(context)!
                                 .translate("sending_contributions"),
-                            style: GoogleFonts.inter(fontSize: 5.sp)),
+                            style: TextStyle(fontSize: 5.sp)),
                         SizedBox(height: 1.sp),
                         Text(
                             "${state.contributionsSent} ${AppLocalization.of(context)!.translate("sent")}",
-                            style: GoogleFonts.inter(fontSize: 5.sp)),
+                            style: TextStyle(fontSize: 5.sp)),
                       ],
                     )
                 ],

@@ -4,7 +4,7 @@ import 'package:abc_quran/providers/sura/current_sura_provider.dart';
 import 'package:abc_quran/providers/sura/hizb/hizb_list_provider.dart';
 import 'package:abc_quran/providers/sura/hizb/hizb_state.dart';
 import 'package:abc_quran/ui/app/app_theme.dart';
-import 'package:abc_quran/ui/app/views/common/searchbar_view.dart';
+import 'package:abc_quran/ui/app/views/common/searchbar_view.dart' as sb;
 import 'package:abc_quran/ui/app/views/frames/quran_navigator/hizb_block_view.dart';
 import 'package:abc_quran/ui/app/views/frames/quran_navigator/results/sura_result_view.dart';
 import 'package:abc_quran/ui/app/views/home/state/home_vm.dart';
@@ -114,7 +114,7 @@ class QuranNavigatorFrame extends ConsumerWidget {
               SizedBox(height: 4.sp),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 5.sp),
-                child: SearchBar(
+                child: sb.SearchBar(
                   placeholder: AppLocalization.of(context)!
                       .translate("sura_list_searchbar_hint"),
                   textChanged: (text) {
